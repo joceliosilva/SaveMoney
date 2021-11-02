@@ -49,6 +49,7 @@ this.setIconImage(imagemTitulo);
         txtRegister = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login | SaveMoney");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(34, 36, 80));
         setIconImages(getIconImages());

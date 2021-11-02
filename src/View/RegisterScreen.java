@@ -5,7 +5,10 @@ import Controlers.DisplayManager;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import java.net.URL;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -29,6 +32,7 @@ public class RegisterScreen extends javax.swing.JFrame {
 
  }
   
+  
   private void setIcon(){
     URL url = this.getClass().getResource("/Images/icon.png");
 Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
@@ -47,6 +51,9 @@ this.setIconImage(imagemTitulo);
         txt1 = new javax.swing.JLabel();
         txtLogin1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
+        labelLocalFile = new javax.swing.JTextField();
+        buttonF = new javax.swing.JButton();
+        labelAvatar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro | SaveMoney");
@@ -91,6 +98,11 @@ this.setIconImage(imagemTitulo);
 
         buttonRegister.setText("CADASTRAR");
         buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonRegisterMouseClicked(evt);
+            }
+        });
         buttonRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRegisterActionPerformed(evt);
@@ -124,24 +136,28 @@ this.setIconImage(imagemTitulo);
             }
         });
 
+        labelLocalFile.setEditable(false);
+        labelLocalFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                labelLocalFileActionPerformed(evt);
+            }
+        });
+
+        buttonF.setText("Selecionar");
+        buttonF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFActionPerformed(evt);
+            }
+        });
+
+        labelAvatar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelAvatar.setForeground(new java.awt.Color(255, 255, 255));
+        labelAvatar.setText("Avatar");
+
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(txt1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLogin1))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(165, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,18 +167,45 @@ this.setIconImage(imagemTitulo);
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
                         .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(227, 227, 227))))
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(labelAvatar))
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addComponent(labelLocalFile, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonF))))
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(277, 277, 277)
+                        .addComponent(txt1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtLogin1)))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelAvatar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelLocalFile))
+                .addGap(32, 32, 32)
                 .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,7 +218,7 @@ this.setIconImage(imagemTitulo);
 
         bindingGroup.bind();
 
-        setSize(new java.awt.Dimension(621, 376));
+        setSize(new java.awt.Dimension(621, 448));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,12 +239,38 @@ this.setIconImage(imagemTitulo);
         this.dispose();
     }//GEN-LAST:event_txtLogin1MouseClicked
 
+    private void buttonRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRegisterMouseClicked
+      
+    }//GEN-LAST:event_buttonRegisterMouseClicked
+
+    private void labelLocalFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelLocalFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelLocalFileActionPerformed
+
+    private void buttonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFActionPerformed
+        JFileChooser file = new JFileChooser();
+         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        file.setDialogTitle("Selecionar avatar");
+         file.addChoosableFileFilter(new FileNameExtensionFilter( "Imagens (*.png)", "png")); //SELECIONA O FILTRO DE ARQUIVOS
+         file.setAcceptAllFileFilterUsed(false); //IMPEDE A SELEÇÃO DE OUTRO TIPO DE ARQUIVO
+         int i= file.showSaveDialog(null);
+      
+         if (i==1){
+          labelLocalFile.setText("");  //SE O USUARIO NÃOSELECIONAR NADA O CAMPO FICA VAZIO
+       } else {
+           File arquivo = file.getSelectedFile();
+         labelLocalFile.setText(arquivo.getPath());
+       }   // PREENCHE O CAMPO COM O CAMINHO DO ARQUIVO
+       
+ 
+    }//GEN-LAST:event_buttonFActionPerformed
+
   
     public static void main(String args[]) {
       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("WindowsClassic".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -235,8 +304,11 @@ this.setIconImage(imagemTitulo);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
+    private javax.swing.JButton buttonF;
     private javax.swing.JButton buttonRegister;
+    private javax.swing.JLabel labelAvatar;
     private javax.swing.JTextField labelEmail;
+    private javax.swing.JTextField labelLocalFile;
     private javax.swing.JPasswordField labelPassword;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txtLogin1;
