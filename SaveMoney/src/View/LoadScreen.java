@@ -1,4 +1,3 @@
-
 package View;
 
 import java.awt.Dimension;
@@ -9,30 +8,29 @@ import java.net.URL;
 /**
  *
  * @author Jocelio
+ * @author Renan
  */
 public class LoadScreen extends javax.swing.JFrame {
 
-    
     public LoadScreen() {
         initComponents();
         setIcon();
-       
+
         setLocationRelativeTo(null);  //Carrega o form no centro da tela
-    
     }
 
-  private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
+    private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
         this.setSize((dimensao.width + 5), (dimensao.height - 38));
+    }
 
- }
-  
-  private void setIcon(){
-    URL url = this.getClass().getResource("/Images/icon.png");
-Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-this.setIconImage(imagemTitulo);
-}
+    private void setIcon() {
+        URL url = this.getClass().getResource("/Images/icon.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -105,9 +103,8 @@ this.setIconImage(imagemTitulo);
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-  
     public static void main(String args[]) {
-      
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -126,11 +123,9 @@ this.setIconImage(imagemTitulo);
         }
         //</editor-fold>
 
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoadScreen().setVisible(true);
-                
             }
         });
     }

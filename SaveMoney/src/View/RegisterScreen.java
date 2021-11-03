@@ -1,7 +1,6 @@
-
 package View;
 
-import Controlers.DisplayManager;
+import Controller.DisplayManager;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -13,31 +12,31 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author Jocelio
+ * @author Renan
  */
 public class RegisterScreen extends javax.swing.JFrame {
+
     DisplayManager d = new DisplayManager();
-    
+
     public RegisterScreen() {
         initComponents();
         setIcon();
         labelEmail.requestFocus();
         setLocationRelativeTo(null);  //Carrega o form no centro da tela
-    
     }
 
-  private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
+    private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
         this.setSize((dimensao.width + 5), (dimensao.height - 38));
+    }
 
- }
-  
-  
-  private void setIcon(){
-    URL url = this.getClass().getResource("/Images/icon.png");
-Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-this.setIconImage(imagemTitulo);
-}
+    private void setIcon() {
+        URL url = this.getClass().getResource("/Images/icon.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,7 +239,7 @@ this.setIconImage(imagemTitulo);
     }//GEN-LAST:event_txtLogin1MouseClicked
 
     private void buttonRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRegisterMouseClicked
-      
+
     }//GEN-LAST:event_buttonRegisterMouseClicked
 
     private void labelLocalFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelLocalFileActionPerformed
@@ -249,25 +248,23 @@ this.setIconImage(imagemTitulo);
 
     private void buttonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFActionPerformed
         JFileChooser file = new JFileChooser();
-         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        file.setFileSelectionMode(JFileChooser.FILES_ONLY);
         file.setDialogTitle("Selecionar avatar");
-         file.addChoosableFileFilter(new FileNameExtensionFilter( "Imagens (*.png)", "png")); //SELECIONA O FILTRO DE ARQUIVOS
-         file.setAcceptAllFileFilterUsed(false); //IMPEDE A SELEÇÃO DE OUTRO TIPO DE ARQUIVO
-         int i= file.showSaveDialog(null);
-      
-         if (i==1){
-          labelLocalFile.setText("");  //SE O USUARIO NÃOSELECIONAR NADA O CAMPO FICA VAZIO
-       } else {
-           File arquivo = file.getSelectedFile();
-         labelLocalFile.setText(arquivo.getPath());
-       }   // PREENCHE O CAMPO COM O CAMINHO DO ARQUIVO
-       
- 
+        file.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*.png)", "png")); //SELECIONA O FILTRO DE ARQUIVOS
+        file.setAcceptAllFileFilterUsed(false); //IMPEDE A SELEÇÃO DE OUTRO TIPO DE ARQUIVO
+        int i = file.showSaveDialog(null);
+
+        if (i == 1) {
+            labelLocalFile.setText("");  //SE O USUARIO NÃOSELECIONAR NADA O CAMPO FICA VAZIO
+        } else {
+            File arquivo = file.getSelectedFile();
+            labelLocalFile.setText(arquivo.getPath());
+        }   // PREENCHE O CAMPO COM O CAMINHO DO ARQUIVO
+
     }//GEN-LAST:event_buttonFActionPerformed
 
-  
     public static void main(String args[]) {
-      
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("WindowsClassic".equals(info.getName())) {
@@ -293,11 +290,9 @@ this.setIconImage(imagemTitulo);
         //</editor-fold>
         //</editor-fold>
 
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RegisterScreen().setVisible(true);
-                
             }
         });
     }

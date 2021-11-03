@@ -1,7 +1,6 @@
-
 package View;
 
-import Controlers.DisplayManager;
+import Controller.DisplayManager;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -11,30 +10,31 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Jocelio
+ * @author Renan
  */
 public class LoginScreen extends javax.swing.JFrame {
-DisplayManager d = new DisplayManager();
-    
- public LoginScreen() {
+
+    DisplayManager d = new DisplayManager();
+
+    public LoginScreen() {
         initComponents();
         setIcon();
         labelEmail.requestFocus();
         setLocationRelativeTo(null);  //Carrega o form no centro da tela
-    
     }
 
-  private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
+    private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
         this.setSize((dimensao.width + 5), (dimensao.height - 38));
+    }
 
- }
-  
-  private void setIcon(){
-URL url = this.getClass().getResource("/Images/icon.png");
-Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-this.setIconImage(imagemTitulo);
-}
+    private void setIcon() {
+        URL url = this.getClass().getResource("/Images/icon.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -171,30 +171,26 @@ this.setIconImage(imagemTitulo);
     }//GEN-LAST:event_labelEmailActionPerformed
 
     private void txtRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRegisterMouseClicked
-       d.OpenRegister();
-       this.dispose();
+        d.OpenRegister();
+        this.dispose();
     }//GEN-LAST:event_txtRegisterMouseClicked
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-      //SÓ TESTE APAGAR DEPOIS
-        
+        //SÓ TESTE APAGAR DEPOIS
+
         String email = "save@money";
         String senha = "senha";
-        
-        if(labelEmail.getText().equals(email) && labelPassword.getText().equals(senha)){
+
+        if (labelEmail.getText().equals(email) && labelPassword.getText().equals(senha)) {
             d.OpenHome();
             this.dispose();
-        }
-        
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "EMAIL OU SENHA INVÁLIDOS!");
         }
-        
     }//GEN-LAST:event_buttonLoginActionPerformed
 
-  
     public static void main(String args[]) {
-      
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -216,11 +212,9 @@ this.setIconImage(imagemTitulo);
         //</editor-fold>
         //</editor-fold>
 
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginScreen().setVisible(true);
-                
             }
         });
     }

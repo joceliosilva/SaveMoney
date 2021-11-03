@@ -24,21 +24,23 @@ public class HomeScreen extends javax.swing.JFrame {
     public HomeScreen() {
         initComponents();
         setIcon();
-         pegarResolucao(); 
-         setLocationRelativeTo(null);  //Carrega o form no centro da tela
+        pegarResolucao();
+        setLocationRelativeTo(null);  //Carrega o form no centro da tela
     }
-    
-     private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
+
+    private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
         this.setSize((dimensao.width + 5), (dimensao.height - 38));
 
- }
-     private void setIcon(){
-    URL url = this.getClass().getResource("/Images/icon.png");
-Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-this.setIconImage(imagemTitulo);
-}
+    }
+
+    private void setIcon() {
+        URL url = this.getClass().getResource("/Images/icon.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -342,86 +344,93 @@ this.setIconImage(imagemTitulo);
     }// </editor-fold>//GEN-END:initComponents
 
     //CORES DO MENU RECEITAS//
-     public void mudarBarra(JPanel p){
-        p.setBackground(new Color(42,111,151));
+    public void mudarBarra(JPanel p) {
+        p.setBackground(new Color(42, 111, 151));
     }
-      public void mudarBtn1(JPanel p){
-        p.setBackground(new Color(42,111,151));
+
+    public void mudarBtn1(JPanel p) {
+        p.setBackground(new Color(42, 111, 151));
     }
-      public void mudarUser(JPanel p){
+
+    public void mudarUser(JPanel p) {
         p.setBackground(new Color(1, 58, 99));
     }
-    
-      //CORES DO MENU DESPESAS//
-     public void mudarBarraDes(JPanel p){
+
+    //CORES DO MENU DESPESAS//
+    public void mudarBarraDes(JPanel p) {
         p.setBackground(new Color(154, 3, 30));
     }
-      public void mudarBtn2(JPanel p){
+
+    public void mudarBtn2(JPanel p) {
         p.setBackground(new Color(154, 3, 30));
     }
-      public void mudarUser2(JPanel p){
+
+    public void mudarUser2(JPanel p) {
         p.setBackground(new Color(94, 11, 25));
     }
-     
-       //CORES DO MENU CARTÔES//
-     public void mudarBarraCar(JPanel p){
+
+    //CORES DO MENU CARTÔES//
+    public void mudarBarraCar(JPanel p) {
         p.setBackground(new Color(227, 100, 20));
     }
-      public void mudarBtn3(JPanel p){
+
+    public void mudarBtn3(JPanel p) {
         p.setBackground(new Color(227, 100, 20));
     }
-      public void mudarUser3(JPanel p){
+
+    public void mudarUser3(JPanel p) {
         p.setBackground(new Color(54, 60, 0));
     }
-     
-         //CORES DO MENU CATEGORIAS//
-     public void mudarBarraCat(JPanel p){
+
+    //CORES DO MENU CATEGORIAS//
+    public void mudarBarraCat(JPanel p) {
         p.setBackground(new Color(134, 14, 87));
     }
-      public void mudarBtn4(JPanel p){
+
+    public void mudarBtn4(JPanel p) {
         p.setBackground(new Color(134, 14, 87));
     }
-      public void mudarUser4(JPanel p){
+
+    public void mudarUser4(JPanel p) {
         p.setBackground(new Color(5, 15, 64));
     }
-     
-      
-      
+
     //EFEITO HOVER//
-    public void mudarCor(JPanel p){
-        p.setBackground(new Color(29,31,62));
+    public void mudarCor(JPanel p) {
+        p.setBackground(new Color(29, 31, 62));
     }
-     public void voltaCor(JPanel p){
-        p.setBackground(new Color(51,51,76));
+
+    public void voltaCor(JPanel p) {
+        p.setBackground(new Color(51, 51, 76));
     }
     //FIM DO EFEITO//
-    
+
     private void btnReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseEntered
         mudarCor(btnReceitas);
     }//GEN-LAST:event_btnReceitasMouseEntered
 
     private void btnReceitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseExited
-      
+
     }//GEN-LAST:event_btnReceitasMouseExited
 
     private void btnDespesasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseEntered
-         mudarCor(btnDespesas);
+        mudarCor(btnDespesas);
     }//GEN-LAST:event_btnDespesasMouseEntered
 
     private void btnDespesasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseExited
-      
+
     }//GEN-LAST:event_btnDespesasMouseExited
 
     private void btnCartoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseEntered
-       mudarCor(btnCartoes);
+        mudarCor(btnCartoes);
     }//GEN-LAST:event_btnCartoesMouseEntered
 
     private void btnCartoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseExited
-        
+
     }//GEN-LAST:event_btnCartoesMouseExited
 
     private void btnCategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseEntered
-         mudarCor(btnCategorias);
+        mudarCor(btnCategorias);
     }//GEN-LAST:event_btnCategoriasMouseEntered
 
     private void btnCategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseExited
@@ -451,7 +460,7 @@ this.setIconImage(imagemTitulo);
     }//GEN-LAST:event_btnDespesasMouseClicked
 
     private void btnCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseClicked
-       txtTitulo.setText("CARTÕES");
+        txtTitulo.setText("CARTÕES");
         mudarBarraCar(PainelTopo);
         mudarBarraCar(Background);
         mudarUser3(PainelLateralTop);
@@ -462,7 +471,7 @@ this.setIconImage(imagemTitulo);
     }//GEN-LAST:event_btnCartoesMouseClicked
 
     private void btnCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseClicked
-      txtTitulo.setText("CATEGORIAS");
+        txtTitulo.setText("CATEGORIAS");
         mudarBarraCat(PainelTopo);
         mudarBarraCat(Background);
         mudarUser4(PainelLateralTop);

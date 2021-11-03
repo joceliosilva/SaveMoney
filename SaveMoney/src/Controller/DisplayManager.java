@@ -1,5 +1,5 @@
 
-package Controlers;
+package Controller;
 
 import View.HomeScreen;
 import View.LoginScreen;
