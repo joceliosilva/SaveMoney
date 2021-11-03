@@ -7,7 +7,9 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +23,7 @@ public class HomeScreen extends javax.swing.JFrame {
      */
     public HomeScreen() {
         initComponents();
+        setIcon();
          pegarResolucao(); 
          setLocationRelativeTo(null);  //Carrega o form no centro da tela
     }
@@ -31,9 +34,11 @@ public class HomeScreen extends javax.swing.JFrame {
         this.setSize((dimensao.width + 5), (dimensao.height - 38));
 
  }
-     
-    
-
+     private void setIcon(){
+    URL url = this.getClass().getResource("/Images/icon.png");
+Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+this.setIconImage(imagemTitulo);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +65,7 @@ public class HomeScreen extends javax.swing.JFrame {
         area1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SaveMoney");
         setResizable(false);
 
         Background.setBackground(new java.awt.Color(34, 36, 81));
