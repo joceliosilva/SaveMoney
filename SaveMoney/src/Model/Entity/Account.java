@@ -5,10 +5,14 @@
  */
 package Model.Entity;
 
+import java.awt.Image;
+
 /**
  *
  * @author Renan
  */
 public class Account {
-    // Conta
+    private String FullName;
+    private String Email;
+    private Image Avatar;    
 }

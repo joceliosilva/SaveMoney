@@ -15,4 +15,12 @@ public class Enum {
         CREDIT,
         DEBT
     }
+    public enum CardFlag {
+        MASTERCARD,
+        VISA,
+        ELO,
+        HIPERCARD,
+        AMERICAN_EXPRESS,
+        DINERS_CLUB
+    }
 }

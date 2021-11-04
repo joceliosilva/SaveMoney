@@ -30,16 +30,16 @@ public class LoadScreen extends javax.swing.JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
     }
-
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         Background = new javax.swing.JPanel();
-        txtLogo = new javax.swing.JLabel();
         progressLoad = new javax.swing.JProgressBar();
         txtLoad = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -55,44 +55,39 @@ public class LoadScreen extends javax.swing.JFrame {
 
         Background.setBackground(new java.awt.Color(34, 36, 80));
 
-        txtLogo.setBackground(new java.awt.Color(255, 255, 255));
-        txtLogo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
-        txtLogo.setForeground(new java.awt.Color(255, 255, 255));
-        txtLogo.setText("SaveMoney");
-        txtLogo.setMaximumSize(new java.awt.Dimension(500, 48));
-
         progressLoad.setStringPainted(true);
 
-        txtLoad.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        txtLoad.setFont(new java.awt.Font("Ruda", 1, 12)); // NOI18N
         txtLoad.setForeground(new java.awt.Color(255, 255, 255));
         txtLoad.setText("Carregando...");
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(progressLoad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtLoad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(txtLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195))
+            .addComponent(progressLoad, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtLoad))
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(lblLogo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(txtLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtLoad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGap(85, 85, 85)
+                .addComponent(lblLogo)
+                .addGap(85, 85, 85)
+                .addComponent(txtLoad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(progressLoad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         getContentPane().add(Background, java.awt.BorderLayout.CENTER);
@@ -132,9 +127,9 @@ public class LoadScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
+    private javax.swing.JLabel lblLogo;
     public javax.swing.JProgressBar progressLoad;
     public javax.swing.JLabel txtLoad;
-    private javax.swing.JLabel txtLogo;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

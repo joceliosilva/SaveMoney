@@ -32,7 +32,6 @@ public class HomeScreen extends javax.swing.JFrame {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
         this.setSize((dimensao.width + 5), (dimensao.height - 38));
-
     }
 
     private void setIcon() {
@@ -80,7 +79,7 @@ public class HomeScreen extends javax.swing.JFrame {
         PainelLateralTop.setLayout(flowLayout1);
 
         txtUser.setBackground(new java.awt.Color(255, 255, 255));
-        txtUser.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtUser.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setText("USER");
         PainelLateralTop.add(txtUser);
@@ -100,7 +99,7 @@ public class HomeScreen extends javax.swing.JFrame {
         });
 
         txtReceitas.setBackground(new java.awt.Color(255, 255, 255));
-        txtReceitas.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtReceitas.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtReceitas.setForeground(new java.awt.Color(255, 255, 255));
         txtReceitas.setText("Receitas");
 
@@ -140,7 +139,7 @@ public class HomeScreen extends javax.swing.JFrame {
         });
 
         txtDespesas.setBackground(new java.awt.Color(255, 255, 255));
-        txtDespesas.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtDespesas.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtDespesas.setForeground(new java.awt.Color(255, 255, 255));
         txtDespesas.setText("Despesas");
 
@@ -180,7 +179,7 @@ public class HomeScreen extends javax.swing.JFrame {
         });
 
         txtCartoes.setBackground(new java.awt.Color(255, 255, 255));
-        txtCartoes.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtCartoes.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtCartoes.setForeground(new java.awt.Color(255, 255, 255));
         txtCartoes.setText("Cartões");
 
@@ -220,7 +219,7 @@ public class HomeScreen extends javax.swing.JFrame {
         });
 
         txtCategorias.setBackground(new java.awt.Color(255, 255, 255));
-        txtCategorias.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtCategorias.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtCategorias.setForeground(new java.awt.Color(255, 255, 255));
         txtCategorias.setText("Categorias");
 
@@ -277,7 +276,7 @@ public class HomeScreen extends javax.swing.JFrame {
         PainelTopo.setPreferredSize(new java.awt.Dimension(1043, 115));
 
         txtTitulo.setBackground(new java.awt.Color(255, 255, 255));
-        txtTitulo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtTitulo.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setText("PRINCIPAL");
 
@@ -288,12 +287,12 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(PainelTopoLayout.createSequentialGroup()
                 .addGap(401, 401, 401)
                 .addComponent(txtTitulo)
-                .addContainerGap(578, Short.MAX_VALUE))
+                .addContainerGap(599, Short.MAX_VALUE))
         );
         PainelTopoLayout.setVerticalGroup(
             PainelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTopoLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(txtTitulo)
                 .addContainerGap())
         );
@@ -342,7 +341,17 @@ public class HomeScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+        
+    //EFEITO HOVER//
+    public void mouseEnteredButton(JPanel p){
+        p.setBackground(new Color(29, 31, 62));        
+    }
 
+    public void mouseExitedButton(JPanel p){
+        p.setBackground(new Color(51, 51, 76));
+    }
+    //FIM DO EFEITO//
+    
     //CORES DO MENU RECEITAS//
     public void mudarBarra(JPanel p) {
         p.setBackground(new Color(42, 111, 151));
@@ -406,35 +415,35 @@ public class HomeScreen extends javax.swing.JFrame {
     //FIM DO EFEITO//
 
     private void btnReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseEntered
-        mudarCor(btnReceitas);
+        mouseEnteredButton(btnReceitas);
     }//GEN-LAST:event_btnReceitasMouseEntered
 
     private void btnReceitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseExited
-
+        mouseExitedButton(btnReceitas);
     }//GEN-LAST:event_btnReceitasMouseExited
 
     private void btnDespesasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseEntered
-        mudarCor(btnDespesas);
+        mouseEnteredButton(btnDespesas);
     }//GEN-LAST:event_btnDespesasMouseEntered
 
     private void btnDespesasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseExited
-
+        mouseExitedButton(btnDespesas);
     }//GEN-LAST:event_btnDespesasMouseExited
 
     private void btnCartoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseEntered
-        mudarCor(btnCartoes);
+        mouseEnteredButton(btnCartoes);
     }//GEN-LAST:event_btnCartoesMouseEntered
 
     private void btnCartoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseExited
-
+        mouseExitedButton(btnCartoes);
     }//GEN-LAST:event_btnCartoesMouseExited
 
     private void btnCategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseEntered
-        mudarCor(btnCategorias);
+        mouseEnteredButton(btnCategorias);
     }//GEN-LAST:event_btnCategoriasMouseEntered
 
     private void btnCategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseExited
-
+        mouseExitedButton(btnCategorias);
     }//GEN-LAST:event_btnCategoriasMouseExited
 
     private void btnReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseClicked
