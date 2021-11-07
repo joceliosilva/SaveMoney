@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -19,7 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class RegisterScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
-
+       JFileChooser jFileChooser = new JFileChooser();
+       
     public RegisterScreen() {
         initComponents();
         setIcon();
@@ -44,12 +48,11 @@ public class RegisterScreen extends javax.swing.JFrame {
         String caminho = null;
   
         try {
-
-       JFileChooser jFileChooser = new JFileChooser();
        jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
        jFileChooser.setDialogTitle("Selecionar avatar");
-       jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*.png)", "png")); //SELECIONA O FILTRO DE ARQUIVOS
+       jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*png, jpg, jpeg)", "png","jpg","jpeg")); //SELECIONA O FILTRO DE ARQUIVOS
        jFileChooser.setAcceptAllFileFilterUsed(false);  //Limita os filtros de arquivos
+      
            
         int ok = jFileChooser.showOpenDialog(null);  //Aguarda o Usuario escolher a imagem ou cancelar
 
@@ -272,7 +275,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_buttonRegisterActionPerformed
 
     private void txtLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLogin1MouseClicked
