@@ -6,8 +6,7 @@
 package Model.Home;
 
 import Model.Entity.Account;
-import Model.Enum.ExpenseStatus;
-import Model.Enum.FormOfPayment;
+import Model.Enum.Month;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -15,17 +14,13 @@ import java.util.Date;
  *
  * @author Renan
  */
-public class Expense {
+public class Revenue {
     private int Id;
     private Account AccountId;
-    private Category CategoryId;
-    private Card CardId;
     private BigDecimal Value;
+    private Month ReferenceMonth;
     private Date Date;
     private String Description;
-    private FormOfPayment FormOfPayment;
-    private int NumberOfInstallments;
-    private ExpenseStatus Status;
 
     public int getId() {
         return Id;
@@ -43,28 +38,20 @@ public class Expense {
         this.AccountId = AccountId;
     }
 
-    public Category getCategoryId() {
-        return CategoryId;
-    }
-
-    public void setCategoryId(Category CategoryId) {
-        this.CategoryId = CategoryId;
-    }
-
-    public Card getCardId() {
-        return CardId;
-    }
-
-    public void setCardId(Card CardId) {
-        this.CardId = CardId;
-    }
-
     public BigDecimal getValue() {
         return Value;
     }
 
     public void setValue(BigDecimal Value) {
         this.Value = Value;
+    }
+
+    public Month getReferenceMonth() {
+        return ReferenceMonth;
+    }
+
+    public void setReferenceMonth(Month ReferenceMonth) {
+        this.ReferenceMonth = ReferenceMonth;
     }
 
     public Date getDate() {
@@ -81,29 +68,5 @@ public class Expense {
 
     public void setDescription(String Description) {
         this.Description = Description;
-    }
-
-    public FormOfPayment getFormOfPayment() {
-        return FormOfPayment;
-    }
-
-    public void setFormOfPayment(FormOfPayment FormOfPayment) {
-        this.FormOfPayment = FormOfPayment;
-    }
-
-    public int getNumberOfInstallments() {
-        return NumberOfInstallments;
-    }
-
-    public void setNumberOfInstallments(int NumberOfInstallments) {
-        this.NumberOfInstallments = NumberOfInstallments;
-    }
-
-    public ExpenseStatus getStatus() {
-        return Status;
-    }
-
-    public void setStatus(ExpenseStatus Status) {
-        this.Status = Status;
     }
 }

@@ -7,6 +7,7 @@ package Model.Home;
 import Model.Entity.Account;
 import Model.Enum.CardType;
 import Model.Enum.CardFlag;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -14,12 +15,30 @@ import java.util.Date;
  * @author Renan
  */
 public class Card {
+    private int Id;    
+    private Account AccountId;
     private int Number;
     private CardType Type;
     private CardFlag Flag;
-    private Account Account;
-    private double Limit;
+    private BigDecimal Limit;
+    private BigDecimal AnnualValue;
     private Date ClosingDate;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
+    public Account getAccountId() {
+        return AccountId;
+    }
+
+    public void setAccountId(Account AccountId) {
+        this.AccountId = AccountId;
+    }
 
     public int getNumber() {
         return Number;
@@ -45,20 +64,20 @@ public class Card {
         this.Flag = Flag;
     }
 
-    public Account getAccount() {
-        return Account;
-    }
-
-    public void setAccount(Account Account) {
-        this.Account = Account;
-    }
-
-    public double getLimit() {
+    public BigDecimal getLimit() {
         return Limit;
     }
 
-    public void setLimit(double Limit) {
+    public void setLimit(BigDecimal Limit) {
         this.Limit = Limit;
+    }
+
+    public BigDecimal getAnnualValue() {
+        return AnnualValue;
+    }
+
+    public void setAnnualValue(BigDecimal AnnualValue) {
+        this.AnnualValue = AnnualValue;
     }
 
     public Date getClosingDate() {

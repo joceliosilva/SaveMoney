@@ -10,5 +10,31 @@ package Model.Home;
  * @author Renan
  */
 public class Category {
-    // Categoria
+    private int Id;
+    private String Name;
+    private String Description;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
 }

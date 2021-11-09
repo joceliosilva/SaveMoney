@@ -22,8 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class RegisterScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
-       JFileChooser jFileChooser = new JFileChooser();
-       
+    JFileChooser jFileChooser = new JFileChooser();
+
     public RegisterScreen() {
         initComponents();
         setIcon();
@@ -42,19 +42,18 @@ public class RegisterScreen extends javax.swing.JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
     }
-   
-       private ImageIcon selectFile() {
+
+    private ImageIcon selectFile() {
         ImageIcon conteudo = null;
         String caminho = null;
-  
+
         try {
-       jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-       jFileChooser.setDialogTitle("Selecionar avatar");
-       jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*png, jpg, jpeg)", "png","jpg","jpeg")); //SELECIONA O FILTRO DE ARQUIVOS
-       jFileChooser.setAcceptAllFileFilterUsed(false);  //Limita os filtros de arquivos
-      
-           
-        int ok = jFileChooser.showOpenDialog(null);  //Aguarda o Usuario escolher a imagem ou cancelar
+            jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            jFileChooser.setDialogTitle("Selecionar avatar");
+            jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*png, jpg, jpeg)", "png", "jpg", "jpeg")); //SELECIONA O FILTRO DE ARQUIVOS
+            jFileChooser.setAcceptAllFileFilterUsed(false);  //Limita os filtros de arquivos
+
+            int ok = jFileChooser.showOpenDialog(null);  //Aguarda o Usuario escolher a imagem ou cancelar
 
             if (ok == JFileChooser.APPROVE_OPTION) {
 
@@ -62,22 +61,23 @@ public class RegisterScreen extends javax.swing.JFrame {
                 conteudo = new ImageIcon(caminho);
                 labelLocalFile.setIcon(conteudo);
                 System.out.println(conteudo);
-    } //Se selecionaar a imagem é carregada no Label, e o caminho da memoria é exeibido no prompt (PARA USO FUTURO NO BD)
+            } //Se selecionaar a imagem é carregada no Label, e o caminho da memoria é exeibido no prompt (PARA USO FUTURO NO BD)
             else {
-                
-                 URL url = this.getClass().getResource("/Images/user.png");
-                 Image iconDefault = Toolkit.getDefaultToolkit().getImage(url);
-                 conteudo = new ImageIcon(iconDefault);
-              
+
+                URL url = this.getClass().getResource("/Images/user.png");
+                Image iconDefault = Toolkit.getDefaultToolkit().getImage(url);
+                conteudo = new ImageIcon(iconDefault);
+
                 labelLocalFile.setIcon(conteudo);
-                 jFileChooser.cancelSelection();
-        } //Se for cancelada a seleção o icone defaut é carregado novamente (TALVEZ DESNECESSÁRIO)
-            
+                jFileChooser.cancelSelection();
+            } //Se for cancelada a seleção o icone defaut é carregado novamente (TALVEZ DESNECESSÁRIO)
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return conteudo;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -275,7 +275,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
-      
+
     }//GEN-LAST:event_buttonRegisterActionPerformed
 
     private void txtLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLogin1MouseClicked
@@ -288,11 +288,11 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRegisterMouseClicked
 
     private void buttonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFActionPerformed
-       
+
     }//GEN-LAST:event_buttonFActionPerformed
 
     private void buttonFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFMouseClicked
-      selectFile();
+        selectFile();
     }//GEN-LAST:event_buttonFMouseClicked
 
     public static void main(String args[]) {

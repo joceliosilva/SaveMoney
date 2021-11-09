@@ -15,6 +15,7 @@ public class Enum {
         CREDIT,
         DEBT
     }
+    
     public enum CardFlag {
         MASTERCARD,
         VISA,
@@ -22,5 +23,32 @@ public class Enum {
         HIPERCARD,
         AMERICAN_EXPRESS,
         DINERS_CLUB
+    }
+    
+    public enum Month{
+        JANUARY,
+        FEBRUARY,
+        MARCH,
+        APRIL,
+        MAY,
+        JUNE,
+        JULY,
+        AUGUST,
+        SEPTEMBER,
+        OCTOBER,
+        NOVEMBER,
+        DECEMBER
+    }
+    
+    public enum FormOfPayment{
+        CREDIT_CARD,
+        DEBT_CARD,
+        MONEY
+    }
+    
+    public enum ExpenseStatus{
+        PAY,
+        NOT_PAID,
+        CANCELED
     }
 }
