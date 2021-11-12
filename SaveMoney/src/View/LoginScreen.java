@@ -1,10 +1,12 @@
 package View;
 
 import Controller.DisplayManager;
+import DAO.ConnectionDB;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,7 +51,6 @@ public class LoginScreen extends javax.swing.JFrame {
         txtRegister = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login | SaveMoney");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(34, 36, 80));
         setIconImages(getIconImages());
@@ -153,10 +154,8 @@ public class LoginScreen extends javax.swing.JFrame {
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt1)
                     .addComponent(txtRegister))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
-
-        labelEmail.getAccessibleContext().setAccessibleDescription("Digite o email...");
 
         getContentPane().add(Background, java.awt.BorderLayout.CENTER);
 

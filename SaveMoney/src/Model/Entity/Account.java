@@ -5,47 +5,62 @@
  */
 package Model.Entity;
 
+import DAO.AccountDAO;
 import java.awt.Image;
+import java.sql.SQLException;
 
 /**
  *
  * @author Renan
  */
 public class Account {
-    private int Id;
-    private String FullName;
-    private String Email;
-    private Image Avatar;   // Analisar o tipo futuramente 
 
-    public int getId() {
-        return Id;
-    }
+    private String fullName;
+    private String email;
+    private String password;
+    private String avatar;   // Analisar o tipo futuramente 
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public Account(){}
+    
+    public Account(String fullName, String email, String password) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
     }
 
     public String getFullName() {
-        return FullName;
+        return fullName;
     }
 
-    public void setFullName(String FullName) {
-        this.FullName = FullName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Image getAvatar() {
-        return Avatar;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAvatar(Image Avatar) {
-        this.Avatar = Avatar;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void createAccount(Account account) throws SQLException {
+        new AccountDAO().createAccount(account);
     }
 }

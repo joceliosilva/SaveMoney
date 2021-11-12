@@ -1,9 +1,12 @@
 package View;
 
+import DAO.ConnectionDB;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *

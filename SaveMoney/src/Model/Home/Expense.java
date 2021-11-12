@@ -16,94 +16,87 @@ import java.util.Date;
  * @author Renan
  */
 public class Expense {
-    private int Id;
-    private Account AccountId;
-    private Category CategoryId;
-    private Card CardId;
-    private BigDecimal Value;
-    private Date Date;
-    private String Description;
-    private FormOfPayment FormOfPayment;
-    private int NumberOfInstallments;
-    private ExpenseStatus Status;
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int Id) {
-        this.Id = Id;
-    }
+    private Account accountId;
+    private Category categoryId;
+    private Card cardId;
+    private BigDecimal value;
+    private Date date;
+    private String description;
+    private FormOfPayment formOfPayment;
+    private Integer numberOfInstallments;
+    private ExpenseStatus status;
 
     public Account getAccountId() {
-        return AccountId;
+        return accountId;
     }
 
-    public void setAccountId(Account AccountId) {
-        this.AccountId = AccountId;
+    public void setAccountId(Account accountId) {
+        this.accountId = accountId;
     }
 
     public Category getCategoryId() {
-        return CategoryId;
+        return categoryId;
     }
 
-    public void setCategoryId(Category CategoryId) {
-        this.CategoryId = CategoryId;
+    public void setCategoryId(Category categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Card getCardId() {
-        return CardId;
+        return cardId;
     }
 
-    public void setCardId(Card CardId) {
-        this.CardId = CardId;
+    public void setCardId(Card cardId) {
+        this.cardId = cardId;
     }
 
     public BigDecimal getValue() {
-        return Value;
+        return value;
     }
 
-    public void setValue(BigDecimal Value) {
-        this.Value = Value;
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
     public Date getDate() {
-        return Date;
+        return date;
     }
 
-    public void setDate(Date Date) {
-        this.Date = Date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public FormOfPayment getFormOfPayment() {
-        return FormOfPayment;
+        return formOfPayment;
     }
 
-    public void setFormOfPayment(FormOfPayment FormOfPayment) {
-        this.FormOfPayment = FormOfPayment;
+    public void setFormOfPayment(FormOfPayment formOfPayment) {
+        this.formOfPayment = formOfPayment;
     }
 
-    public int getNumberOfInstallments() {
-        return NumberOfInstallments;
+    public Integer getNumberOfInstallments() {
+        return numberOfInstallments;
     }
 
-    public void setNumberOfInstallments(int NumberOfInstallments) {
-        this.NumberOfInstallments = NumberOfInstallments;
+    public void setNumberOfInstallments(Integer numberOfInstallments) {
+        this.numberOfInstallments = numberOfInstallments;
     }
 
     public ExpenseStatus getStatus() {
-        return Status;
+        return status;
     }
 
-    public void setStatus(ExpenseStatus Status) {
-        this.Status = Status;
+    public void setStatus(ExpenseStatus status) {
+        this.status = status;
     }
+
+    
 }

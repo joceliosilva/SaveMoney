@@ -14,77 +14,70 @@ import java.util.Date;
  *
  * @author Renan
  */
-public class Card {
-    private int Id;    
-    private Account AccountId;
-    private int Number;
-    private CardType Type;
-    private CardFlag Flag;
-    private BigDecimal Limit;
-    private BigDecimal AnnualValue;
-    private Date ClosingDate;
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int Id) {
-        this.Id = Id;
-    }
+public class Card { 
+    private Account accountId;
+    private Integer number;
+    private CardType type;
+    private CardFlag flag;
+    private BigDecimal limit;
+    private BigDecimal annualValue;
+    private Date closingDate;
 
     public Account getAccountId() {
-        return AccountId;
+        return accountId;
     }
 
-    public void setAccountId(Account AccountId) {
-        this.AccountId = AccountId;
+    public void setAccountId(Account accountId) {
+        this.accountId = accountId;
     }
 
-    public int getNumber() {
-        return Number;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setNumber(int Number) {
-        this.Number = Number;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public CardType getType() {
-        return Type;
+        return type;
     }
 
-    public void setType(CardType Type) {
-        this.Type = Type;
+    public void setType(CardType type) {
+        this.type = type;
     }
 
     public CardFlag getFlag() {
-        return Flag;
+        return flag;
     }
 
-    public void setFlag(CardFlag Flag) {
-        this.Flag = Flag;
+    public void setFlag(CardFlag flag) {
+        this.flag = flag;
     }
 
     public BigDecimal getLimit() {
-        return Limit;
+        return limit;
     }
 
-    public void setLimit(BigDecimal Limit) {
-        this.Limit = Limit;
+    public void setLimit(BigDecimal limit) {
+        this.limit = limit;
     }
 
     public BigDecimal getAnnualValue() {
-        return AnnualValue;
+        return annualValue;
     }
 
-    public void setAnnualValue(BigDecimal AnnualValue) {
-        this.AnnualValue = AnnualValue;
+    public void setAnnualValue(BigDecimal annualValue) {
+        this.annualValue = annualValue;
     }
 
     public Date getClosingDate() {
-        return ClosingDate;
+        return closingDate;
     }
 
-    public void setClosingDate(Date ClosingDate) {
-        this.ClosingDate = ClosingDate;
+    public void setClosingDate(Date closingDate) {
+        this.closingDate = closingDate;
     }
+
+    
 }

@@ -1,6 +1,9 @@
 package View;
 
+import Controller.AccountController;
 import Controller.DisplayManager;
+import DAO.AccountDAO;
+import Model.Entity.Account;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -284,7 +287,25 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLogin1MouseClicked
 
     private void buttonRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRegisterMouseClicked
-
+        
+        String fullName = txtName.getText();
+        String email = labelEmail.getText();
+        String password = labelPassword.getText();
+        String avatar = null;
+        boolean sucesso;
+        
+        try {
+            AccountController ac = new AccountController();
+            sucesso = ac.createAccount(fullName, email, password);
+            
+            if (sucesso) {
+                JOptionPane.showMessageDialog(null, "Cadastro Realizado, Efetue Login!");
+                // this.limparCampos(); // IMPLEMENTAR FUTURAMENTE
+            } else
+                JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
+            
+        } catch (Exception e) {
+        }        
     }//GEN-LAST:event_buttonRegisterMouseClicked
 
     private void buttonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFActionPerformed

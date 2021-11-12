@@ -15,58 +15,51 @@ import java.util.Date;
  * @author Renan
  */
 public class Revenue {
-    private int Id;
-    private Account AccountId;
-    private BigDecimal Value;
-    private Month ReferenceMonth;
-    private Date Date;
-    private String Description;
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int Id) {
-        this.Id = Id;
-    }
+    private Account accountId;
+    private BigDecimal value;
+    private Month referenceMonth;
+    private Date date;
+    private String description;
 
     public Account getAccountId() {
-        return AccountId;
+        return accountId;
     }
 
-    public void setAccountId(Account AccountId) {
-        this.AccountId = AccountId;
+    public void setAccountId(Account accountId) {
+        this.accountId = accountId;
     }
 
     public BigDecimal getValue() {
-        return Value;
+        return value;
     }
 
-    public void setValue(BigDecimal Value) {
-        this.Value = Value;
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
     public Month getReferenceMonth() {
-        return ReferenceMonth;
+        return referenceMonth;
     }
 
-    public void setReferenceMonth(Month ReferenceMonth) {
-        this.ReferenceMonth = ReferenceMonth;
+    public void setReferenceMonth(Month referenceMonth) {
+        this.referenceMonth = referenceMonth;
     }
 
     public Date getDate() {
-        return Date;
+        return date;
     }
 
-    public void setDate(Date Date) {
-        this.Date = Date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+    
 }
