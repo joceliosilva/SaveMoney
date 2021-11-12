@@ -11,6 +11,7 @@ CREATE TABLE `savemoney`.`Account` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `FullName` VARCHAR(200) NOT NULL,
   `Email` VARCHAR(100) NOT NULL,
+  `Password` VARCHAR(100) NOT NULL,
   `Avatar` LONGBLOB NULL,
   PRIMARY KEY (`Id`)
 );
