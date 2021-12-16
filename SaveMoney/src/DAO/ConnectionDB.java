@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import java.math.MathContext;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,7 +17,8 @@ import javax.swing.JOptionPane;
  * @author Jocelio
  */
 public class ConnectionDB {
-
+ 
+  
     public Connection getConnection() {
         Connection conn = null;
 
@@ -27,15 +29,16 @@ public class ConnectionDB {
         }
 
         try { // Conexão
-            String local = "172.106.0.112";
-            String dataBase = "savemoney";
-            String user = "jjr";
-            String pass = "projeto2";
-
+       
+             String local = "localhost";
+             String dataBase = "savemoney";
+             String user = "root";
+             String pass= "";  
+      
             conn = DriverManager.getConnection("jdbc:mysql://" + local + "/" + dataBase + "?useSSL=false", user, pass);
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro: Não conseguiu conectar no BD.");
+          
         } catch (Exception ex) {
             ex.printStackTrace();
         }
