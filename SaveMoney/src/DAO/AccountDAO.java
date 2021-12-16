@@ -29,7 +29,7 @@ public class AccountDAO {
 
     public void createAccount(Account a) throws SQLException { //FUNÇÃO PARA ADD CONTA
 
-        String sql = "insert into Account (FullName,Email,Senha,Avatar) values (?,?,?,?)"; //SQL 
+        String sql = "insert into Account (FullName,Email,Password,Avatar) values (?,?,?,?)"; //SQL 
 
         try {
             pst = conexao.prepareStatement(sql);

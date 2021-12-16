@@ -3,7 +3,10 @@ package View;
 import DAO.ConnectionDB;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -21,7 +24,7 @@ public class LoadScreen extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);  //Carrega o form no centro da tela
     }
-
+   
     private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
@@ -57,6 +60,11 @@ public class LoadScreen extends javax.swing.JFrame {
         bindingGroup.addBinding(binding);
 
         Background.setBackground(new java.awt.Color(34, 36, 80));
+        Background.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BackgroundKeyPressed(evt);
+            }
+        });
 
         progressLoad.setStringPainted(true);
 
@@ -100,6 +108,11 @@ public class LoadScreen extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(605, 338));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BackgroundKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BackgroundKeyPressed
+
+    
+    }//GEN-LAST:event_BackgroundKeyPressed
 
     public static void main(String args[]) {
 
