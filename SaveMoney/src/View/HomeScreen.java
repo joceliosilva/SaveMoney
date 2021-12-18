@@ -85,7 +85,7 @@ public class HomeScreen extends javax.swing.JFrame {
         PainelLateralTop.add(txtUser);
 
         btnReceitas.setBackground(new java.awt.Color(51, 51, 76));
-        btnReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnReceitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnReceitasMouseClicked(evt);
@@ -125,7 +125,7 @@ public class HomeScreen extends javax.swing.JFrame {
         );
 
         btnDespesas.setBackground(new java.awt.Color(51, 51, 76));
-        btnDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDespesasMouseClicked(evt);
@@ -165,7 +165,7 @@ public class HomeScreen extends javax.swing.JFrame {
         );
 
         btnCartoes.setBackground(new java.awt.Color(51, 51, 76));
-        btnCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCartoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCartoesMouseClicked(evt);
@@ -205,7 +205,7 @@ public class HomeScreen extends javax.swing.JFrame {
         );
 
         btnCategorias.setBackground(new java.awt.Color(51, 51, 76));
-        btnCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCategoriasMouseClicked(evt);
@@ -540,6 +540,6 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel txtDespesas;
     private javax.swing.JLabel txtReceitas;
     private javax.swing.JLabel txtTitulo;
-    private javax.swing.JLabel txtUser;
+    public static javax.swing.JLabel txtUser;
     // End of variables declaration//GEN-END:variables
 }

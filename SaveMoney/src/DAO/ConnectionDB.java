@@ -17,8 +17,7 @@ import javax.swing.JOptionPane;
  * @author Jocelio
  */
 public class ConnectionDB {
- 
-  
+
     public Connection getConnection() {
         Connection conn = null;
 
@@ -29,16 +28,16 @@ public class ConnectionDB {
         }
 
         try { // Conexão
-       
-             String local = "localhost";
-             String dataBase = "savemoney";
-             String user = "root";
-             String pass= "";  
-      
+
+            String local = "localhost";
+            String dataBase = "savemoney";
+            String user = "root";
+            String pass = "pass";
+
             conn = DriverManager.getConnection("jdbc:mysql://" + local + "/" + dataBase + "?useSSL=false", user, pass);
 
         } catch (SQLException ex) {
-          
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

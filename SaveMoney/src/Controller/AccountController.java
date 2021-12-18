@@ -14,14 +14,14 @@ import java.sql.SQLException;
  * @author Renan
  */
 public class AccountController {
-    
+
     public boolean createAccount(String fullName, String email, String password) throws SQLException {
-        if(fullName != null && email !=  null && password != null){
+        if (fullName != null && email != null && password != null) {
             Account account = new Account(fullName, email, password);
             account.createAccount(account);
             return true;
         }
-        
+
         return false;
     }
 }

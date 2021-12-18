@@ -1,12 +1,17 @@
 package View;
 
 import Controller.DisplayManager;
+import Controller.LoginController;
 import DAO.ConnectionDB;
+import DAO.LoginDAO;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,7 +45,6 @@ public class LoginScreen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         Background = new javax.swing.JPanel();
         txtLogin = new javax.swing.JLabel();
@@ -58,9 +62,6 @@ public class LoginScreen extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1440, 1024));
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${title}"), this, org.jdesktop.beansbinding.BeanProperty.create("title"));
-        bindingGroup.addBinding(binding);
-
         Background.setBackground(new java.awt.Color(34, 36, 80));
 
         txtLogin.setBackground(new java.awt.Color(255, 255, 255));
@@ -75,7 +76,7 @@ public class LoginScreen extends javax.swing.JFrame {
         labelEmail.setToolTipText("Digite o email...");
         labelEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         labelEmail.setCaretColor(new java.awt.Color(255, 255, 255));
-        labelEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labelEmailActionPerformed(evt);
@@ -88,7 +89,7 @@ public class LoginScreen extends javax.swing.JFrame {
         labelPassword.setToolTipText("Digite a senha...");
         labelPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         labelPassword.setCaretColor(new java.awt.Color(255, 255, 255));
-        labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buttonLogin.setText("ENTRAR");
         buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -105,7 +106,7 @@ public class LoginScreen extends javax.swing.JFrame {
         txtRegister.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtRegister.setForeground(new java.awt.Color(255, 255, 255));
         txtRegister.setText("Cadastre-se!");
-        txtRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtRegisterMouseClicked(evt);
@@ -159,8 +160,6 @@ public class LoginScreen extends javax.swing.JFrame {
 
         getContentPane().add(Background, java.awt.BorderLayout.CENTER);
 
-        bindingGroup.bind();
-
         setSize(new java.awt.Dimension(621, 376));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -175,16 +174,26 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRegisterMouseClicked
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        //SÓ TESTE APAGAR DEPOIS
+        String email = labelEmail.getText();
+        String pass = labelPassword.getText();
+        boolean sucesso;
 
-        String email = "save@money";
-        String senha = "senha";
+        try {
+            LoginController lc = new LoginController();
+            sucesso = lc.consultarLogin(email, pass);
 
-        if (labelEmail.getText().equals(email) && labelPassword.getText().equals(senha)) {
-            d.OpenHome();
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "EMAIL OU SENHA INVÁLIDOS!");
+            if (sucesso == true) {
+                d.OpenHome();
+                HomeScreen.txtUser.setText(email);
+                this.dispose();
+
+                JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + email);
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Login não realizado!\nFavor conferir o Email e senha digitado!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonLoginActionPerformed
 
@@ -226,6 +235,5 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txtLogin;
     private javax.swing.JLabel txtRegister;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
