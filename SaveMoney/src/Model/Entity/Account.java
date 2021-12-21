@@ -59,8 +59,4 @@ public class Account {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-
-    public void createAccount(Account account) throws SQLException {
-        new AccountDAO().createAccount(account);
-    }
 }

@@ -1,14 +1,11 @@
 package View;
 
+import Controller.AccountController;
 import Controller.DisplayManager;
-import Controller.LoginController;
-import DAO.ConnectionDB;
-import DAO.LoginDAO;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -179,8 +176,8 @@ public class LoginScreen extends javax.swing.JFrame {
         boolean sucesso;
 
         try {
-            LoginController lc = new LoginController();
-            sucesso = lc.consultarLogin(email, pass);
+            AccountController ac = new AccountController();
+            sucesso = ac.consultarLogin(email, pass);
 
             if (sucesso == true) {
                 d.OpenHome();
@@ -190,7 +187,7 @@ public class LoginScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + email);
 
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Login não realizado!\nFavor conferir o Email e senha digitado!");
+                JOptionPane.showMessageDialog(rootPane, "Login não realizado!\nFavor conferir o Email e Senha digitados!");
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);

@@ -19,32 +19,60 @@ import javax.swing.JOptionPane;
  */
 public class AccountDAO {
 
-    private Connection conexao = null;
-    private PreparedStatement pst = null;
-    private ResultSet rs = null;
+    private static Connection conexao = null;
+    private static PreparedStatement ps = null;
+    private static ResultSet rs = null;
 
     public AccountDAO() {
         conexao = new ConnectionDB().getConnection();  //INICIA A CONEÇÃO COM O BD
     }
 
-    public void createAccount(Account a) throws SQLException { //FUNÇÃO PARA ADD CONTA
+    public static void createAccount(Account a) throws SQLException { //FUNÇÃO PARA ADD CONTA
 
         String sql = "insert into Account (FullName,Email,Password,Avatar) values (?,?,?,?)"; //SQL 
-
+        conexao = new ConnectionDB().getConnection();
         try {
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, a.getFullName());
-            pst.setString(2, a.getEmail());
-            pst.setString(3, a.getPassword());
-            pst.setString(4, null); // analisar posteriormente
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, a.getFullName());
+            ps.setString(2, a.getEmail());
+            ps.setString(3, a.getPassword());
+            ps.setString(4, null); // analisar posteriormente
 
-            pst.executeUpdate();            
+            ps.executeUpdate();            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar conta: " + e);
         } finally{
-            pst.close();
+            ps.close();
             conexao.close();
         }
+    }
+
+    public static boolean consultarLogin(String Email, String Password) throws SQLException {
+        // Manda como parametro para ele duas variaveis para ele procurar no banco de dados!
+        boolean autenticado = false;
+        String sql = "select FullName, Email, Password from account where  Email= ? and Password = ?";
+        conexao = new ConnectionDB().getConnection(); // Nao esta pegando a conexão pelo construtor
+        try {
+            ps = conexao.prepareStatement(sql);
+
+            ps.setString(1, Email);
+            ps.setString(2, Password);
+            
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                autenticado = true;  // SE OS DADOS DIGITADOS NOS CAMPOS FOREM IGUAIS A DA BUSCA NO BANCO RETORNA VERDADEIRO
+            }
+
+            return autenticado;
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar conta: " + e);
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+        return autenticado;
     }
 }

@@ -25,34 +25,5 @@ public class LoginDAO {
         conexao = new ConnectionDB().getConnection();  //INICIA A CONEÇÃO COM O BD
     }
 
-    public static boolean consultarLogin(String Email, String Password) throws SQLException {
-        // Manda como parametro para ele duas variaveis para ele procurar no banco de dados!
-        boolean autenticado = false;
-        String sql = "select FullName, Email, Password from account where  Email= ? and Password = ?";
-        conexao = new ConnectionDB().getConnection(); // Nao esta pegando a conecao pelo construtor
-        try {
-            ps = conexao.prepareStatement(sql);
-
-            ps.setString(1, Email);
-            ps.setString(2, Password);
-            
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                String loginBanco = rs.getString("Email");
-                String senhaBanco = rs.getString("Password");
-
-                autenticado = true;  // SE OS DADOS DIGITADOS NOS CAMPOS FOREM IGUAIS A DA BUSCA NO BANCO RETORNA VERDADEIRO
-            }
-
-            return autenticado;
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar conta: " + e);
-        } finally {
-            ps.close();
-            conexao.close();
-        }
-        return autenticado;
-    }
+    
 }
