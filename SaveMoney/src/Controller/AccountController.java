@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class AccountController {
 
     public boolean createAccount(String fullName, String email, String password) throws SQLException {
-        if (fullName != null && email != null && password != null) {
+        if (!fullName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             Account account = new Account(fullName, email, password);
             AccountDAO.createAccount(account);
             return true;
@@ -25,9 +25,9 @@ public class AccountController {
         return false;
     }
     
-    public boolean consultarLogin(String Email, String Password) throws SQLException {
-        if (Email != null && Password != null) {
-            boolean resposta = AccountDAO.consultarLogin(Email, Password);
+    public boolean consultarLogin(String email, String password) throws SQLException {
+        if (email.isEmpty() && password.isEmpty()) {
+            boolean resposta = AccountDAO.consultarLogin(email, password);
             return resposta;
         }
 

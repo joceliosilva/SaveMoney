@@ -78,7 +78,6 @@ public class RegisterScreen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         Background = new javax.swing.JPanel();
         txtRegister = new javax.swing.JLabel();
@@ -100,9 +99,6 @@ public class RegisterScreen extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1440, 1024));
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${title}"), this, org.jdesktop.beansbinding.BeanProperty.create("title"));
-        bindingGroup.addBinding(binding);
-
         Background.setBackground(new java.awt.Color(34, 36, 80));
 
         txtRegister.setBackground(new java.awt.Color(255, 255, 255));
@@ -117,7 +113,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         labelEmail.setToolTipText("Digite o usuário...");
         labelEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         labelEmail.setCaretColor(new java.awt.Color(255, 255, 255));
-        labelEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labelEmailActionPerformed(evt);
@@ -130,7 +126,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         labelPassword.setToolTipText("Digite a senha...");
         labelPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         labelPassword.setCaretColor(new java.awt.Color(255, 255, 255));
-        labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buttonRegister.setText("CADASTRAR");
         buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -152,7 +148,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         txtLogin1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtLogin1.setForeground(new java.awt.Color(255, 255, 255));
         txtLogin1.setText("Faça Login");
-        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtLogin1MouseClicked(evt);
@@ -165,7 +161,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         txtName.setToolTipText("Digite o usuário...");
         txtName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Completo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         txtName.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -256,8 +252,6 @@ public class RegisterScreen extends javax.swing.JFrame {
         );
 
         getContentPane().add(Background, java.awt.BorderLayout.CENTER);
-
-        bindingGroup.bind();
 
         setSize(new java.awt.Dimension(621, 656));
         setLocationRelativeTo(null);
@@ -359,6 +353,5 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JLabel txtLogin1;
     private javax.swing.JTextField txtName;
     private javax.swing.JLabel txtRegister;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

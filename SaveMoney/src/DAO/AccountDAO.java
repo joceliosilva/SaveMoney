@@ -48,7 +48,7 @@ public class AccountDAO {
         }
     }
 
-    public static boolean consultarLogin(String Email, String Password) throws SQLException {
+    public static boolean consultarLogin(String email, String password) throws SQLException {
         // Manda como parametro para ele duas variaveis para ele procurar no banco de dados!
         boolean autenticado = false;
         String sql = "select FullName, Email, Password from account where  Email= ? and Password = ?";
@@ -56,8 +56,8 @@ public class AccountDAO {
         try {
             ps = conexao.prepareStatement(sql);
 
-            ps.setString(1, Email);
-            ps.setString(2, Password);
+            ps.setString(1, email);
+            ps.setString(2, password);
             
             rs = ps.executeQuery();
 

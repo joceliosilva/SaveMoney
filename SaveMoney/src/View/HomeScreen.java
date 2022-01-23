@@ -5,11 +5,13 @@
  */
 package View;
 
+import Controller.DisplayManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -18,9 +20,8 @@ import javax.swing.JPanel;
  */
 public class HomeScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomeScreen
-     */
+    DisplayManager d = new DisplayManager();    
+    
     public HomeScreen() {
         initComponents();
         setIcon();
@@ -61,20 +62,22 @@ public class HomeScreen extends javax.swing.JFrame {
         txtCartoes = new javax.swing.JLabel();
         btnCategorias = new javax.swing.JPanel();
         txtCategorias = new javax.swing.JLabel();
+        desktop = new javax.swing.JDesktopPane();
         PainelTopo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
-        area1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SaveMoney");
         setResizable(false);
 
         Background.setBackground(new java.awt.Color(34, 36, 81));
+        Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PainelLateral.setBackground(new java.awt.Color(51, 51, 76));
+        PainelLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PainelLateralTop.setBackground(new java.awt.Color(29, 31, 62));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 45, 31);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 45, 20);
         flowLayout1.setAlignOnBaseline(true);
         PainelLateralTop.setLayout(flowLayout1);
 
@@ -83,6 +86,8 @@ public class HomeScreen extends javax.swing.JFrame {
         txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setText("USER");
         PainelLateralTop.add(txtUser);
+
+        PainelLateral.add(PainelLateralTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
 
         btnReceitas.setBackground(new java.awt.Color(51, 51, 76));
         btnReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -101,28 +106,28 @@ public class HomeScreen extends javax.swing.JFrame {
         txtReceitas.setBackground(new java.awt.Color(255, 255, 255));
         txtReceitas.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtReceitas.setForeground(new java.awt.Color(255, 255, 255));
+        txtReceitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtReceitas.setText("Receitas");
 
         javax.swing.GroupLayout btnReceitasLayout = new javax.swing.GroupLayout(btnReceitas);
         btnReceitas.setLayout(btnReceitasLayout);
         btnReceitasLayout.setHorizontalGroup(
             btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 310, Short.MAX_VALUE)
             .addGroup(btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnReceitasLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(txtReceitas)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(txtReceitas, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
         btnReceitasLayout.setVerticalGroup(
             btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 68, Short.MAX_VALUE)
             .addGroup(btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnReceitasLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReceitasLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtReceitas)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
+
+        PainelLateral.add(btnReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 310, -1));
 
         btnDespesas.setBackground(new java.awt.Color(51, 51, 76));
         btnDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -141,28 +146,28 @@ public class HomeScreen extends javax.swing.JFrame {
         txtDespesas.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtDespesas.setForeground(new java.awt.Color(255, 255, 255));
+        txtDespesas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtDespesas.setText("Despesas");
 
         javax.swing.GroupLayout btnDespesasLayout = new javax.swing.GroupLayout(btnDespesas);
         btnDespesas.setLayout(btnDespesasLayout);
         btnDespesasLayout.setHorizontalGroup(
             btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 310, Short.MAX_VALUE)
             .addGroup(btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnDespesasLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(txtDespesas)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(txtDespesas, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
         btnDespesasLayout.setVerticalGroup(
             btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 68, Short.MAX_VALUE)
             .addGroup(btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnDespesasLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDespesasLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDespesas)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
+
+        PainelLateral.add(btnDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 310, -1));
 
         btnCartoes.setBackground(new java.awt.Color(51, 51, 76));
         btnCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -181,28 +186,28 @@ public class HomeScreen extends javax.swing.JFrame {
         txtCartoes.setBackground(new java.awt.Color(255, 255, 255));
         txtCartoes.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtCartoes.setForeground(new java.awt.Color(255, 255, 255));
+        txtCartoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtCartoes.setText("Cartões");
 
         javax.swing.GroupLayout btnCartoesLayout = new javax.swing.GroupLayout(btnCartoes);
         btnCartoes.setLayout(btnCartoesLayout);
         btnCartoesLayout.setHorizontalGroup(
             btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 310, Short.MAX_VALUE)
             .addGroup(btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnCartoesLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(txtCartoes)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(txtCartoes, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
         btnCartoesLayout.setVerticalGroup(
             btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 68, Short.MAX_VALUE)
             .addGroup(btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnCartoesLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCartoesLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCartoes)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
+
+        PainelLateral.add(btnCartoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 249, 310, -1));
 
         btnCategorias.setBackground(new java.awt.Color(51, 51, 76));
         btnCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -221,56 +226,45 @@ public class HomeScreen extends javax.swing.JFrame {
         txtCategorias.setBackground(new java.awt.Color(255, 255, 255));
         txtCategorias.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtCategorias.setForeground(new java.awt.Color(255, 255, 255));
+        txtCategorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtCategorias.setText("Categorias");
 
         javax.swing.GroupLayout btnCategoriasLayout = new javax.swing.GroupLayout(btnCategorias);
         btnCategorias.setLayout(btnCategoriasLayout);
         btnCategoriasLayout.setHorizontalGroup(
             btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 310, Short.MAX_VALUE)
             .addGroup(btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnCategoriasLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(txtCategorias)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(txtCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
         btnCategoriasLayout.setVerticalGroup(
             btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 68, Short.MAX_VALUE)
             .addGroup(btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnCategoriasLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCategoriasLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCategorias)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout PainelLateralLayout = new javax.swing.GroupLayout(PainelLateral);
-        PainelLateral.setLayout(PainelLateralLayout);
-        PainelLateralLayout.setHorizontalGroup(
-            PainelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelLateralTop, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-            .addGroup(PainelLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PainelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDespesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCartoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReceitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        PainelLateral.add(btnCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 323, 310, -1));
+
+        Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 720));
+
+        desktop.setMaximumSize(new java.awt.Dimension(1170, 640));
+
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
+        desktop.setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1170, Short.MAX_VALUE)
         );
-        PainelLateralLayout.setVerticalGroup(
-            PainelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelLateralLayout.createSequentialGroup()
-                .addComponent(PainelLateralTop, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btnReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCartoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
+
+        Background.add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 1170, 640));
 
         PainelTopo.setBackground(new java.awt.Color(34, 36, 81));
         PainelTopo.setPreferredSize(new java.awt.Dimension(1043, 115));
@@ -278,216 +272,103 @@ public class HomeScreen extends javax.swing.JFrame {
         txtTitulo.setBackground(new java.awt.Color(255, 255, 255));
         txtTitulo.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtTitulo.setText("PRINCIPAL");
 
         javax.swing.GroupLayout PainelTopoLayout = new javax.swing.GroupLayout(PainelTopo);
         PainelTopo.setLayout(PainelTopoLayout);
         PainelTopoLayout.setHorizontalGroup(
             PainelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelTopoLayout.createSequentialGroup()
-                .addGap(401, 401, 401)
-                .addComponent(txtTitulo)
-                .addContainerGap(599, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTopoLayout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PainelTopoLayout.setVerticalGroup(
             PainelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTopoLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(txtTitulo)
+            .addGroup(PainelTopoLayout.createSequentialGroup()
+                .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout area1Layout = new javax.swing.GroupLayout(area1);
-        area1.setLayout(area1Layout);
-        area1Layout.setHorizontalGroup(
-            area1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1228, Short.MAX_VALUE)
-        );
-        area1Layout.setVerticalGroup(
-            area1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 615, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
-        Background.setLayout(BackgroundLayout);
-        BackgroundLayout.setHorizontalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(PainelLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PainelTopo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(area1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        BackgroundLayout.setVerticalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(PainelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(PainelTopo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(area1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        Background.add(PainelTopo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 1171, 86));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 1481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 718, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
         
     //EFEITO HOVER//
-    public void mouseEnteredButton(JPanel p){
-        p.setBackground(new Color(29, 31, 62));        
+    public void mouseEnteredButton(JPanel p, JLabel l){
+        p.setBackground(new Color(29, 31, 62));  
+        //l.setFont(font);
     }
 
-    public void mouseExitedButton(JPanel p){
+    public void mouseExitedButton(JPanel p, JLabel l){
         p.setBackground(new Color(51, 51, 76));
     }
-    //FIM DO EFEITO//
+    //FIM DO EFEITO//    
     
-    //CORES DO MENU RECEITAS//
-    public void mudarBarra(JPanel p) {
-        p.setBackground(new Color(42, 111, 151));
-    }
-
-    public void mudarBtn1(JPanel p) {
-        p.setBackground(new Color(42, 111, 151));
-    }
-
-    public void mudarUser(JPanel p) {
-        p.setBackground(new Color(1, 58, 99));
-    }
-
-    //CORES DO MENU DESPESAS//
-    public void mudarBarraDes(JPanel p) {
-        p.setBackground(new Color(154, 3, 30));
-    }
-
-    public void mudarBtn2(JPanel p) {
-        p.setBackground(new Color(154, 3, 30));
-    }
-
-    public void mudarUser2(JPanel p) {
-        p.setBackground(new Color(94, 11, 25));
-    }
-
-    //CORES DO MENU CARTÔES//
-    public void mudarBarraCar(JPanel p) {
-        p.setBackground(new Color(227, 100, 20));
-    }
-
-    public void mudarBtn3(JPanel p) {
-        p.setBackground(new Color(227, 100, 20));
-    }
-
-    public void mudarUser3(JPanel p) {
-        p.setBackground(new Color(54, 60, 0));
-    }
-
-    //CORES DO MENU CATEGORIAS//
-    public void mudarBarraCat(JPanel p) {
-        p.setBackground(new Color(134, 14, 87));
-    }
-
-    public void mudarBtn4(JPanel p) {
-        p.setBackground(new Color(134, 14, 87));
-    }
-
-    public void mudarUser4(JPanel p) {
-        p.setBackground(new Color(5, 15, 64));
-    }
-
-    //EFEITO HOVER//
-    public void mudarCor(JPanel p) {
-        p.setBackground(new Color(29, 31, 62));
-    }
-
-    public void voltaCor(JPanel p) {
-        p.setBackground(new Color(51, 51, 76));
-    }
-    //FIM DO EFEITO//
-
     private void btnReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseEntered
-        mouseEnteredButton(btnReceitas);
+        mouseEnteredButton(btnReceitas, txtReceitas);
     }//GEN-LAST:event_btnReceitasMouseEntered
 
     private void btnReceitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseExited
-        mouseExitedButton(btnReceitas);
+        mouseExitedButton(btnReceitas, txtReceitas);
     }//GEN-LAST:event_btnReceitasMouseExited
 
     private void btnDespesasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseEntered
-        mouseEnteredButton(btnDespesas);
+        mouseEnteredButton(btnDespesas, txtDespesas);
     }//GEN-LAST:event_btnDespesasMouseEntered
 
     private void btnDespesasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseExited
-        mouseExitedButton(btnDespesas);
+        mouseExitedButton(btnDespesas, txtDespesas);
     }//GEN-LAST:event_btnDespesasMouseExited
 
     private void btnCartoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseEntered
-        mouseEnteredButton(btnCartoes);
+        mouseEnteredButton(btnCartoes, txtCartoes);
     }//GEN-LAST:event_btnCartoesMouseEntered
 
     private void btnCartoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseExited
-        mouseExitedButton(btnCartoes);
+        mouseExitedButton(btnCartoes, txtCartoes);
     }//GEN-LAST:event_btnCartoesMouseExited
 
     private void btnCategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseEntered
-        mouseEnteredButton(btnCategorias);
+        mouseEnteredButton(btnCategorias, txtCategorias);
     }//GEN-LAST:event_btnCategoriasMouseEntered
 
     private void btnCategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseExited
-        mouseExitedButton(btnCategorias);
+        mouseExitedButton(btnCategorias, txtCategorias);
     }//GEN-LAST:event_btnCategoriasMouseExited
 
     private void btnReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseClicked
-        txtTitulo.setText("RECEITAS");
-        mudarBarra(PainelTopo);
-        mudarBarra(Background);
-        mudarUser(PainelLateralTop);
-        mudarBtn1(btnReceitas);
-        voltaCor(btnDespesas);
-        voltaCor(btnCartoes);
-        voltaCor(btnCategorias);
+        txtTitulo.setText("RECEITAS");        
     }//GEN-LAST:event_btnReceitasMouseClicked
 
     private void btnDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseClicked
         txtTitulo.setText("DESPESAS");
-        mudarBarraDes(PainelTopo);
-        mudarBarraDes(Background);
-        mudarUser2(PainelLateralTop);
-        mudarBtn2(btnDespesas);
-        voltaCor(btnReceitas);
-        voltaCor(btnCartoes);
-        voltaCor(btnCategorias);
     }//GEN-LAST:event_btnDespesasMouseClicked
 
     private void btnCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseClicked
         txtTitulo.setText("CARTÕES");
-        mudarBarraCar(PainelTopo);
-        mudarBarraCar(Background);
-        mudarUser3(PainelLateralTop);
-        mudarBtn3(btnCartoes);
-        voltaCor(btnDespesas);
-        voltaCor(btnReceitas);
-        voltaCor(btnCategorias);
+        
+        d.OpenCard(desktop);
     }//GEN-LAST:event_btnCartoesMouseClicked
 
     private void btnCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseClicked
         txtTitulo.setText("CATEGORIAS");
-        mudarBarraCat(PainelTopo);
-        mudarBarraCat(Background);
-        mudarUser4(PainelLateralTop);
-        mudarBtn4(btnCategorias);
-        voltaCor(btnDespesas);
-        voltaCor(btnCartoes);
-        voltaCor(btnReceitas);
+        
+        d.OpenCategory(desktop);
     }//GEN-LAST:event_btnCategoriasMouseClicked
 
     /**
@@ -530,11 +411,11 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel PainelLateral;
     private javax.swing.JPanel PainelLateralTop;
     private javax.swing.JPanel PainelTopo;
-    private javax.swing.JDesktopPane area1;
     private javax.swing.JPanel btnCartoes;
     private javax.swing.JPanel btnCategorias;
     private javax.swing.JPanel btnDespesas;
     private javax.swing.JPanel btnReceitas;
+    private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel txtCartoes;
     private javax.swing.JLabel txtCategorias;
     private javax.swing.JLabel txtDespesas;

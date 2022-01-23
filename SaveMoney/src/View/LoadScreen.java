@@ -40,7 +40,6 @@ public class LoadScreen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         Background = new javax.swing.JPanel();
         progressLoad = new javax.swing.JProgressBar();
@@ -55,9 +54,6 @@ public class LoadScreen extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1440, 1024));
         setResizable(false);
         setSize(new java.awt.Dimension(1440, 1024));
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${title}"), this, org.jdesktop.beansbinding.BeanProperty.create("title"));
-        bindingGroup.addBinding(binding);
 
         Background.setBackground(new java.awt.Color(34, 36, 80));
         Background.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -103,8 +99,6 @@ public class LoadScreen extends javax.swing.JFrame {
 
         getContentPane().add(Background, java.awt.BorderLayout.CENTER);
 
-        bindingGroup.bind();
-
         setSize(new java.awt.Dimension(605, 338));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -146,6 +140,5 @@ public class LoadScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogo;
     public javax.swing.JProgressBar progressLoad;
     public javax.swing.JLabel txtLoad;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
