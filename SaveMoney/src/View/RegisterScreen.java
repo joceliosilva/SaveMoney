@@ -3,9 +3,11 @@ package View;
 import Controller.AccountController;
 import Controller.DisplayManager;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -69,8 +71,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                 jFileChooser.cancelSelection();
             } //Se for cancelada a seleção o icone defaut é carregado novamente (TALVEZ DESNECESSÁRIO)
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (HeadlessException e) {
         }
         return conteudo;
     }
@@ -294,8 +295,7 @@ public class RegisterScreen extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
-
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
         }
     }//GEN-LAST:event_buttonRegisterMouseClicked
 

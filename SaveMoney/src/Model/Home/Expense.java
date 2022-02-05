@@ -6,7 +6,7 @@
 package Model.Home;
 
 import Model.Entity.*;
-import Model.Enum.*;
+import Model.Enums.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,7 +18,7 @@ public class Expense {
     private Account accountId;
     private Category categoryId;
     private Card cardId;
-    private BigDecimal value;
+    private Double value;
     private Date date;
     private String description;
     private FormOfPayment formOfPayment;
@@ -49,11 +49,11 @@ public class Expense {
         this.cardId = cardId;
     }
 
-    public BigDecimal getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 

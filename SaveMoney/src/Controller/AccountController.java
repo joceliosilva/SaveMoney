@@ -26,11 +26,21 @@ public class AccountController {
     }
     
     public boolean consultarLogin(String email, String password) throws SQLException {
-        if (email.isEmpty() && password.isEmpty()) {
+        if (!email.isEmpty() && !password.isEmpty()) {
             boolean resposta = AccountDAO.consultarLogin(email, password);
             return resposta;
         }
 
         return false;
+    }
+    
+    public Account getAccountByEmail(String email) throws SQLException{
+        if (!email.isEmpty()) {
+            AccountDAO ac = new AccountDAO();
+            Account account = ac.getAccountByEmail(email);
+            return account;
+        }
+        
+        return null;
     }
 }

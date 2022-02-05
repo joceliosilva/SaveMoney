@@ -6,8 +6,7 @@
 package Model.Home;
 
 import Model.Entity.*;
-import Model.Enum.*;
-import java.math.BigDecimal;
+import Model.Enums.*;
 import java.util.Date;
 
 /**
@@ -16,7 +15,7 @@ import java.util.Date;
  */
 public class Revenue {
     private Account accountId;
-    private BigDecimal value;
+    private Double value;
     private Month referenceMonth;
     private Date date;
     private String description;
@@ -29,11 +28,11 @@ public class Revenue {
         this.accountId = accountId;
     }
 
-    public BigDecimal getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 

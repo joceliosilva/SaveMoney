@@ -36,6 +36,7 @@ public class DisplayManager {
     public void OpenCard(JDesktopPane pane) {
         CardScreen open = new CardScreen();
         pane.add(open);
+        pane.setPosition(open, 0);
         open.setVisible(true);
     }
 }

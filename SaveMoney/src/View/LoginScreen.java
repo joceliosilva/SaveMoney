@@ -181,7 +181,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
             if (sucesso == true) {
                 d.OpenHome();
-                HomeScreen.txtUser.setText(email);
+                HomeScreen.txtUser.setText(email);                
                 this.dispose();
 
                 JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + email);

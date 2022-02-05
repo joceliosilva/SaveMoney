@@ -9,20 +9,40 @@ package Model;
  *
  * @author Renan
  */
-public class Enum {
+public class Enums {
 
     public enum CardType {
-        CREDIT,
-        DEBT
+        CREDITO(0),
+        DEBITO(1);
+        
+        Integer num;
+
+        private CardType(Integer num) {
+            this.num = num;
+        }  
+
+        public Integer getNum() {
+            return num;
+        }
     }
     
     public enum CardFlag {
-        MASTERCARD,
-        VISA,
-        ELO,
-        HIPERCARD,
-        AMERICAN_EXPRESS,
-        DINERS_CLUB
+        MASTERCARD(0),
+        VISA(1),
+        ELO(2),
+        HIPERCARD(3),
+        AMERICAN_EXPRESS(4),
+        DINERS_CLUB(5);
+        
+        Integer num;
+
+        private CardFlag(Integer num) {
+            this.num = num;
+        }  
+        
+        public Integer getNum() {
+            return num;
+        }
     }
     
     public enum Month{

@@ -5,16 +5,13 @@
  */
 package Model.Entity;
 
-import DAO.AccountDAO;
-import java.awt.Image;
-import java.sql.SQLException;
-
 /**
  *
  * @author Renan
  */
 public class Account {
 
+    private Integer id;
     private String fullName;
     private String email;
     private String password;
@@ -28,6 +25,21 @@ public class Account {
         this.password = password;
     }
 
+    public Account(Integer id, String fullName, String email, String password) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+    }
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getFullName() {
         return fullName;
     }

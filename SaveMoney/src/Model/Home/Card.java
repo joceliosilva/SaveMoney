@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package Model.Home;
+
 import Model.Entity.*;
-import Model.Enum.*;
+import Model.Enums.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,14 +14,28 @@ import java.util.Date;
  *
  * @author Renan
  */
-public class Card { 
+public class Card {
+
     private Account accountId;
     private Integer number;
     private CardType type;
     private CardFlag flag;
-    private BigDecimal limit;
-    private BigDecimal annualValue;
+    private Double limit;
+    private Double annualValue;
     private Date closingDate;
+
+    public Card() {
+    }
+
+    public Card(Account accountId, Integer number, CardType type, CardFlag flag, Double limit, Double annualValue, Date closingDate) {
+        this.accountId = accountId;
+        this.number = number;
+        this.type = type;
+        this.flag = flag;
+        this.limit = limit;
+        this.annualValue = annualValue;
+        this.closingDate = closingDate;
+    }
 
     public Account getAccountId() {
         return accountId;
@@ -54,19 +69,19 @@ public class Card {
         this.flag = flag;
     }
 
-    public BigDecimal getLimit() {
+    public Double getLimit() {
         return limit;
     }
 
-    public void setLimit(BigDecimal limit) {
+    public void setLimit(Double limit) {
         this.limit = limit;
     }
 
-    public BigDecimal getAnnualValue() {
+    public Double getAnnualValue() {
         return annualValue;
     }
 
-    public void setAnnualValue(BigDecimal annualValue) {
+    public void setAnnualValue(Double annualValue) {
         this.annualValue = annualValue;
     }
 
@@ -77,6 +92,4 @@ public class Card {
     public void setClosingDate(Date closingDate) {
         this.closingDate = closingDate;
     }
-
-    
 }

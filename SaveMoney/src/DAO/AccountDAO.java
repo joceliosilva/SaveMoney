@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Model.Entity.Account;
+import Model.Entity.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,11 +38,11 @@ public class AccountDAO {
             ps.setString(3, a.getPassword());
             ps.setString(4, null); // analisar posteriormente
 
-            ps.executeUpdate();            
+            ps.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar conta: " + e);
-        } finally{
+        } finally {
             ps.close();
             conexao.close();
         }
@@ -51,14 +51,14 @@ public class AccountDAO {
     public static boolean consultarLogin(String email, String password) throws SQLException {
         // Manda como parametro para ele duas variaveis para ele procurar no banco de dados!
         boolean autenticado = false;
-        String sql = "select FullName, Email, Password from account where  Email= ? and Password = ?";
+        String sql = "select Id, FullName, Email, Password from account where  Email= ? and Password = ?";
         conexao = new ConnectionDB().getConnection(); // Nao esta pegando a conexão pelo construtor
         try {
             ps = conexao.prepareStatement(sql);
 
             ps.setString(1, email);
             ps.setString(2, password);
-            
+
             rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -66,13 +66,38 @@ public class AccountDAO {
             }
 
             return autenticado;
-            
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar conta: " + e);
         } finally {
             ps.close();
             conexao.close();
         }
         return autenticado;
+    }
+
+    public Account getAccountByEmail(String email) throws SQLException {
+        String sql = "select Id, FullName, Email, Password from account where  Email= ?";
+        conexao = new ConnectionDB().getConnection();
+        
+        Account account = null;
+        
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, email);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                account = new Account(rs.getInt("Id"), rs.getString("FullName"), rs.getString("Email"), rs.getString("Password"));
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar conta: " + e);
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+        return account;
     }
 }

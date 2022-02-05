@@ -22,7 +22,6 @@ DROP TABLE IF EXISTS savemoney.Category;
 CREATE TABLE `savemoney`.`Category` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(100) NOT NULL,
-  `Description` VARCHAR(200),
   PRIMARY KEY (`Id`)
 );
 

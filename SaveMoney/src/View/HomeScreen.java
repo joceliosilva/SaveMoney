@@ -361,8 +361,9 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void btnCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseClicked
         txtTitulo.setText("CARTÕES");
-        
+        // if(Usuário não tiver cartão)
         d.OpenCard(desktop);
+        //else > Tela do cartão
     }//GEN-LAST:event_btnCartoesMouseClicked
 
     private void btnCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseClicked
