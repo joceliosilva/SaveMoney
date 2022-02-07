@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,11 @@ import javax.swing.JOptionPane;
 public class LoginScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
-
+    public static String z = "";
+     public static Blob a;
+     public static String e = "";
+    
+    
     public LoginScreen() {
         initComponents();
         setIcon();
@@ -180,11 +185,22 @@ public class LoginScreen extends javax.swing.JFrame {
             sucesso = ac.consultarLogin(email, pass);
 
             if (sucesso == true) {
-                d.OpenHome();
-                HomeScreen.txtUser.setText(email);                
+                z = ac.getAccountByEmail(email).getFullName();
+                a = (Blob) ac.getAccountByEmail(email).getAvatar();
+                e = z = ac.getAccountByEmail(email).getEmail();
+               
+                try {
+                    d.OpenHome();
+                } catch (Exception ex) {
+                    Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+             
+        
+                //HomeScreen.txtUser.setText(email);                
                 this.dispose();
 
-                JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + email);
+                JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + z.toUpperCase());
 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Login não realizado!\nFavor conferir o Email e Senha digitados!");

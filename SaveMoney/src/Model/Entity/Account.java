@@ -5,6 +5,9 @@
  */
 package Model.Entity;
 
+import java.io.InputStream;
+import java.sql.Blob;
+
 /**
  *
  * @author Renan
@@ -15,23 +18,18 @@ public class Account {
     private String fullName;
     private String email;
     private String password;
-    private String avatar;   // Analisar o tipo futuramente 
+    private Object avatar;   // Analisar o tipo futuramente 
 
-    public Account(){}
+  
     
-    public Account(String fullName, String email, String password) {
+    public Account(Integer Id, String fullName, String email, String password, Object Avatar) {
+        this.id = Id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+        this.avatar = Avatar;
     }
 
-    public Account(Integer id, String fullName, String email, String password) {
-        this.id = id;
-        this.fullName = fullName;
-        this.email = email;
-        this.password = password;
-    }
-    
     public Integer getId() {
         return id;
     }
@@ -64,11 +62,13 @@ public class Account {
         this.password = password;
     }
 
-    public String getAvatar() {
+    public Object getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(Object avatar) {
         this.avatar = avatar;
     }
+
+ 
 }

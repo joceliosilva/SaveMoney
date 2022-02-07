@@ -3,6 +3,7 @@ package Controller;
 import View.Internal.CategoryScreen;
 import View.Internal.CardScreen;
 import View.*;
+import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 
 /**
@@ -21,7 +22,7 @@ public class DisplayManager {
         open.setVisible(true);
     }
 
-    public void OpenHome() {
+    public void OpenHome() throws SQLException, Exception {
         HomeScreen open = new HomeScreen();
         open.setVisible(true);
     }

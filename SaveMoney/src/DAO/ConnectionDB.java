@@ -31,7 +31,7 @@ public class ConnectionDB {
             String local = "localhost";
             String dataBase = "savemoney";
             String user = "root";
-            String pass = "pass";
+            String pass = "";
 
             conn = DriverManager.getConnection("jdbc:mysql://" + local + "/" + dataBase + "?useSSL=false", user, pass);
 

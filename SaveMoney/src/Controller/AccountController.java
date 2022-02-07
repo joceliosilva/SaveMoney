@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.AccountDAO;
 import Model.Entity.Account;
+import java.sql.Blob;
 import java.sql.SQLException;
 
 /**
@@ -15,9 +16,9 @@ import java.sql.SQLException;
  */
 public class AccountController {
 
-    public boolean createAccount(String fullName, String email, String password) throws SQLException {
-        if (!fullName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-            Account account = new Account(fullName, email, password);
+    public boolean createAccount(String fullName, String email, String password, Object Avatar) throws SQLException {
+        if ( !fullName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+            Account account = new Account(null,fullName, email, password, Avatar);
             AccountDAO.createAccount(account);
             return true;
         }
