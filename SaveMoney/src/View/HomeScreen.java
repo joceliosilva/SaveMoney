@@ -5,14 +5,16 @@
  */
 package View;
 
-import Controller.DisplayManager;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
+import Controller.*;
+import Model.Entity.*;
+import Model.Enums;
+import Model.Home.*;
+import View.Internal.*;
+import java.awt.*;
 import java.net.URL;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.sql.SQLException;
+import java.util.logging.*;
+import javax.swing.*;
 
 /**
  *
@@ -20,8 +22,8 @@ import javax.swing.JPanel;
  */
 public class HomeScreen extends javax.swing.JFrame {
 
-    DisplayManager d = new DisplayManager();    
-    
+    DisplayManager d = new DisplayManager();
+
     public HomeScreen() {
         initComponents();
         setIcon();
@@ -307,18 +309,18 @@ public class HomeScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
     //EFEITO HOVER//
-    public void mouseEnteredButton(JPanel p, JLabel l){
-        p.setBackground(new Color(29, 31, 62));  
+    public void mouseEnteredButton(JPanel p, JLabel l) {
+        p.setBackground(new Color(29, 31, 62));
         //l.setFont(font);
     }
 
-    public void mouseExitedButton(JPanel p, JLabel l){
+    public void mouseExitedButton(JPanel p, JLabel l) {
         p.setBackground(new Color(51, 51, 76));
     }
     //FIM DO EFEITO//    
-    
+
     private void btnReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseEntered
         mouseEnteredButton(btnReceitas, txtReceitas);
     }//GEN-LAST:event_btnReceitasMouseEntered
@@ -352,23 +354,46 @@ public class HomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCategoriasMouseExited
 
     private void btnReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseClicked
-        txtTitulo.setText("RECEITAS");        
+        txtTitulo.setText("RECEITAS");
     }//GEN-LAST:event_btnReceitasMouseClicked
 
     private void btnDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseClicked
         txtTitulo.setText("DESPESAS");
+
+        try {
+            d.OpenExpense(desktop);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDespesasMouseClicked
 
     private void btnCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseClicked
         txtTitulo.setText("CARTÕES");
-        // if(Usuário não tiver cartão)
-        d.OpenCard(desktop);
-        //else > Tela do cartão
+
+        AccountController ac = new AccountController();
+        CardController c = new CardController();
+
+        String email = HomeScreen.txtUser.getText();
+
+        try {
+            Account account = ac.getAccountByEmail(email);
+            Card card = c.getCardByAccountId(account.getId());
+
+            if (card.getId() != null) {
+                CardViewScreenn screen = new CardViewScreenn();
+                d.OpenInternalFrame(desktop, screen);
+            } else { // Se o usuário não tiver cartão
+                CardsScreen screen = new CardsScreen();
+                d.OpenInternalFrame(desktop, screen);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCartoesMouseClicked
 
     private void btnCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseClicked
         txtTitulo.setText("CATEGORIAS");
-        
+
         d.OpenCategory(desktop);
     }//GEN-LAST:event_btnCategoriasMouseClicked
 

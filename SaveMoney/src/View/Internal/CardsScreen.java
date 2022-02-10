@@ -21,12 +21,12 @@ import javax.swing.JOptionPane;
  *
  * @author Renan
  */
-public class CardScreen extends javax.swing.JInternalFrame {
+public class CardsScreen extends javax.swing.JInternalFrame {
 
     CardController cc = new CardController();
     AccountController ac = new AccountController();
 
-    public CardScreen() {
+    public CardsScreen() {
         initComponents();
         cc.getFlagList(cmbFlag);
         cc.getTypeList(cmbType);
@@ -63,6 +63,7 @@ public class CardScreen extends javax.swing.JInternalFrame {
 
         btnSaveCard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSaveCard.setText("Salvar");
+        btnSaveCard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSaveCard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveCardMouseClicked(evt);
@@ -109,6 +110,7 @@ public class CardScreen extends javax.swing.JInternalFrame {
 
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLimpar.setText("Limpar");
+        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLimparMouseClicked(evt);
@@ -216,23 +218,21 @@ public class CardScreen extends javax.swing.JInternalFrame {
             boolean sucesso = cc.createCard(accountId.getId(), number, type.getNum(), flag.getNum(), limit, annualValue, dataFormatada);
             
             if (sucesso) {
-                JOptionPane.showMessageDialog(null, "Cadastro Realizado!");
+                JOptionPane.showMessageDialog(null, "Cartão salvo com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(CardScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CardsScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveCardMouseClicked
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
-        txtNumber = null;
-        txtLimit = null;
-        chosserClosingDate = null;
-        txtAnnualValue = null;
-        cmbFlag = null;
-        cmbType = null;        
+        txtNumber.setText(null);
+        txtLimit.setText(null);
+        chosserClosingDate.setDate(new Date());
+        txtAnnualValue.setText(null);    
     }//GEN-LAST:event_btnLimparMouseClicked
 
 

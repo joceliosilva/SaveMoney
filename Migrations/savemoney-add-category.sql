@@ -54,9 +54,9 @@ CREATE TABLE `card` (
   `Number` int(11) NOT NULL,
   `Type` int(11) NOT NULL,
   `Flag` int(11) NOT NULL,
-  `Limit` decimal(10,0) NOT NULL,
+  `CardLimit` decimal(10,0) NOT NULL,
   `AnnualValue` decimal(10,0) DEFAULT NULL,
-  `ClosingDate` datetime DEFAULT NULL
+  `ClosingDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,7 +91,7 @@ CREATE TABLE `expense` (
   `CategoryId` int(11) DEFAULT NULL,
   `CardId` int(11) DEFAULT NULL,
   `Value` decimal(10,0) NOT NULL,
-  `Date` datetime NOT NULL,
+  `Date` date NOT NULL,
   `Description` varchar(200) DEFAULT NULL,
   `FormOfPayment` int(11) NOT NULL,
   `NumberOfInstallments` int(11) DEFAULT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE `revenue` (
   `AccountId` int(11) NOT NULL,
   `Value` decimal(10,0) NOT NULL,
   `ReferenceMonth` int(11) NOT NULL,
-  `Date` datetime NOT NULL,
+  `Date` date NOT NULL,
   `Description` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

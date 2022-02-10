@@ -5,9 +5,7 @@
  */
 package Model.Home;
 
-import Model.Entity.*;
 import Model.Enums.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -15,8 +13,9 @@ import java.util.Date;
  * @author Renan
  */
 public class Card {
-
-    private Account accountId;
+    
+    private Integer id;
+    private Integer accountId;
     private Integer number;
     private CardType type;
     private CardFlag flag;
@@ -27,7 +26,18 @@ public class Card {
     public Card() {
     }
 
-    public Card(Account accountId, Integer number, CardType type, CardFlag flag, Double limit, Double annualValue, Date closingDate) {
+    public Card(Integer accountId, Integer number, CardType type, CardFlag flag, Double limit, Double annualValue, Date closingDate) {
+        this.accountId = accountId;
+        this.number = number;
+        this.type = type;
+        this.flag = flag;
+        this.limit = limit;
+        this.annualValue = annualValue;
+        this.closingDate = closingDate;
+    }
+    
+    public Card(Integer id, Integer accountId, Integer number, CardType type, CardFlag flag, Double limit, Double annualValue, Date closingDate) {
+        this.id = id;
         this.accountId = accountId;
         this.number = number;
         this.type = type;
@@ -37,11 +47,19 @@ public class Card {
         this.closingDate = closingDate;
     }
 
-    public Account getAccountId() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    public Integer getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Account accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 

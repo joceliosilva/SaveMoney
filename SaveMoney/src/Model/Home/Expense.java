@@ -7,7 +7,6 @@ package Model.Home;
 
 import Model.Entity.*;
 import Model.Enums.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Date;
  * @author Renan
  */
 public class Expense {
-    private Account accountId;
+    private Integer accountId;
     private Category categoryId;
     private Card cardId;
     private Double value;
@@ -25,11 +24,11 @@ public class Expense {
     private Integer numberOfInstallments;
     private ExpenseStatus status;
 
-    public Account getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Account accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 

@@ -88,8 +88,9 @@ public class LoginScreen extends javax.swing.JFrame {
         labelPassword.setCaretColor(new java.awt.Color(255, 255, 255));
         labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         buttonLogin.setText("ENTRAR");
-        buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
@@ -103,7 +104,7 @@ public class LoginScreen extends javax.swing.JFrame {
         txtRegister.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtRegister.setForeground(new java.awt.Color(255, 255, 255));
         txtRegister.setText("Cadastre-se!");
-        txtRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtRegisterMouseClicked(evt);
@@ -166,7 +167,8 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_labelEmailActionPerformed
 
     private void txtRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRegisterMouseClicked
-        d.OpenRegister();
+        RegisterScreen frame = new RegisterScreen();
+        d.OpenFrame(frame);
         this.dispose();
     }//GEN-LAST:event_txtRegisterMouseClicked
 
@@ -180,7 +182,8 @@ public class LoginScreen extends javax.swing.JFrame {
             sucesso = ac.consultarLogin(email, pass);
 
             if (sucesso == true) {
-                d.OpenHome();
+                HomeScreen frame = new HomeScreen();
+                d.OpenFrame(frame);
                 HomeScreen.txtUser.setText(email);                
                 this.dispose();
 

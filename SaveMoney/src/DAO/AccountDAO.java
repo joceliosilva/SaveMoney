@@ -27,7 +27,7 @@ public class AccountDAO {
         conexao = new ConnectionDB().getConnection();  //INICIA A CONEÇÃO COM O BD
     }
 
-    public static void createAccount(Account a) throws SQLException { //FUNÇÃO PARA ADD CONTA
+    public static void createAccount(Account a) throws SQLException {
 
         String sql = "insert into Account (FullName,Email,Password,Avatar) values (?,?,?,?)"; //SQL 
         conexao = new ConnectionDB().getConnection();
@@ -52,7 +52,7 @@ public class AccountDAO {
         // Manda como parametro para ele duas variaveis para ele procurar no banco de dados!
         boolean autenticado = false;
         String sql = "select Id, FullName, Email, Password from account where  Email= ? and Password = ?";
-        conexao = new ConnectionDB().getConnection(); // Nao esta pegando a conexão pelo construtor
+        conexao = new ConnectionDB().getConnection();
         try {
             ps = conexao.prepareStatement(sql);
 

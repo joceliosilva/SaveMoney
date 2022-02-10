@@ -34,9 +34,9 @@ CREATE TABLE `savemoney`.`Card` (
   `Number` INT NOT NULL,
   `Type` INT NOT NULL,
   `Flag` INT NOT NULL,
-  `Limit` DECIMAL NOT NULL,
+  `CardLimit` DECIMAL NOT NULL,
   `AnnualValue` DECIMAL,
-  `ClosingDate` DATETIME,
+  `ClosingDate` DATE,
   PRIMARY KEY (`Id`)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE `savemoney`.`Expense` (
   `CategoryId` INT,
   `CardId` INT,
   `Value` DECIMAL NOT NULL,
-  `Date` DATETIME NOT NULL,
+  `Date` DATE NOT NULL,
   `Description` VARCHAR(200),
   `FormOfPayment` INT NOT NULL,
   `NumberOfInstallments` INT, 
@@ -71,7 +71,7 @@ CREATE TABLE `savemoney`.`Revenue` (
   `AccountId` INT NOT NULL,
   `Value` DECIMAL NOT NULL,
   `ReferenceMonth` INT NOT NULL,
-  `Date` DATETIME NOT NULL,
+  `Date` DATE NOT NULL,
   `Description` VARCHAR(200),
   PRIMARY KEY (`Id`)
 );

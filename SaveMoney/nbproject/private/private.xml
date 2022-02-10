@@ -5,8 +5,10 @@
         <group>
             <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/HomeScreen.java</file>
             <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Controller/CardController.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/Internal/CardScreen.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Controller/CategoryController.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/Internal/ExpenseScreen.java</file>
             <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/DAO/CardDAO.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/DAO/CategoryDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -130,7 +130,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buttonRegister.setText("CADASTRAR");
-        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonRegisterMouseClicked(evt);
@@ -149,7 +149,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         txtLogin1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtLogin1.setForeground(new java.awt.Color(255, 255, 255));
         txtLogin1.setText("Faça Login");
-        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtLogin1MouseClicked(evt);
@@ -170,6 +170,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         });
 
         buttonF.setText("Selecionar");
+        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonFMouseClicked(evt);
@@ -271,7 +272,8 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRegisterActionPerformed
 
     private void txtLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLogin1MouseClicked
-        d.OpenLogin();
+        LoginScreen frame = new LoginScreen();
+        d.OpenFrame(frame);
         this.dispose();
     }//GEN-LAST:event_txtLogin1MouseClicked
 
@@ -289,7 +291,9 @@ public class RegisterScreen extends javax.swing.JFrame {
 
             if (sucesso) {
                 JOptionPane.showMessageDialog(null, "Cadastro Realizado, Efetue Login!");
-                d.OpenLogin();
+                
+                LoginScreen frame = new LoginScreen();
+                d.OpenFrame(frame);
                 this.dispose();
                 // this.limparCampos(); // IMPLEMENTAR FUTURAMENTE
             } else {

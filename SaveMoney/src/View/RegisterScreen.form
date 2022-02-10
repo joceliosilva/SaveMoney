@@ -203,7 +203,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="CADASTRAR"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -232,7 +232,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Fa&#xe7;a Login"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -271,6 +271,9 @@
         <Component class="javax.swing.JButton" name="buttonF">
           <Properties>
             <Property name="text" type="java.lang.String" value="Selecionar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonFMouseClicked"/>

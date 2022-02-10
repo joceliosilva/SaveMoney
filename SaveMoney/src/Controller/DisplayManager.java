@@ -1,9 +1,11 @@
 package Controller;
 
 import View.Internal.CategoryScreen;
-import View.Internal.CardScreen;
-import View.*;
+import View.Internal.ExpenseScreen;
+import java.sql.SQLException;
 import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -11,18 +13,13 @@ import javax.swing.JDesktopPane;
  */
 public class DisplayManager {
 
-    public void OpenRegister() {
-        RegisterScreen open = new RegisterScreen();
+    public void OpenFrame(JFrame open) {
         open.setVisible(true);
     }
 
-    public void OpenLogin() {
-        LoginScreen open = new LoginScreen();
-        open.setVisible(true);
-    }
-
-    public void OpenHome() {
-        HomeScreen open = new HomeScreen();
+    public void OpenInternalFrame(JDesktopPane pane, JInternalFrame open) {
+        pane.add(open);
+        pane.setPosition(open, 0);
         open.setVisible(true);
     }
     
@@ -33,8 +30,8 @@ public class DisplayManager {
         open.setVisible(true);
     }
     
-    public void OpenCard(JDesktopPane pane) {
-        CardScreen open = new CardScreen();
+    public void OpenExpense(JDesktopPane pane) throws SQLException {
+        ExpenseScreen open = new ExpenseScreen();
         pane.add(open);
         pane.setPosition(open, 0);
         open.setVisible(true);
