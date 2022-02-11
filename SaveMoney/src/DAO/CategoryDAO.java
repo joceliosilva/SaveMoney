@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Connection.ConnectionDB;
 import Model.Home.Category;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

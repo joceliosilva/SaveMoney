@@ -1,6 +1,6 @@
 package View;
 
-import DAO.ConnectionDB;
+import Connection.ConnectionDB;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.KeyEventDispatcher;

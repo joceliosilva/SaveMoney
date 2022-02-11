@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/HomeScreen.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Controller/CardController.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Controller/CategoryController.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/Internal/ExpenseScreen.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/RegisterScreen.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Exception/SMException.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/LoadScreen.java</file>
             <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/DAO/CardDAO.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/DAO/CategoryDAO.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/DAO/AccountDAO.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Connection/ConnectionDB.java</file>
+            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Controller/DisplayManager.java</file>
         </group>
     </open-files>
 </project-private>

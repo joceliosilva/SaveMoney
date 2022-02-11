@@ -5,11 +5,14 @@
  */
 package DAO;
 
+import Connection.ConnectionDB;
 import Model.Entity.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +32,7 @@ public class AccountDAO {
 
     public static void createAccount(Account a) throws SQLException {
 
-        String sql = "insert into Account (FullName,Email,Password,Avatar) values (?,?,?,?)"; //SQL 
+        String sql = "insert into Account (FullName,Email,Password,Avatar,CreationDate) values (?,?,?,?,?)"; //SQL 
         conexao = new ConnectionDB().getConnection();
         try {
             ps = conexao.prepareStatement(sql);
@@ -37,14 +40,16 @@ public class AccountDAO {
             ps.setString(2, a.getEmail());
             ps.setString(3, a.getPassword());
             ps.setString(4, null); // analisar posteriormente
+            
+            Date dateNow = Date.valueOf(LocalDate.now().toString());
+            ps.setDate(5, dateNow);
 
             ps.executeUpdate();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar conta: " + e);
         } finally {
-            ps.close();
-            conexao.close();
+            ConnectionDB.closeConnection(conexao, ps);
         }
     }
 

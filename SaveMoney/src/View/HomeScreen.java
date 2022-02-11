@@ -361,7 +361,7 @@ public class HomeScreen extends javax.swing.JFrame {
         txtTitulo.setText("DESPESAS");
 
         try {
-            d.OpenExpense(desktop);
+            d.openExpense(desktop);
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -381,10 +381,10 @@ public class HomeScreen extends javax.swing.JFrame {
 
             if (card.getId() != null) {
                 CardViewScreenn screen = new CardViewScreenn();
-                d.OpenInternalFrame(desktop, screen);
+                d.openInternalFrame(desktop, screen);
             } else { // Se o usuário não tiver cartão
                 CardsScreen screen = new CardsScreen();
-                d.OpenInternalFrame(desktop, screen);
+                d.openInternalFrame(desktop, screen);
             }
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -394,7 +394,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private void btnCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseClicked
         txtTitulo.setText("CATEGORIAS");
 
-        d.OpenCategory(desktop);
+        d.openCategory(desktop);
     }//GEN-LAST:event_btnCategoriasMouseClicked
 
     /**
