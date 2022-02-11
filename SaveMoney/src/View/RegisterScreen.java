@@ -283,19 +283,26 @@ public class RegisterScreen extends javax.swing.JFrame {
         String email = labelEmail.getText();
         String password = labelPassword.getText();
         String avatar = null;
+
         boolean sucesso;
 
         try {
             AccountController ac = new AccountController();
-            sucesso = ac.createAccount(fullName, email, password);
+            boolean accExiste = ac.consultarLogin(email, password);
 
-            if (sucesso) {
-                JOptionPane.showMessageDialog(null, "Cadastro Realizado, Efetue Login!");
-                
-                LoginScreen frame = new LoginScreen();
-                d.openFrame(frame);
-                this.dispose();
-                // this.limparCampos(); // IMPLEMENTAR FUTURAMENTE
+            if (accExiste) {
+                JOptionPane.showMessageDialog(null, "Este usuário já existe, tente outro!");
+            } else if (!accExiste) {
+                sucesso = ac.createAccount(fullName, email, password);
+
+                if (sucesso) {
+                    JOptionPane.showMessageDialog(null, "Cadastro Realizado, Efetue Login!");
+
+                    LoginScreen frame = new LoginScreen();
+                    d.openFrame(frame);
+                    this.dispose();
+                    // this.limparCampos(); // IMPLEMENTAR FUTURAMENTE
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
