@@ -1,10 +1,11 @@
 package Controller;
 
 import View.Internal.CategoryScreen;
-import View.Internal.CardScreen;
-import View.*;
+import View.Internal.ExpenseScreen;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -12,30 +13,29 @@ import javax.swing.JDesktopPane;
  */
 public class DisplayManager {
 
-    public void OpenRegister() {
-        RegisterScreen open = new RegisterScreen();
-        open.setVisible(true);
-    }
-
-    public void OpenLogin() {
-        LoginScreen open = new LoginScreen();
-        open.setVisible(true);
-    }
-
-    public void OpenHome() throws SQLException, Exception {
-        HomeScreen open = new HomeScreen();
+    public void openFrame(JFrame open) {
         open.setVisible(true);
     }
     
-    public void OpenCategory(JDesktopPane pane) {
+    public void closeFrame(JFrame open) {
+        open.setVisible(false);
+    }
+
+    public void openInternalFrame(JDesktopPane pane, JInternalFrame open) {
+        pane.add(open);
+        pane.setPosition(open, 0);
+        open.setVisible(true);
+    }
+    
+    public void openCategory(JDesktopPane pane) {
         CategoryScreen open = new CategoryScreen();
         pane.add(open);
         pane.setPosition(open, 0);
         open.setVisible(true);
     }
     
-    public void OpenCard(JDesktopPane pane) {
-        CardScreen open = new CardScreen();
+    public void openExpense(JDesktopPane pane) throws SQLException {
+        ExpenseScreen open = new ExpenseScreen();
         pane.add(open);
         pane.setPosition(open, 0);
         open.setVisible(true);

@@ -6,18 +6,8 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -31,14 +21,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class RegisterScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
-    URL l= this.getClass().getResource("Images/user.png");
-     String imgPath = null;
-      byte[] imagem= null;
-       
+    JFileChooser jFileChooser = new JFileChooser();
+
     public RegisterScreen() {
         initComponents();
         setIcon();
-       
         labelEmail.requestFocus();
         setLocationRelativeTo(null);  //Carrega o form no centro da tela
     }
@@ -54,39 +41,40 @@ public class RegisterScreen extends javax.swing.JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
     }
-    
-    
-     private void selectFile1() {
-         JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fc.setDialogTitle("Selecionar avatar");
-        fc.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*png, jpg, jpeg)", "png", "jpg", "jpeg")); //SELECIONA O FILTRO DE ARQUIVOS
-        fc.setAcceptAllFileFilterUsed(false);  //Limita os filtros de arquivos
-        int res = fc.showOpenDialog(null);
-       
-        if (res == JFileChooser.APPROVE_OPTION) {
-            File arquivo = fc.getSelectedFile();
-            
-            //Limpa a imagem atual do JLabel
-            labelLocalFile.setIcon(null);
-            imgPath = arquivo.getAbsolutePath();
 
-            //Seta a imagem selecionada
-            Image img = new ImageIcon(arquivo.getAbsolutePath()).getImage();
+    private ImageIcon selectFile() {
+        ImageIcon conteudo = null;
+        String caminho = null;
 
-            //Redimensiona a imagen
-            Image newimg = img.getScaledInstance(280, 192, java.awt.Image.SCALE_SMOOTH);
-            ImageIcon imageIcon = new ImageIcon(newimg);
+        try {
+            jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            jFileChooser.setDialogTitle("Selecionar avatar");
+            jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*png, jpg, jpeg)", "png", "jpg", "jpeg")); //SELECIONA O FILTRO DE ARQUIVOS
+            jFileChooser.setAcceptAllFileFilterUsed(false);  //Limita os filtros de arquivos
 
-            //Seta a imagem ao componente JLabel
-              labelLocalFile.setIcon(ResizeImage(imgPath,null));
-        }else{
-            imgPath = null;
+            int ok = jFileChooser.showOpenDialog(null);  //Aguarda o Usuario escolher a imagem ou cancelar
+
+            if (ok == JFileChooser.APPROVE_OPTION) {
+
+                caminho = jFileChooser.getCurrentDirectory().getPath() + "/" + jFileChooser.getSelectedFile().getName(); // caminho do arquivo
+                conteudo = new ImageIcon(caminho);
+                labelLocalFile.setIcon(conteudo);
+                System.out.println(conteudo);
+            } //Se selecionaar a imagem é carregada no Label, e o caminho da memoria é exeibido no prompt (PARA USO FUTURO NO BD)
+            else {
+
+                URL url = this.getClass().getResource("/Images/user.png");
+                Image iconDefault = Toolkit.getDefaultToolkit().getImage(url);
+                conteudo = new ImageIcon(iconDefault);
+
+                labelLocalFile.setIcon(conteudo);
+                jFileChooser.cancelSelection();
+            } //Se for cancelada a seleção o icone defaut é carregado novamente (TALVEZ DESNECESSÁRIO)
+
+        } catch (HeadlessException e) {
         }
-         
-     }
-
-
+        return conteudo;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -142,7 +130,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buttonRegister.setText("CADASTRAR");
-        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonRegisterMouseClicked(evt);
@@ -161,7 +149,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         txtLogin1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtLogin1.setForeground(new java.awt.Color(255, 255, 255));
         txtLogin1.setText("Faça Login");
-        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtLogin1MouseClicked(evt);
@@ -182,6 +170,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         });
 
         buttonF.setText("Selecionar");
+        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonFMouseClicked(evt);
@@ -195,7 +184,7 @@ public class RegisterScreen extends javax.swing.JFrame {
 
         labelAvatar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelAvatar.setForeground(new java.awt.Color(255, 255, 255));
-        labelAvatar.setText("Avatar");
+        labelAvatar.setText("Avatar (100x100)");
 
         labelLocalFile.setBackground(new java.awt.Color(255, 255, 255));
         labelLocalFile.setForeground(new java.awt.Color(255, 255, 255));
@@ -235,10 +224,8 @@ public class RegisterScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                        .addComponent(labelAvatar)
-                        .addGap(37, 37, 37)))
+                    .addComponent(labelAvatar)
+                    .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(221, 221, 221))
         );
         BackgroundLayout.setVerticalGroup(
@@ -285,56 +272,42 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRegisterActionPerformed
 
     private void txtLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLogin1MouseClicked
-        d.OpenLogin();
+        LoginScreen frame = new LoginScreen();
+        d.openFrame(frame);
         this.dispose();
     }//GEN-LAST:event_txtLogin1MouseClicked
 
     private void buttonRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRegisterMouseClicked
-        if(imgPath != null){
-        File img = new File(imgPath);
-        byte[] imagem = new byte[(int)img.length()];
-        DataInputStream is = null;
-        try {
-           is = new DataInputStream(          
-                   new FileInputStream(imgPath));
-       } catch (FileNotFoundException ex) {
-            Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            is.readFully(imagem);
-       } catch (IOException ex) {
-            Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      try {
-           is.close();
-       } catch (IOException ex) {
-           Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-         
+
         String fullName = txtName.getText();
         String email = labelEmail.getText();
         String password = labelPassword.getText();
-        Object byteImg = imagem;
+        String avatar = null;
+
         boolean sucesso;
 
         try {
             AccountController ac = new AccountController();
-            sucesso = ac.createAccount(fullName, email, password, byteImg);
+            boolean accExiste = ac.consultarLogin(email, password);
 
-            if (sucesso) {
-                JOptionPane.showMessageDialog(null, "Cadastro Realizado, Efetue Login!");
-                d.OpenLogin();
-                this.dispose();
-                // this.limparCampos(); // IMPLEMENTAR FUTURAMENTE
+            if (accExiste) {
+                JOptionPane.showMessageDialog(null, "Este usuário já existe, tente outro!");
+            } else if (!accExiste) {
+                sucesso = ac.createAccount(fullName, email, password);
+
+                if (sucesso) {
+                    JOptionPane.showMessageDialog(null, "Cadastro Realizado, Efetue Login!");
+
+                    LoginScreen frame = new LoginScreen();
+                    d.openFrame(frame);
+                    this.dispose();
+                    // this.limparCampos(); // IMPLEMENTAR FUTURAMENTE
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
         } catch (HeadlessException | SQLException e) {
         }
-        }else {
-                JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
-            }
     }//GEN-LAST:event_buttonRegisterMouseClicked
 
     private void buttonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFActionPerformed
@@ -342,8 +315,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonFActionPerformed
 
     private void buttonFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFMouseClicked
-        
-        selectFile1();
+        selectFile();
     }//GEN-LAST:event_buttonFMouseClicked
 
     public static void main(String args[]) {
@@ -393,20 +365,4 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JLabel txtRegister;
     // End of variables declaration//GEN-END:variables
-
-    public ImageIcon ResizeImage(String ImagePath, byte [] pic) {
-       ImageIcon Img = null;
-       
-       if(ImagePath != null){
-           Img = new ImageIcon(ImagePath);
-       } else{
-           Img = new ImageIcon("/Images/user.png");
-       }
-       Image img = Img.getImage();
-       Image newImg = img.getScaledInstance(labelLocalFile.getWidth(), labelLocalFile.getHeight(), Image.SCALE_SMOOTH);
-       ImageIcon image = new ImageIcon(newImg);
-       return image;
-    }
-    
-    
 }

@@ -5,22 +5,16 @@
  */
 package View;
 
-import Controller.AccountController;
-import Controller.DisplayManager;
-import static View.LoginScreen.a;
-import static View.LoginScreen.e;
-import static View.LoginScreen.z;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
+import Controller.*;
+import Model.Entity.*;
+import Model.Enums;
+import Model.Home.*;
+import View.Internal.*;
+import java.awt.*;
 import java.net.URL;
-import java.sql.Blob;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.sql.SQLException;
+import java.util.logging.*;
+import javax.swing.*;
 
 /**
  *
@@ -28,20 +22,15 @@ import javax.swing.JPanel;
  */
 public class HomeScreen extends javax.swing.JFrame {
 
-    DisplayManager d = new DisplayManager();    
-    
-    public HomeScreen() throws Exception {
-       
- initComponents();
+    DisplayManager d = new DisplayManager();
+
+    public HomeScreen() {
+        initComponents();
         setIcon();
         pegarResolucao();
         setLocationRelativeTo(null);  //Carrega o form no centro da tela
-         txtUser.setText(z);
-         blobToImage(a, jLabel1);
-       
     }
 
-     
     private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
@@ -53,22 +42,6 @@ public class HomeScreen extends javax.swing.JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
     }
-     public void blobToImage(Blob blobBD, JLabel label) throws Exception {
-        //Converte blob em Image
-        byte[] image = blobBD.getBytes(1, (int) blobBD.length());
-        Image img = Toolkit.getDefaultToolkit().createImage(image);
-
-        //Escala imagen dentro do JLabel (no meu caso o JLabel possui: 272 por 192)
-        Image newimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), java.awt.Image.SCALE_SMOOTH);
-        ImageIcon imageIcon = new ImageIcon(newimg);
-
-        //Apresenta a imagem no componente JLabel
-        label.setIcon(imageIcon);
-        
-        
-         
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,7 +55,7 @@ public class HomeScreen extends javax.swing.JFrame {
         Background = new javax.swing.JPanel();
         PainelLateral = new javax.swing.JPanel();
         PainelLateralTop = new javax.swing.JPanel();
-        labelLocalFile = new javax.swing.JLabel();
+        txtUser = new javax.swing.JLabel();
         btnReceitas = new javax.swing.JPanel();
         txtReceitas = new javax.swing.JLabel();
         btnDespesas = new javax.swing.JPanel();
@@ -91,9 +64,6 @@ public class HomeScreen extends javax.swing.JFrame {
         txtCartoes = new javax.swing.JLabel();
         btnCategorias = new javax.swing.JPanel();
         txtCategorias = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtUser = new javax.swing.JLabel();
         desktop = new javax.swing.JDesktopPane();
         PainelTopo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
@@ -113,14 +83,13 @@ public class HomeScreen extends javax.swing.JFrame {
         flowLayout1.setAlignOnBaseline(true);
         PainelLateralTop.setLayout(flowLayout1);
 
-        labelLocalFile.setBackground(new java.awt.Color(255, 255, 255));
-        labelLocalFile.setForeground(new java.awt.Color(255, 255, 255));
-        labelLocalFile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelLocalFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
-        labelLocalFile.setPreferredSize(new java.awt.Dimension(1, 1));
-        PainelLateralTop.add(labelLocalFile);
+        txtUser.setBackground(new java.awt.Color(255, 255, 255));
+        txtUser.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(255, 255, 255));
+        txtUser.setText("USER");
+        PainelLateralTop.add(txtUser);
 
-        PainelLateral.add(PainelLateralTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 80));
+        PainelLateral.add(PainelLateralTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
 
         btnReceitas.setBackground(new java.awt.Color(51, 51, 76));
         btnReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -152,15 +121,15 @@ public class HomeScreen extends javax.swing.JFrame {
         );
         btnReceitasLayout.setVerticalGroup(
             btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
             .addGroup(btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReceitasLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtReceitas)
-                    .addContainerGap(21, Short.MAX_VALUE)))
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
 
-        PainelLateral.add(btnReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 310, 80));
+        PainelLateral.add(btnReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 310, -1));
 
         btnDespesas.setBackground(new java.awt.Color(51, 51, 76));
         btnDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -192,11 +161,12 @@ public class HomeScreen extends javax.swing.JFrame {
         );
         btnDespesasLayout.setVerticalGroup(
             btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
             .addGroup(btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(btnDespesasLayout.createSequentialGroup()
-                    .addComponent(txtDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDespesasLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDespesas)
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
 
         PainelLateral.add(btnDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 310, -1));
@@ -281,41 +251,6 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(btnCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 323, 310, -1));
 
-        jPanel1.setBackground(new java.awt.Color(29, 31, 62));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
-        jLabel1.setMinimumSize(new java.awt.Dimension(30, 20));
-
-        txtUser.setBackground(new java.awt.Color(255, 255, 255));
-        txtUser.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
-        txtUser.setForeground(new java.awt.Color(255, 255, 255));
-        txtUser.setText("USER");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(txtUser)
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 11, Short.MAX_VALUE)
-                        .addComponent(txtUser)))
-                .addContainerGap())
-        );
-
-        PainelLateral.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
-
         Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 720));
 
         desktop.setMaximumSize(new java.awt.Dimension(1170, 640));
@@ -374,18 +309,18 @@ public class HomeScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
     //EFEITO HOVER//
-    public void mouseEnteredButton(JPanel p, JLabel l){
-        p.setBackground(new Color(29, 31, 62));  
+    public void mouseEnteredButton(JPanel p, JLabel l) {
+        p.setBackground(new Color(29, 31, 62));
         //l.setFont(font);
     }
 
-    public void mouseExitedButton(JPanel p, JLabel l){
+    public void mouseExitedButton(JPanel p, JLabel l) {
         p.setBackground(new Color(51, 51, 76));
     }
     //FIM DO EFEITO//    
-    
+
     private void btnReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseEntered
         mouseEnteredButton(btnReceitas, txtReceitas);
     }//GEN-LAST:event_btnReceitasMouseEntered
@@ -419,24 +354,47 @@ public class HomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCategoriasMouseExited
 
     private void btnReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseClicked
-        txtTitulo.setText("RECEITAS");        
+        txtTitulo.setText("RECEITAS");
     }//GEN-LAST:event_btnReceitasMouseClicked
 
     private void btnDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseClicked
         txtTitulo.setText("DESPESAS");
+
+        try {
+            d.openExpense(desktop);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDespesasMouseClicked
 
     private void btnCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseClicked
         txtTitulo.setText("CARTÕES");
-        // if(Usuário não tiver cartão)
-        d.OpenCard(desktop);
-        //else > Tela do cartão
+
+        AccountController ac = new AccountController();
+        CardController c = new CardController();
+
+        String email = HomeScreen.txtUser.getText();
+
+        try {
+            Account account = ac.getAccountByEmail(email);
+            Card card = c.getCardByAccountId(account.getId());
+
+            if (card.getId() != null) {
+                CardViewScreenn screen = new CardViewScreenn();
+                d.openInternalFrame(desktop, screen);
+            } else { // Se o usuário não tiver cartão
+                CardsScreen screen = new CardsScreen();
+                d.openInternalFrame(desktop, screen);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCartoesMouseClicked
 
     private void btnCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseClicked
         txtTitulo.setText("CATEGORIAS");
-        
-        d.OpenCategory(desktop);
+
+        d.openCategory(desktop);
     }//GEN-LAST:event_btnCategoriasMouseClicked
 
     /**
@@ -469,11 +427,7 @@ public class HomeScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new HomeScreen().setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new HomeScreen().setVisible(true);
             }
         });
     }
@@ -488,9 +442,6 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel btnDespesas;
     private javax.swing.JPanel btnReceitas;
     private javax.swing.JDesktopPane desktop;
-    public static javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    public javax.swing.JLabel labelLocalFile;
     private javax.swing.JLabel txtCartoes;
     private javax.swing.JLabel txtCategorias;
     private javax.swing.JLabel txtDespesas;

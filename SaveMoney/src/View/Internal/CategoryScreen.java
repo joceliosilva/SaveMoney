@@ -42,16 +42,17 @@ public class CategoryScreen extends javax.swing.JInternalFrame {
         setClosable(true);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Categoria");
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Adicione categorias para suas despesas");
 
         addCategoryText.setBackground(new java.awt.Color(34, 36, 80));
+        addCategoryText.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         addCategoryText.setForeground(new java.awt.Color(255, 255, 255));
         addCategoryText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         addCategoryText.setToolTipText("Digite o email...");
@@ -66,6 +67,7 @@ public class CategoryScreen extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("ADICIONAR");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

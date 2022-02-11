@@ -5,11 +5,14 @@
  */
 package DAO;
 
+import Connection.ConnectionDB;
 import Model.Entity.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,24 +30,26 @@ public class AccountDAO {
         conexao = new ConnectionDB().getConnection();  //INICIA A CONEÇÃO COM O BD
     }
 
-    public static void createAccount(Account a) throws SQLException { //FUNÇÃO PARA ADD CONTA
+    public static void createAccount(Account a) throws SQLException {
 
-        String sql = "insert into Account (FullName,Email,Password,Avatar) values (?,?,?,?)"; //SQL 
+        String sql = "insert into Account (FullName,Email,Password,Avatar,CreationDate) values (?,?,?,?,?)"; //SQL 
         conexao = new ConnectionDB().getConnection();
         try {
             ps = conexao.prepareStatement(sql);
             ps.setString(1, a.getFullName());
             ps.setString(2, a.getEmail());
             ps.setString(3, a.getPassword());
-            ps.setObject(4, a.getAvatar()); // analisar posteriormente
+            ps.setString(4, null); // analisar posteriormente
+            
+            Date dateNow = Date.valueOf(LocalDate.now().toString());
+            ps.setDate(5, dateNow);
 
             ps.executeUpdate();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar conta: " + e);
         } finally {
-            ps.close();
-            conexao.close();
+            ConnectionDB.closeConnection(conexao, ps);
         }
     }
 
@@ -52,7 +57,7 @@ public class AccountDAO {
         // Manda como parametro para ele duas variaveis para ele procurar no banco de dados!
         boolean autenticado = false;
         String sql = "select Id, FullName, Email, Password from account where  Email= ? and Password = ?";
-        conexao = new ConnectionDB().getConnection(); // Nao esta pegando a conexão pelo construtor
+        conexao = new ConnectionDB().getConnection();
         try {
             ps = conexao.prepareStatement(sql);
 
@@ -77,7 +82,7 @@ public class AccountDAO {
     }
 
     public Account getAccountByEmail(String email) throws SQLException {
-        String sql = "select Id, FullName, Email, Password,Avatar from account where  Email= ?";
+        String sql = "select Id, FullName, Email, Password from account where  Email= ?";
         conexao = new ConnectionDB().getConnection();
         
         Account account = null;
@@ -85,12 +90,11 @@ public class AccountDAO {
         try {
             ps = conexao.prepareStatement(sql);
             ps.setString(1, email);
-            
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                account = new Account(rs.getInt("Id"), rs.getString("FullName"), rs.getString("Email"), rs.getString("Password"), rs.getBlob("Avatar"));
+                account = new Account(rs.getInt("Id"), rs.getString("FullName"), rs.getString("Email"), rs.getString("Password"));
             }
 
         } catch (SQLException e) {

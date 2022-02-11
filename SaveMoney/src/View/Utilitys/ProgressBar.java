@@ -5,12 +5,13 @@
  */
 package View.Utilitys;
 
-import DAO.ConnectionDB;
+import Controller.DisplayManager;
+import Connection.ConnectionDB;
 import View.LoadScreen;
 import View.LoginScreen;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
+import Exception.SMException;
 
 /**
  *
@@ -21,33 +22,32 @@ public class ProgressBar {
 
     public static void main(String args[]) throws InterruptedException {
 
-        LoadScreen load = new LoadScreen();
-        load.setVisible(true);
-        LoginScreen play = new LoginScreen();
         ConnectionDB c = new ConnectionDB();
+        LoadScreen load = new LoadScreen();
+        LoginScreen play = new LoginScreen();
+        
+        DisplayManager d = new DisplayManager();
+        d.openFrame(load);        
 
-        if (c.getConnection() == null) {  // TESTA A CONEXÃO COM O BD ANTES DO PROGRAMA INICAR, SE NÃO ESTIVER OK O MESMO FECHA
+        if (c.getConnection() == null) {
             for (int i = 0; i <= 100; i++) {
                 Thread.sleep(40);
                 load.progressLoad.setValue(30);
                 if (i <= 40) {
                     load.txtLoad.setText("Carregando BD");
                 }
-                JOptionPane.showMessageDialog(null, "Não foi possivel conectar ao banco de dados, por favor contate o suporte!");
+                JOptionPane.showMessageDialog(null, SMException.EX0004);
                 System.exit(0);
             }
         } else {
-
             try {
                 for (int i = 0; i <= 100; i++) {
                     Thread.sleep(40);
                     load.progressLoad.setValue(i);
 
-                    //SÓ EFEITO, APAGAR DEPOIS
                     if (i <= 40) {
                         load.txtLoad.setText("Carregando BD");
                     }
-
                     if (i > 40 && i < 80) {
                         load.txtLoad.setText("Carregando Módulos");
                     }
@@ -55,12 +55,13 @@ public class ProgressBar {
                         load.txtLoad.setText("Tudo Pronto!");
                     }
                     if (i == 100) {
-                        load.setVisible(false);
-                        play.setVisible(true);
+                        d.closeFrame(load);
+                        d.openFrame(play);
                     }
                 }
-            } catch (Exception e) {
-                System.out.println("Erro em Progress Bar: " + e.getMessage());
+            } catch (InterruptedException ex) {
+                JOptionPane.showMessageDialog(null, SMException.EX0005);
+                System.out.println(ex.getMessage());
             }
         }
     }

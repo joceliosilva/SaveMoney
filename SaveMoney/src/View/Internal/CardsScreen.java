@@ -21,12 +21,12 @@ import javax.swing.JOptionPane;
  *
  * @author Renan
  */
-public class CardScreen extends javax.swing.JInternalFrame {
+public class CardsScreen extends javax.swing.JInternalFrame {
 
     CardController cc = new CardController();
     AccountController ac = new AccountController();
 
-    public CardScreen() {
+    public CardsScreen() {
         initComponents();
         cc.getFlagList(cmbFlag);
         cc.getTypeList(cmbType);
@@ -48,6 +48,7 @@ public class CardScreen extends javax.swing.JInternalFrame {
         txtNumber = new javax.swing.JTextField();
         txtLimit = new javax.swing.JTextField();
         txtAnnualValue = new javax.swing.JTextField();
+        chosserClosingDate = new com.toedter.calendar.JDateChooser();
         txtDespesas = new javax.swing.JLabel();
         txtDespesas1 = new javax.swing.JLabel();
         txtDespesas2 = new javax.swing.JLabel();
@@ -55,7 +56,6 @@ public class CardScreen extends javax.swing.JInternalFrame {
         txtDespesas4 = new javax.swing.JLabel();
         txtDespesas5 = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JButton();
-        chosserClosingDate = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
 
@@ -63,11 +63,14 @@ public class CardScreen extends javax.swing.JInternalFrame {
 
         btnSaveCard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSaveCard.setText("Salvar");
+        btnSaveCard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSaveCard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveCardMouseClicked(evt);
             }
         });
+
+        chosserClosingDate.setDateFormatString("dd-MM-yyyy ");
 
         txtDespesas.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
@@ -107,6 +110,7 @@ public class CardScreen extends javax.swing.JInternalFrame {
 
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLimpar.setText("Limpar");
+        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLimparMouseClicked(evt);
@@ -140,11 +144,11 @@ public class CardScreen extends javax.swing.JInternalFrame {
                         .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDespesas3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chosserClosingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtLimit, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cmbFlag, javax.swing.GroupLayout.Alignment.LEADING, 0, 227, Short.MAX_VALUE))
-                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chosserClosingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         pnlFundoLayout.setVerticalGroup(
@@ -178,7 +182,7 @@ public class CardScreen extends javax.swing.JInternalFrame {
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSaveCard, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,30 +218,28 @@ public class CardScreen extends javax.swing.JInternalFrame {
             boolean sucesso = cc.createCard(accountId.getId(), number, type.getNum(), flag.getNum(), limit, annualValue, dataFormatada);
             
             if (sucesso) {
-                JOptionPane.showMessageDialog(null, "Cadastro Realizado!");
+                JOptionPane.showMessageDialog(null, "Cartão salvo com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(CardScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CardsScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveCardMouseClicked
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
-        txtNumber = null;
-        txtLimit = null;
-        chosserClosingDate = null;
-        txtAnnualValue = null;
-        cmbFlag = null;
-        cmbType = null;        
+        txtNumber.setText(null);
+        txtLimit.setText(null);
+        chosserClosingDate.setDate(new Date());
+        txtAnnualValue.setText(null);    
     }//GEN-LAST:event_btnLimparMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSaveCard;
-    public static com.toedter.calendar.JDateChooser chosserClosingDate;
+    private com.toedter.calendar.JDateChooser chosserClosingDate;
     private javax.swing.JComboBox<CardFlag> cmbFlag;
     private javax.swing.JComboBox<CardType> cmbType;
     private javax.swing.JPanel pnlFundo;
