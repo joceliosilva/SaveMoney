@@ -168,7 +168,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void txtRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRegisterMouseClicked
         RegisterScreen frame = new RegisterScreen();
-        d.OpenFrame(frame);
+        d.openFrame(frame);
         this.dispose();
     }//GEN-LAST:event_txtRegisterMouseClicked
 
@@ -183,7 +183,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
             if (sucesso == true) {
                 HomeScreen frame = new HomeScreen();
-                d.OpenFrame(frame);
+                d.openFrame(frame);
                 HomeScreen.txtUser.setText(email);                
                 this.dispose();
 

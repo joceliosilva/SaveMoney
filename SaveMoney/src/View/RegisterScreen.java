@@ -273,7 +273,7 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     private void txtLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLogin1MouseClicked
         LoginScreen frame = new LoginScreen();
-        d.OpenFrame(frame);
+        d.openFrame(frame);
         this.dispose();
     }//GEN-LAST:event_txtLogin1MouseClicked
 
@@ -293,7 +293,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Cadastro Realizado, Efetue Login!");
                 
                 LoginScreen frame = new LoginScreen();
-                d.OpenFrame(frame);
+                d.openFrame(frame);
                 this.dispose();
                 // this.limparCampos(); // IMPLEMENTAR FUTURAMENTE
             } else {

@@ -13,6 +13,7 @@ CREATE TABLE `savemoney`.`Account` (
   `Email` VARCHAR(100) NOT NULL,
   `Password` VARCHAR(100) NOT NULL,
   `Avatar` LONGBLOB NULL,
+  `CreationDate` DATE NOT NULL
   PRIMARY KEY (`Id`)
 );
 

@@ -32,15 +32,16 @@ CREATE TABLE `account` (
   `FullName` varchar(200) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
-  `Avatar` longblob DEFAULT NULL
+  `Avatar` longblob DEFAULT NULL,
+  `CreationDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `account`
 --
 
-INSERT INTO `account` (`Id`, `FullName`, `Email`, `Password`, `Avatar`) VALUES
-(1, 'Jairo Gomes Evaristo', 'jairoevaristodev@gmail.com', '@ninja300', NULL);
+INSERT INTO `account` (`Id`, `FullName`, `Email`, `Password`, `Avatar`, `CreationDate`) VALUES
+(1, 'Jairo Gomes Evaristo', 'jairoevaristodev@gmail.com', '@ninja300', NULL, '2022-02-02');
 
 -- --------------------------------------------------------
 

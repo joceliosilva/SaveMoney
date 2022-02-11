@@ -1,6 +1,6 @@
 package DAO;
 
-import Model.Entity.Account;
+import Connection.ConnectionDB;
 import Model.Enums.*;
 import Model.Enums.CardType;
 import Model.Home.Card;
