@@ -2,10 +2,13 @@ package View;
 
 import Controller.AccountController;
 import Controller.DisplayManager;
+import static View.HomeScreen.txtUser;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.Blob;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +22,12 @@ import javax.swing.JOptionPane;
 public class LoginScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
+    AccountController ac = new AccountController();
+    public static String name1 = "";
+    public static Blob avatar;
+    public static String email1 = "";
+    public static String pass = "";
+    public static Date date = null;
 
     public LoginScreen() {
         initComponents();
@@ -90,7 +99,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         buttonLogin.setText("ENTRAR");
-        buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
@@ -104,7 +113,7 @@ public class LoginScreen extends javax.swing.JFrame {
         txtRegister.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtRegister.setForeground(new java.awt.Color(255, 255, 255));
         txtRegister.setText("Cadastre-se!");
-        txtRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtRegisterMouseClicked(evt);
@@ -182,17 +191,26 @@ public class LoginScreen extends javax.swing.JFrame {
             sucesso = ac.consultarLogin(email, pass);
 
             if (sucesso == true) {
+                
+//                GAMBIARRA
+               name1 = ac.getAccountByEmail(email).getFullName();
+               avatar = (Blob) ac.getAccountByEmail(email).getAvatar();
+               email1 = ac.getAccountByEmail(email).getEmail(); 
+               date = ac.getAccountByEmail(email).getCeationDate();
+//              FIM DA GAMBIARRA
+
                 HomeScreen frame = new HomeScreen();
                 d.openFrame(frame);
-                HomeScreen.txtUser.setText(email);                
                 this.dispose();
 
-                JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + email);
+                 JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + name1.toUpperCase());
 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Login não realizado!\nFavor conferir o Email e Senha digitados!");
             }
         } catch (SQLException ex) {
+            Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonLoginActionPerformed
@@ -236,4 +254,6 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JLabel txtLogin;
     private javax.swing.JLabel txtRegister;
     // End of variables declaration//GEN-END:variables
+
+ 
 }

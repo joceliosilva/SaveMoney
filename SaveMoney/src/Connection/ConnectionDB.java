@@ -23,7 +23,7 @@ public class ConnectionDB {
     private static final String URL = "jdbc:mysql://localhost";
     private static final String DATA_BASE = "savemoney";
     private static final String USER = "root";
-    private static final String PASS = "pass";
+    private static final String PASS = "";
 
     public Connection getConnection() {
         
