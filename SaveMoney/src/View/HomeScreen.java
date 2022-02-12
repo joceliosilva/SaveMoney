@@ -10,8 +10,12 @@ import Model.Entity.*;
 import Model.Enums;
 import Model.Home.*;
 import View.Internal.*;
+import static View.LoginScreen.avatar;
+import static View.LoginScreen.email1;
+import static View.LoginScreen.name1;
 import java.awt.*;
 import java.net.URL;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.logging.*;
 import javax.swing.*;
@@ -23,12 +27,17 @@ import javax.swing.*;
 public class HomeScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
-
-    public HomeScreen() {
+     AccountController ac = new AccountController();
+     String email = ac.getAccountByEmail(email1).getEmail();
+    
+     public HomeScreen() throws Exception {
         initComponents();
         setIcon();
         pegarResolucao();
-        setLocationRelativeTo(null);  //Carrega o form no centro da tela
+        setLocationRelativeTo(null);  
+        txtUser.setText(name1);
+        
+        blobToImage(avatar, labelAvatar);
     }
 
     private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
@@ -42,6 +51,20 @@ public class HomeScreen extends javax.swing.JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
     }
+    
+    public void blobToImage(Blob blobBD, JLabel label) throws Exception {
+        //Converte blob em Image
+        byte[] image = blobBD.getBytes(1, (int) blobBD.length());
+        Image img = Toolkit.getDefaultToolkit().createImage(image);
+
+        //Escala imagen dentro do JLabel (no meu caso o JLabel possui: 272 por 192)
+        Image newimg = img.getScaledInstance(labelAvatar.getWidth(), labelAvatar.getHeight(), java.awt.Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(newimg);
+
+        //Apresenta a imagem no componente JLabel
+        label.setIcon(imageIcon);
+      
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,8 +77,6 @@ public class HomeScreen extends javax.swing.JFrame {
 
         Background = new javax.swing.JPanel();
         PainelLateral = new javax.swing.JPanel();
-        PainelLateralTop = new javax.swing.JPanel();
-        txtUser = new javax.swing.JLabel();
         btnReceitas = new javax.swing.JPanel();
         txtReceitas = new javax.swing.JLabel();
         btnDespesas = new javax.swing.JPanel();
@@ -64,6 +85,12 @@ public class HomeScreen extends javax.swing.JFrame {
         txtCartoes = new javax.swing.JLabel();
         btnCategorias = new javax.swing.JPanel();
         txtCategorias = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtUser = new javax.swing.JLabel();
+        labelAvatar = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         desktop = new javax.swing.JDesktopPane();
         PainelTopo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
@@ -77,19 +104,6 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.setBackground(new java.awt.Color(51, 51, 76));
         PainelLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        PainelLateralTop.setBackground(new java.awt.Color(29, 31, 62));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 45, 20);
-        flowLayout1.setAlignOnBaseline(true);
-        PainelLateralTop.setLayout(flowLayout1);
-
-        txtUser.setBackground(new java.awt.Color(255, 255, 255));
-        txtUser.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
-        txtUser.setForeground(new java.awt.Color(255, 255, 255));
-        txtUser.setText("USER");
-        PainelLateralTop.add(txtUser);
-
-        PainelLateral.add(PainelLateralTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
 
         btnReceitas.setBackground(new java.awt.Color(51, 51, 76));
         btnReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -241,7 +255,7 @@ public class HomeScreen extends javax.swing.JFrame {
         );
         btnCategoriasLayout.setVerticalGroup(
             btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
             .addGroup(btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCategoriasLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,19 +265,95 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(btnCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 323, 310, -1));
 
+        jPanel1.setBackground(new java.awt.Color(29, 31, 62));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        txtUser.setBackground(new java.awt.Color(255, 255, 255));
+        txtUser.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(255, 255, 255));
+        txtUser.setText("USER");
+
+        labelAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
+        labelAvatar.setMinimumSize(new java.awt.Dimension(30, 20));
+
+        jButton2.setText("Sair");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(txtUser)
+                        .addGap(57, 57, 57))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(79, 79, 79)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+
+        PainelLateral.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 310, 200));
+
+        jPanel2.setBackground(new java.awt.Color(34, 36, 80));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SAVE MONEY");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+
+        PainelLateral.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
+
         Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 720));
 
+        desktop.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         desktop.setMaximumSize(new java.awt.Dimension(1170, 640));
 
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
+            .addGap(0, 1168, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 638, Short.MAX_VALUE)
         );
 
         Background.add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 1170, 640));
@@ -287,7 +377,7 @@ public class HomeScreen extends javax.swing.JFrame {
         );
         PainelTopoLayout.setVerticalGroup(
             PainelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelTopoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTopoLayout.createSequentialGroup()
                 .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -373,7 +463,7 @@ public class HomeScreen extends javax.swing.JFrame {
         AccountController ac = new AccountController();
         CardController c = new CardController();
 
-        String email = HomeScreen.txtUser.getText();
+          String email = this.email;
 
         try {
             Account account = ac.getAccountByEmail(email);
@@ -396,6 +486,12 @@ public class HomeScreen extends javax.swing.JFrame {
 
         d.openCategory(desktop);
     }//GEN-LAST:event_btnCategoriasMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       LoginScreen frame = new LoginScreen();
+       d.openFrame(frame);
+       this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -427,7 +523,11 @@ public class HomeScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomeScreen().setVisible(true);
+                try {
+                    new HomeScreen().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -435,13 +535,17 @@ public class HomeScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel PainelLateral;
-    private javax.swing.JPanel PainelLateralTop;
     private javax.swing.JPanel PainelTopo;
     private javax.swing.JPanel btnCartoes;
     private javax.swing.JPanel btnCategorias;
     private javax.swing.JPanel btnDespesas;
     private javax.swing.JPanel btnReceitas;
     private javax.swing.JDesktopPane desktop;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    public static javax.swing.JLabel labelAvatar;
     private javax.swing.JLabel txtCartoes;
     private javax.swing.JLabel txtCategorias;
     private javax.swing.JLabel txtDespesas;

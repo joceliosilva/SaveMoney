@@ -5,6 +5,8 @@
  */
 package Model.Entity;
 
+import java.sql.Date;
+
 /**
  *
  * @author Renan
@@ -15,7 +17,10 @@ public class Account {
     private String fullName;
     private String email;
     private String password;
-    private String avatar;   // Analisar o tipo futuramente 
+    private Object avatar;
+    private Date ceationDate;
+
+    
 
     public Account(){}
     
@@ -23,13 +28,16 @@ public class Account {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+    
     }
-
-    public Account(Integer id, String fullName, String email, String password) {
+  
+    
+    public Account(Integer Id, String fullName, String email, String password, Object Avatar, Date creationDate) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+         this.avatar = Avatar;
     }
     
     public Integer getId() {
@@ -64,11 +72,19 @@ public class Account {
         this.password = password;
     }
 
-    public String getAvatar() {
+    public Object getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(Object avatar) {
         this.avatar = avatar;
+    }
+    
+    public Date getCeationDate() {
+        return ceationDate;
+    }
+
+    public void setCeationDate(Date ceationDate) {
+        this.ceationDate = ceationDate;
     }
 }
