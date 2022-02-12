@@ -77,206 +77,175 @@ public class HomeScreen extends javax.swing.JFrame {
 
         Background = new javax.swing.JPanel();
         PainelLateral = new javax.swing.JPanel();
-        btnReceitas = new javax.swing.JPanel();
-        txtReceitas = new javax.swing.JLabel();
-        btnDespesas = new javax.swing.JPanel();
-        txtDespesas = new javax.swing.JLabel();
-        btnCartoes = new javax.swing.JPanel();
-        txtCartoes = new javax.swing.JLabel();
-        btnCategorias = new javax.swing.JPanel();
+        pnlCategorias = new javax.swing.JPanel();
+        IconCategoria = new javax.swing.JLabel();
         txtCategorias = new javax.swing.JLabel();
+        pnlDespesas = new javax.swing.JPanel();
+        txtDespesas = new javax.swing.JLabel();
+        IconDespesas = new javax.swing.JLabel();
+        pnlReceitas = new javax.swing.JPanel();
+        txtReceitas = new javax.swing.JLabel();
+        IconReceitas = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtUser = new javax.swing.JLabel();
         labelAvatar = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        pnlDashboard = new javax.swing.JPanel();
+        txtDashboard = new javax.swing.JLabel();
+        IconDashboard = new javax.swing.JLabel();
+        pnlCartoes = new javax.swing.JPanel();
+        txtCartoes = new javax.swing.JLabel();
+        IconCartoes = new javax.swing.JLabel();
         desktop = new javax.swing.JDesktopPane();
         PainelTopo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SaveMoney");
-        setResizable(false);
+        setLocationByPlatform(true);
+        setUndecorated(true);
 
         Background.setBackground(new java.awt.Color(34, 36, 81));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PainelLateral.setBackground(new java.awt.Color(51, 51, 76));
+        PainelLateral.setBackground(new java.awt.Color(54, 33, 89));
+        PainelLateral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PainelLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnReceitas.setBackground(new java.awt.Color(51, 51, 76));
-        btnReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnReceitas.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlCategorias.setBackground(new java.awt.Color(85, 65, 118));
+        pnlCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReceitasMouseClicked(evt);
+                pnlCategoriasMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnReceitasMouseEntered(evt);
+                pnlCategoriasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnReceitasMouseExited(evt);
+                pnlCategoriasMouseExited(evt);
+            }
+        });
+        pnlCategorias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        IconCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_management_48px.png"))); // NOI18N
+        pnlCategorias.add(IconCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        txtCategorias.setBackground(new java.awt.Color(213, 220, 224));
+        txtCategorias.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtCategorias.setForeground(new java.awt.Color(255, 255, 255));
+        txtCategorias.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtCategorias.setText("Categorias");
+        pnlCategorias.add(txtCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 200, 70));
+
+        PainelLateral.add(pnlCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 310, 70));
+
+        pnlDespesas.setBackground(new java.awt.Color(85, 65, 118));
+        pnlDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlDespesasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnlDespesasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlDespesasMouseExited(evt);
             }
         });
 
-        txtReceitas.setBackground(new java.awt.Color(255, 255, 255));
-        txtReceitas.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
-        txtReceitas.setForeground(new java.awt.Color(255, 255, 255));
-        txtReceitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtReceitas.setText("Receitas");
-
-        javax.swing.GroupLayout btnReceitasLayout = new javax.swing.GroupLayout(btnReceitas);
-        btnReceitas.setLayout(btnReceitasLayout);
-        btnReceitasLayout.setHorizontalGroup(
-            btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addGroup(btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(txtReceitas, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
-        );
-        btnReceitasLayout.setVerticalGroup(
-            btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
-            .addGroup(btnReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReceitasLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtReceitas)
-                    .addContainerGap(12, Short.MAX_VALUE)))
-        );
-
-        PainelLateral.add(btnReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 310, -1));
-
-        btnDespesas.setBackground(new java.awt.Color(51, 51, 76));
-        btnDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDespesasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDespesasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDespesasMouseExited(evt);
-            }
-        });
-
-        txtDespesas.setBackground(new java.awt.Color(255, 255, 255));
-        txtDespesas.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
+        txtDespesas.setBackground(new java.awt.Color(213, 220, 224));
+        txtDespesas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtDespesas.setForeground(new java.awt.Color(255, 255, 255));
-        txtDespesas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtDespesas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas.setText("Despesas");
 
-        javax.swing.GroupLayout btnDespesasLayout = new javax.swing.GroupLayout(btnDespesas);
-        btnDespesas.setLayout(btnDespesasLayout);
-        btnDespesasLayout.setHorizontalGroup(
-            btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addGroup(btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(txtDespesas, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+        IconDespesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_money_box_48px_1.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlDespesasLayout = new javax.swing.GroupLayout(pnlDespesas);
+        pnlDespesas.setLayout(pnlDespesasLayout);
+        pnlDespesasLayout.setHorizontalGroup(
+            pnlDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDespesasLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(IconDespesas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(txtDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        btnDespesasLayout.setVerticalGroup(
-            btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
-            .addGroup(btnDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDespesasLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDespesas)
-                    .addContainerGap(12, Short.MAX_VALUE)))
+        pnlDespesasLayout.setVerticalGroup(
+            pnlDespesasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtDespesas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDespesasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IconDespesas)
+                .addContainerGap())
         );
 
-        PainelLateral.add(btnDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 310, -1));
+        PainelLateral.add(pnlDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 310, 70));
 
-        btnCartoes.setBackground(new java.awt.Color(51, 51, 76));
-        btnCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCartoes.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlReceitas.setBackground(new java.awt.Color(85, 65, 118));
+        pnlReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlReceitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCartoesMouseClicked(evt);
+                pnlReceitasMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCartoesMouseEntered(evt);
+                pnlReceitasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCartoesMouseExited(evt);
+                pnlReceitasMouseExited(evt);
             }
         });
 
-        txtCartoes.setBackground(new java.awt.Color(255, 255, 255));
-        txtCartoes.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
-        txtCartoes.setForeground(new java.awt.Color(255, 255, 255));
-        txtCartoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtCartoes.setText("Cartões");
+        txtReceitas.setBackground(new java.awt.Color(213, 220, 224));
+        txtReceitas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtReceitas.setForeground(new java.awt.Color(255, 255, 255));
+        txtReceitas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtReceitas.setText("Receitas");
 
-        javax.swing.GroupLayout btnCartoesLayout = new javax.swing.GroupLayout(btnCartoes);
-        btnCartoes.setLayout(btnCartoesLayout);
-        btnCartoesLayout.setHorizontalGroup(
-            btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addGroup(btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(txtCartoes, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+        IconReceitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_money_bag_48px_1.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlReceitasLayout = new javax.swing.GroupLayout(pnlReceitas);
+        pnlReceitas.setLayout(pnlReceitasLayout);
+        pnlReceitasLayout.setHorizontalGroup(
+            pnlReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlReceitasLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(IconReceitas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(txtReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        btnCartoesLayout.setVerticalGroup(
-            btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
-            .addGroup(btnCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCartoesLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCartoes)
-                    .addContainerGap(12, Short.MAX_VALUE)))
-        );
-
-        PainelLateral.add(btnCartoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 249, 310, -1));
-
-        btnCategorias.setBackground(new java.awt.Color(51, 51, 76));
-        btnCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCategoriasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCategoriasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCategoriasMouseExited(evt);
-            }
-        });
-
-        txtCategorias.setBackground(new java.awt.Color(255, 255, 255));
-        txtCategorias.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
-        txtCategorias.setForeground(new java.awt.Color(255, 255, 255));
-        txtCategorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtCategorias.setText("Categorias");
-
-        javax.swing.GroupLayout btnCategoriasLayout = new javax.swing.GroupLayout(btnCategorias);
-        btnCategorias.setLayout(btnCategoriasLayout);
-        btnCategoriasLayout.setHorizontalGroup(
-            btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addGroup(btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(txtCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
-        );
-        btnCategoriasLayout.setVerticalGroup(
-            btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
-            .addGroup(btnCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCategoriasLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCategorias)
-                    .addContainerGap(12, Short.MAX_VALUE)))
+        pnlReceitasLayout.setVerticalGroup(
+            pnlReceitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtReceitas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlReceitasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IconReceitas)
+                .addContainerGap())
         );
 
-        PainelLateral.add(btnCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 323, 310, -1));
+        PainelLateral.add(pnlReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 310, 70));
 
         jPanel1.setBackground(new java.awt.Color(29, 31, 62));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        txtUser.setBackground(new java.awt.Color(255, 255, 255));
-        txtUser.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
-        txtUser.setForeground(new java.awt.Color(255, 255, 255));
+        txtUser.setBackground(new java.awt.Color(213, 220, 224));
+        txtUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(213, 220, 224));
+        txtUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtUser.setText("USER");
 
+        labelAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
         labelAvatar.setMinimumSize(new java.awt.Dimension(30, 20));
 
+        jButton2.setBackground(new java.awt.Color(54, 33, 89));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(213, 220, 224));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_exit_48px_1.png"))); // NOI18N
         jButton2.setText("Sair");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -287,31 +256,30 @@ public class HomeScreen extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(txtUser)
-                        .addGap(57, 57, 57))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))))
+                        .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(104, 104, 104))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(79, 79, 79)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(jButton2)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        PainelLateral.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 310, 200));
+        PainelLateral.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 310, 230));
 
         jPanel2.setBackground(new java.awt.Color(34, 36, 80));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -340,8 +308,95 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
 
-        Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 720));
+        pnlDashboard.setBackground(new java.awt.Color(85, 65, 118));
+        pnlDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlDashboardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnlDashboardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlDashboardMouseExited(evt);
+            }
+        });
 
+        txtDashboard.setBackground(new java.awt.Color(213, 220, 224));
+        txtDashboard.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        txtDashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtDashboard.setText("Dashboard");
+
+        IconDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_pulse_48px_1.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlDashboardLayout = new javax.swing.GroupLayout(pnlDashboard);
+        pnlDashboard.setLayout(pnlDashboardLayout);
+        pnlDashboardLayout.setHorizontalGroup(
+            pnlDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDashboardLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(IconDashboard)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(txtDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlDashboardLayout.setVerticalGroup(
+            pnlDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtDashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDashboardLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IconDashboard)
+                .addContainerGap())
+        );
+
+        PainelLateral.add(pnlDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 310, 70));
+
+        pnlCartoes.setBackground(new java.awt.Color(85, 65, 118));
+        pnlCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlCartoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlCartoesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnlCartoesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlCartoesMouseExited(evt);
+            }
+        });
+
+        txtCartoes.setBackground(new java.awt.Color(213, 220, 224));
+        txtCartoes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtCartoes.setForeground(new java.awt.Color(255, 255, 255));
+        txtCartoes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtCartoes.setText("Cartões");
+
+        IconCartoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_bank_card_dollar_48px_1.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlCartoesLayout = new javax.swing.GroupLayout(pnlCartoes);
+        pnlCartoes.setLayout(pnlCartoesLayout);
+        pnlCartoesLayout.setHorizontalGroup(
+            pnlCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCartoesLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(IconCartoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(txtCartoes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlCartoesLayout.setVerticalGroup(
+            pnlCartoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtCartoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCartoesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IconCartoes)
+                .addContainerGap())
+        );
+
+        PainelLateral.add(pnlCartoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 310, 70));
+
+        Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 750));
+
+        desktop.setBackground(new java.awt.Color(255, 255, 255));
         desktop.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         desktop.setMaximumSize(new java.awt.Dimension(1170, 640));
 
@@ -353,12 +408,12 @@ public class HomeScreen extends javax.swing.JFrame {
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGap(0, 668, Short.MAX_VALUE)
         );
 
-        Background.add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 1170, 640));
+        Background.add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 1170, 670));
 
-        PainelTopo.setBackground(new java.awt.Color(34, 36, 81));
+        PainelTopo.setBackground(new java.awt.Color(122, 72, 221));
         PainelTopo.setPreferredSize(new java.awt.Dimension(1043, 115));
 
         txtTitulo.setBackground(new java.awt.Color(255, 255, 255));
@@ -394,7 +449,9 @@ public class HomeScreen extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 718, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -411,53 +468,27 @@ public class HomeScreen extends javax.swing.JFrame {
     }
     //FIM DO EFEITO//    
 
-    private void btnReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseEntered
-        mouseEnteredButton(btnReceitas, txtReceitas);
-    }//GEN-LAST:event_btnReceitasMouseEntered
+    private void pnlCategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoriasMouseEntered
+        mouseEnteredButton(pnlCategorias, txtCategorias);
+    }//GEN-LAST:event_pnlCategoriasMouseEntered
 
-    private void btnReceitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseExited
-        mouseExitedButton(btnReceitas, txtReceitas);
-    }//GEN-LAST:event_btnReceitasMouseExited
+    private void pnlCategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoriasMouseExited
+        mouseExitedButton(pnlCategorias, txtCategorias);
+    }//GEN-LAST:event_pnlCategoriasMouseExited
 
-    private void btnDespesasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseEntered
-        mouseEnteredButton(btnDespesas, txtDespesas);
-    }//GEN-LAST:event_btnDespesasMouseEntered
+    private void pnlCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoriasMouseClicked
+        txtTitulo.setText("CATEGORIAS");
 
-    private void btnDespesasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseExited
-        mouseExitedButton(btnDespesas, txtDespesas);
-    }//GEN-LAST:event_btnDespesasMouseExited
+        d.openCategory(desktop);
+    }//GEN-LAST:event_pnlCategoriasMouseClicked
 
-    private void btnCartoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseEntered
-        mouseEnteredButton(btnCartoes, txtCartoes);
-    }//GEN-LAST:event_btnCartoesMouseEntered
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       LoginScreen frame = new LoginScreen();
+       d.openFrame(frame);
+       this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnCartoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseExited
-        mouseExitedButton(btnCartoes, txtCartoes);
-    }//GEN-LAST:event_btnCartoesMouseExited
-
-    private void btnCategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseEntered
-        mouseEnteredButton(btnCategorias, txtCategorias);
-    }//GEN-LAST:event_btnCategoriasMouseEntered
-
-    private void btnCategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseExited
-        mouseExitedButton(btnCategorias, txtCategorias);
-    }//GEN-LAST:event_btnCategoriasMouseExited
-
-    private void btnReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceitasMouseClicked
-        txtTitulo.setText("RECEITAS");
-    }//GEN-LAST:event_btnReceitasMouseClicked
-
-    private void btnDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDespesasMouseClicked
-        txtTitulo.setText("DESPESAS");
-
-        try {
-            d.openExpense(desktop);
-        } catch (SQLException ex) {
-            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnDespesasMouseClicked
-
-    private void btnCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCartoesMouseClicked
+    private void pnlCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCartoesMouseClicked
         txtTitulo.setText("CARTÕES");
 
         AccountController ac = new AccountController();
@@ -479,19 +510,57 @@ public class HomeScreen extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnCartoesMouseClicked
+    }//GEN-LAST:event_pnlCartoesMouseClicked
 
-    private void btnCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasMouseClicked
-        txtTitulo.setText("CATEGORIAS");
+    private void pnlCartoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCartoesMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlCartoesMouseEntered
 
-        d.openCategory(desktop);
-    }//GEN-LAST:event_btnCategoriasMouseClicked
+    private void pnlCartoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCartoesMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlCartoesMouseExited
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       LoginScreen frame = new LoginScreen();
-       d.openFrame(frame);
-       this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void pnlDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDespesasMouseClicked
+        txtTitulo.setText("DESPESAS");
+
+        try {
+            d.openExpense(desktop);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_pnlDespesasMouseClicked
+
+    private void pnlDespesasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDespesasMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlDespesasMouseEntered
+
+    private void pnlDespesasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDespesasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlDespesasMouseExited
+
+    private void pnlReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseClicked
+        txtTitulo.setText("RECEITAS");
+    }//GEN-LAST:event_pnlReceitasMouseClicked
+
+    private void pnlReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlReceitasMouseEntered
+
+    private void pnlReceitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlReceitasMouseExited
+
+    private void pnlDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlDashboardMouseClicked
+
+    private void pnlDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlDashboardMouseEntered
+
+    private void pnlDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlDashboardMouseExited
 
     /**
      * @param args the command line arguments
@@ -534,20 +603,27 @@ public class HomeScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
+    private javax.swing.JLabel IconCartoes;
+    private javax.swing.JLabel IconCategoria;
+    private javax.swing.JLabel IconDashboard;
+    private javax.swing.JLabel IconDespesas;
+    private javax.swing.JLabel IconReceitas;
     private javax.swing.JPanel PainelLateral;
     private javax.swing.JPanel PainelTopo;
-    private javax.swing.JPanel btnCartoes;
-    private javax.swing.JPanel btnCategorias;
-    private javax.swing.JPanel btnDespesas;
-    private javax.swing.JPanel btnReceitas;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public static javax.swing.JLabel labelAvatar;
+    private javax.swing.JPanel pnlCartoes;
+    private javax.swing.JPanel pnlCategorias;
+    private javax.swing.JPanel pnlDashboard;
+    private javax.swing.JPanel pnlDespesas;
+    private javax.swing.JPanel pnlReceitas;
     private javax.swing.JLabel txtCartoes;
     private javax.swing.JLabel txtCategorias;
+    private javax.swing.JLabel txtDashboard;
     private javax.swing.JLabel txtDespesas;
     private javax.swing.JLabel txtReceitas;
     private javax.swing.JLabel txtTitulo;
