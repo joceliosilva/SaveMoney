@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/RegisterScreen.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Exception/SMException.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/View/LoadScreen.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/DAO/CardDAO.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/DAO/AccountDAO.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Connection/ConnectionDB.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Controller/DisplayManager.java</file>
-            <file>file:/C:/Users/Renan/Desktop/SaveMoney/SaveMoney/src/Controller/AccountController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

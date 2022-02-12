@@ -10,6 +10,7 @@ import Controller.*;
 import Model.Entity.Account;
 import Model.Home.*;
 import View.*;
+import static View.LoginScreen.email1;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
     CardController c = new CardController();
     CategoryController cat = new CategoryController();
 
-    String email = HomeScreen.txtUser.getText();
+    String email = email1;
     Account account = ac.getAccountByEmail(email);
 
     public ExpenseScreen() throws SQLException {

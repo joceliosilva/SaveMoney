@@ -15,9 +15,9 @@ import java.sql.SQLException;
  */
 public class AccountController {
 
-    public boolean createAccount(String fullName, String email, String password) throws SQLException {
+     public boolean createAccount(String fullName, String email, String password, Object Avatar) throws SQLException {
         if (!fullName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-            Account account = new Account(fullName, email, password);
+            Account account = new Account(null,fullName, email, password, Avatar,null);
             AccountDAO.createAccount(account);
             return true;
         }
