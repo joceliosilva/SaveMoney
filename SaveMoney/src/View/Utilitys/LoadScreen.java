@@ -1,6 +1,7 @@
-package View;
+package View.Utilitys;
 
 import Connection.ConnectionDB;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.KeyEventDispatcher;
@@ -51,50 +52,50 @@ public class LoadScreen extends javax.swing.JFrame {
         setBackground(new java.awt.Color(34, 36, 80));
         setIconImages(getIconImages());
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
         setResizable(false);
         setSize(new java.awt.Dimension(1440, 1024));
 
-        Background.setBackground(new java.awt.Color(34, 36, 80));
+        Background.setBackground(new java.awt.Color(64, 43, 100));
         Background.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 BackgroundKeyPressed(evt);
             }
         });
 
+        progressLoad.setBackground(new java.awt.Color(85, 65, 118));
+        progressLoad.setForeground(new java.awt.Color(213, 220, 224));
+        progressLoad.setBorderPainted(false);
+        progressLoad.setFocusable(false);
         progressLoad.setStringPainted(true);
 
-        txtLoad.setFont(new java.awt.Font("Ruda", 1, 12)); // NOI18N
+        txtLoad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtLoad.setForeground(new java.awt.Color(255, 255, 255));
         txtLoad.setText("Carregando...");
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo2.png"))); // NOI18N
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(progressLoad, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtLoad))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(lblLogo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(progressLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLoad)
+                    .addComponent(lblLogo))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addComponent(lblLogo)
-                .addGap(85, 85, 85)
+                .addGap(56, 56, 56)
                 .addComponent(txtLoad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(progressLoad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(progressLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         getContentPane().add(Background, java.awt.BorderLayout.CENTER);

@@ -39,8 +39,8 @@ public class AccountDAO {
             ps.setString(1, a.getFullName());
             ps.setString(2, a.getEmail());
             ps.setString(3, a.getPassword());
-            ps.setObject(4, a.getAvatar()); // analisar posteriormente
-            
+            ps.setObject(4, a.getAvatar());
+
             Date dateNow = Date.valueOf(LocalDate.now().toString());
             ps.setDate(5, dateNow);
 
@@ -84,9 +84,7 @@ public class AccountDAO {
     public Account getAccountByEmail(String email) throws SQLException {
         String sql = "select Id, FullName, Email, Password, Avatar, CreationDate from account where  Email= ?";
         conexao = new ConnectionDB().getConnection();
-        
-        Account account = null;
-        
+
         try {
             ps = conexao.prepareStatement(sql);
             ps.setString(1, email);
@@ -94,15 +92,24 @@ public class AccountDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                account = new Account(rs.getInt("Id"), rs.getString("FullName"), rs.getString("Email"), rs.getString("Password"), rs.getBlob("Avatar"), rs.getDate("CreationDate"));
+                Account account = new Account();
+                account.setId(rs.getInt("Id"));
+                account.setFullName(rs.getString("FullName"));
+                account.setEmail(rs.getString("Email"));
+                account.setPassword(rs.getString("Password"));
+                account.setAvatar(rs.getBlob("Avatar"));
+                account.setCeationDate(rs.getDate("CreationDate"));
+                
+                return account;
             }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar conta: " + e);
+            return null;
         } finally {
             ps.close();
             conexao.close();
         }
-        return account;
+        return null;
     }
 }

@@ -107,15 +107,15 @@ public class RegisterScreen extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1440, 1024));
 
-        Background.setBackground(new java.awt.Color(34, 36, 80));
+        Background.setBackground(new java.awt.Color(64, 43, 100));
 
-        txtRegister.setBackground(new java.awt.Color(255, 255, 255));
-        txtRegister.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
-        txtRegister.setForeground(new java.awt.Color(255, 255, 255));
+        txtRegister.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        txtRegister.setForeground(new java.awt.Color(240, 240, 240));
         txtRegister.setText("Cadastro");
         txtRegister.setMaximumSize(new java.awt.Dimension(500, 48));
 
-        labelEmail.setBackground(new java.awt.Color(34, 36, 80));
+        labelEmail.setBackground(new java.awt.Color(64, 43, 100));
+        labelEmail.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         labelEmail.setForeground(new java.awt.Color(255, 255, 255));
         labelEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         labelEmail.setToolTipText("Digite o usuário...");
@@ -128,7 +128,8 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
-        labelPassword.setBackground(new java.awt.Color(34, 36, 80));
+        labelPassword.setBackground(new java.awt.Color(64, 43, 100));
+        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         labelPassword.setToolTipText("Digite a senha...");
@@ -136,8 +137,12 @@ public class RegisterScreen extends javax.swing.JFrame {
         labelPassword.setCaretColor(new java.awt.Color(255, 255, 255));
         labelPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        buttonRegister.setText("CADASTRAR");
-        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonRegister.setBackground(new java.awt.Color(85, 65, 118));
+        buttonRegister.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        buttonRegister.setForeground(new java.awt.Color(213, 220, 224));
+        buttonRegister.setText("Cadastrar");
+        buttonRegister.setBorder(null);
+        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonRegisterMouseClicked(evt);
@@ -149,21 +154,22 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
-        txt1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txt1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txt1.setForeground(new java.awt.Color(255, 255, 255));
         txt1.setText("Ou");
 
-        txtLogin1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        txtLogin1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtLogin1.setForeground(new java.awt.Color(255, 255, 255));
         txtLogin1.setText("Faça Login");
-        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtLogin1MouseClicked(evt);
             }
         });
 
-        txtName.setBackground(new java.awt.Color(34, 36, 80));
+        txtName.setBackground(new java.awt.Color(64, 43, 100));
+        txtName.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         txtName.setForeground(new java.awt.Color(255, 255, 255));
         txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtName.setToolTipText("Digite o usuário...");
@@ -176,8 +182,12 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
+        buttonF.setBackground(new java.awt.Color(85, 65, 118));
+        buttonF.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        buttonF.setForeground(new java.awt.Color(213, 220, 224));
         buttonF.setText("Selecionar");
-        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonF.setBorder(null);
+        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonFMouseClicked(evt);
@@ -189,14 +199,15 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
-        labelAvatar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelAvatar.setForeground(new java.awt.Color(255, 255, 255));
+        labelAvatar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelAvatar.setForeground(new java.awt.Color(240, 240, 240));
         labelAvatar.setText("Avatar");
 
         labelLocalFile.setBackground(new java.awt.Color(255, 255, 255));
         labelLocalFile.setForeground(new java.awt.Color(255, 255, 255));
         labelLocalFile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelLocalFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
+        labelLocalFile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelLocalFile.setPreferredSize(new java.awt.Dimension(131, 131));
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -204,58 +215,48 @@ public class RegisterScreen extends javax.swing.JFrame {
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(156, 156, 156)
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(277, 277, 277)
                         .addComponent(txt1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLogin1)))
-                .addContainerGap(165, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                        .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(218, 218, 218))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                        .addComponent(txtLogin1))
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addComponent(labelLocalFile, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonF)
-                            .addComponent(labelLocalFile, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(234, 234, 234))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                        .addComponent(labelAvatar)
-                        .addGap(41, 41, 41)))
-                .addGap(221, 221, 221))
+                            .addComponent(buttonF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BackgroundLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(labelAvatar)))
+                .addGap(170, 170, 170))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(labelAvatar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelLocalFile, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonF)
-                .addGap(25, 25, 25)
-                .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addComponent(buttonF, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelLocalFile, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLogin1)
                     .addComponent(txt1))
@@ -264,7 +265,7 @@ public class RegisterScreen extends javax.swing.JFrame {
 
         getContentPane().add(Background, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(621, 656));
+        setSize(new java.awt.Dimension(590, 531));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

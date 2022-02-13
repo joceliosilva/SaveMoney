@@ -10,13 +10,13 @@ import Model.Entity.*;
 import Model.Enums;
 import Model.Home.*;
 import View.Internal.*;
-import static View.LoginScreen.avatar;
-import static View.LoginScreen.email1;
-import static View.LoginScreen.name1;
+import static View.LoginScreen.*;
 import java.awt.*;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.*;
 import javax.swing.*;
 
@@ -24,19 +24,24 @@ import javax.swing.*;
  *
  * @author Jocelio
  */
-public class HomeScreen extends javax.swing.JFrame {
+public final class HomeScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
-     AccountController ac = new AccountController();
-     String email = ac.getAccountByEmail(email1).getEmail();
-    
-     public HomeScreen() throws Exception {
+    AccountController ac = new AccountController();
+    String email = ac.getAccountByEmail(email1).getEmail();
+
+    public HomeScreen() throws Exception {
         initComponents();
         setIcon();
         pegarResolucao();
-        setLocationRelativeTo(null);  
-        txtUser.setText(name1);
-        
+        setLocationRelativeTo(null);
+        // Hover
+        mouseResetButton();
+        mouseClickedButton(pnlDashboard, txtDashboard);        
+        // Usuário
+        String[] firstName = name1.split(" ");
+        txtUser.setText(firstName[0]);   
+        txtEmail.setText(email1);
         blobToImage(avatar, labelAvatar);
     }
 
@@ -51,7 +56,7 @@ public class HomeScreen extends javax.swing.JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
     }
-    
+
     public void blobToImage(Blob blobBD, JLabel label) throws Exception {
         //Converte blob em Image
         byte[] image = blobBD.getBytes(1, (int) blobBD.length());
@@ -63,9 +68,29 @@ public class HomeScreen extends javax.swing.JFrame {
 
         //Apresenta a imagem no componente JLabel
         label.setIcon(imageIcon);
-      
     }
 
+    //EFEITO HOVER//
+    public void mouseClickedButton(JPanel p, JLabel l) {
+        p.setBackground(new Color(85, 65, 118));
+        l.setForeground(new Color(255, 255, 255));
+    }
+
+    public void mouseResetButton() {
+        pnlDashboard.setBackground(new Color(64, 43, 100));
+        pnlDespesas.setBackground(new Color(64, 43, 100));
+        pnlReceitas.setBackground(new Color(64, 43, 100));
+        pnlCartoes.setBackground(new Color(64, 43, 100));
+        pnlCategorias.setBackground(new Color(64, 43, 100));
+
+        txtDashboard.setForeground(new Color(200, 200, 200));
+        txtDespesas.setForeground(new Color(200, 200, 200));
+        txtReceitas.setForeground(new Color(200, 200, 200));
+        txtCartoes.setForeground(new Color(200, 200, 200));
+        txtCategorias.setForeground(new Color(200, 200, 200));
+    }
+    //FIM DO EFEITO//     
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,12 +111,16 @@ public class HomeScreen extends javax.swing.JFrame {
         pnlReceitas = new javax.swing.JPanel();
         txtReceitas = new javax.swing.JLabel();
         IconReceitas = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        txtUser = new javax.swing.JLabel();
+        pnlUsuario = new javax.swing.JPanel();
         labelAvatar = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JLabel();
+        txtUser = new javax.swing.JLabel();
+        pnlLogout = new javax.swing.JPanel();
+        IconCategoria1 = new javax.swing.JLabel();
+        pnlConfig = new javax.swing.JPanel();
+        IconCategoria2 = new javax.swing.JLabel();
+        pnlLogo = new javax.swing.JPanel();
+        lblLogo = new javax.swing.JLabel();
         pnlDashboard = new javax.swing.JPanel();
         txtDashboard = new javax.swing.JLabel();
         IconDashboard = new javax.swing.JLabel();
@@ -101,6 +130,7 @@ public class HomeScreen extends javax.swing.JFrame {
         desktop = new javax.swing.JDesktopPane();
         PainelTopo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SaveMoney");
@@ -114,17 +144,11 @@ public class HomeScreen extends javax.swing.JFrame {
         PainelLateral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PainelLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlCategorias.setBackground(new java.awt.Color(85, 65, 118));
-        pnlCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlCategorias.setBackground(new java.awt.Color(64, 43, 100));
+        pnlCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlCategoriasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pnlCategoriasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlCategoriasMouseExited(evt);
             }
         });
         pnlCategorias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,30 +158,24 @@ public class HomeScreen extends javax.swing.JFrame {
 
         txtCategorias.setBackground(new java.awt.Color(213, 220, 224));
         txtCategorias.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtCategorias.setForeground(new java.awt.Color(255, 255, 255));
+        txtCategorias.setForeground(new java.awt.Color(200, 200, 200));
         txtCategorias.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtCategorias.setText("Categorias");
         pnlCategorias.add(txtCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 200, 70));
 
         PainelLateral.add(pnlCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 310, 70));
 
-        pnlDespesas.setBackground(new java.awt.Color(85, 65, 118));
-        pnlDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlDespesas.setBackground(new java.awt.Color(64, 43, 100));
+        pnlDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlDespesasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pnlDespesasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlDespesasMouseExited(evt);
             }
         });
 
         txtDespesas.setBackground(new java.awt.Color(213, 220, 224));
         txtDespesas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtDespesas.setForeground(new java.awt.Color(255, 255, 255));
+        txtDespesas.setForeground(new java.awt.Color(200, 200, 200));
         txtDespesas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas.setText("Despesas");
 
@@ -184,23 +202,17 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(pnlDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 310, 70));
 
-        pnlReceitas.setBackground(new java.awt.Color(85, 65, 118));
-        pnlReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlReceitas.setBackground(new java.awt.Color(64, 43, 100));
+        pnlReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlReceitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlReceitasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pnlReceitasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlReceitasMouseExited(evt);
             }
         });
 
         txtReceitas.setBackground(new java.awt.Color(213, 220, 224));
         txtReceitas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtReceitas.setForeground(new java.awt.Color(255, 255, 255));
+        txtReceitas.setForeground(new java.awt.Color(200, 200, 200));
         txtReceitas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtReceitas.setText("Receitas");
 
@@ -227,98 +239,116 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(pnlReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 310, 70));
 
-        jPanel1.setBackground(new java.awt.Color(29, 31, 62));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        txtUser.setBackground(new java.awt.Color(213, 220, 224));
-        txtUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtUser.setForeground(new java.awt.Color(213, 220, 224));
-        txtUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtUser.setText("USER");
+        pnlUsuario.setBackground(new java.awt.Color(30, 20, 60));
 
         labelAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
+        labelAvatar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelAvatar.setMinimumSize(new java.awt.Dimension(30, 20));
 
-        jButton2.setBackground(new java.awt.Color(54, 33, 89));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(213, 220, 224));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_exit_48px_1.png"))); // NOI18N
-        jButton2.setText("Sair");
-        jButton2.setBorder(null);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        txtEmail.setBackground(new java.awt.Color(213, 220, 224));
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(213, 220, 224));
+        txtEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtEmail.setText("Email");
+
+        txtUser.setBackground(new java.awt.Color(213, 220, 224));
+        txtUser.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(213, 220, 224));
+        txtUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtUser.setText("User");
+
+        pnlLogout.setBackground(new java.awt.Color(64, 43, 100));
+        pnlLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlLogoutMouseClicked(evt);
             }
         });
+        pnlLogout.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        IconCategoria1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_exit_48px_1.png"))); // NOI18N
+        pnlLogout.add(IconCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        pnlConfig.setBackground(new java.awt.Color(64, 43, 100));
+        pnlConfig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlConfigMouseClicked(evt);
+            }
+        });
+        pnlConfig.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        IconCategoria2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_settings_48px.png"))); // NOI18N
+        pnlConfig.add(IconCategoria2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
+
+        javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
+        pnlUsuario.setLayout(pnlUsuarioLayout);
+        pnlUsuarioLayout.setHorizontalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104))))
+            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(pnlLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(pnlConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        pnlUsuarioLayout.setVerticalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(labelAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(jButton2)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlConfig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        PainelLateral.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 310, 230));
+        PainelLateral.add(pnlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 310, 240));
 
-        jPanel2.setBackground(new java.awt.Color(34, 36, 80));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlLogo.setBackground(new java.awt.Color(30, 20, 60));
 
-        jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SAVE MONEY");
+        lblLogo.setFont(new java.awt.Font("Viner Hand ITC", 3, 24)); // NOI18N
+        lblLogo.setForeground(new java.awt.Color(255, 255, 255));
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setText("SAVE MONEY");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+        javax.swing.GroupLayout pnlLogoLayout = new javax.swing.GroupLayout(pnlLogo);
+        pnlLogo.setLayout(pnlLogoLayout);
+        pnlLogoLayout.setHorizontalGroup(
+            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLogoLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+        pnlLogoLayout.setVerticalGroup(
+            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogoLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(lblLogo)
                 .addContainerGap())
         );
 
-        PainelLateral.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
+        PainelLateral.add(pnlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
 
         pnlDashboard.setBackground(new java.awt.Color(85, 65, 118));
-        pnlDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlDashboardMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pnlDashboardMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlDashboardMouseExited(evt);
             }
         });
 
@@ -351,23 +381,17 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(pnlDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 310, 70));
 
-        pnlCartoes.setBackground(new java.awt.Color(85, 65, 118));
-        pnlCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlCartoes.setBackground(new java.awt.Color(64, 43, 100));
+        pnlCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlCartoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlCartoesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pnlCartoesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlCartoesMouseExited(evt);
             }
         });
 
         txtCartoes.setBackground(new java.awt.Color(213, 220, 224));
         txtCartoes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtCartoes.setForeground(new java.awt.Color(255, 255, 255));
+        txtCartoes.setForeground(new java.awt.Color(200, 200, 200));
         txtCartoes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtCartoes.setText("Cartões");
 
@@ -394,7 +418,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(pnlCartoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 310, 70));
 
-        Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 750));
+        Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 730));
 
         desktop.setBackground(new java.awt.Color(255, 255, 255));
         desktop.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -408,99 +432,89 @@ public class HomeScreen extends javax.swing.JFrame {
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 668, Short.MAX_VALUE)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
 
-        Background.add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 1170, 670));
+        Background.add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 1170, 650));
 
-        PainelTopo.setBackground(new java.awt.Color(122, 72, 221));
+        PainelTopo.setBackground(new java.awt.Color(115, 60, 200));
         PainelTopo.setPreferredSize(new java.awt.Dimension(1043, 115));
 
         txtTitulo.setBackground(new java.awt.Color(255, 255, 255));
-        txtTitulo.setFont(new java.awt.Font("Ruda", 0, 36)); // NOI18N
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtTitulo.setText("PRINCIPAL");
+        txtTitulo.setText("Dashboard");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Close_32px.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelTopoLayout = new javax.swing.GroupLayout(PainelTopo);
         PainelTopo.setLayout(PainelTopoLayout);
         PainelTopoLayout.setHorizontalGroup(
             PainelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTopoLayout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PainelTopoLayout.createSequentialGroup()
+                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(25, 25, 25))
         );
         PainelTopoLayout.setVerticalGroup(
             PainelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTopoLayout.createSequentialGroup()
+            .addGroup(PainelTopoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PainelTopoLayout.createSequentialGroup()
                 .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        Background.add(PainelTopo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 1171, 86));
+        Background.add(PainelTopo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 1070, 86));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 1481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 1379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //EFEITO HOVER//
-    public void mouseEnteredButton(JPanel p, JLabel l) {
-        p.setBackground(new Color(29, 31, 62));
-        //l.setFont(font);
-    }
-
-    public void mouseExitedButton(JPanel p, JLabel l) {
-        p.setBackground(new Color(51, 51, 76));
-    }
-    //FIM DO EFEITO//    
-
-    private void pnlCategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoriasMouseEntered
-        mouseEnteredButton(pnlCategorias, txtCategorias);
-    }//GEN-LAST:event_pnlCategoriasMouseEntered
-
-    private void pnlCategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoriasMouseExited
-        mouseExitedButton(pnlCategorias, txtCategorias);
-    }//GEN-LAST:event_pnlCategoriasMouseExited
-
     private void pnlCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCategoriasMouseClicked
-        txtTitulo.setText("CATEGORIAS");
-
+        txtTitulo.setText("Categorias");
+        mouseResetButton();
+        mouseClickedButton(pnlCategorias, txtCategorias);
         d.openCategory(desktop);
     }//GEN-LAST:event_pnlCategoriasMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       LoginScreen frame = new LoginScreen();
-       d.openFrame(frame);
-       this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void pnlCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCartoesMouseClicked
-        txtTitulo.setText("CARTÕES");
+        txtTitulo.setText("Cartões");
+        mouseResetButton();
+        mouseClickedButton(pnlCartoes, txtCartoes);
 
         AccountController ac = new AccountController();
         CardController c = new CardController();
 
-          String email = this.email;
+        String email = this.email;
 
         try {
             Account account = ac.getAccountByEmail(email);
             Card card = c.getCardByAccountId(account.getId());
 
-            if (card.getId() != null) {
+            if (card != null) {
                 CardViewScreenn screen = new CardViewScreenn();
                 d.openInternalFrame(desktop, screen);
             } else { // Se o usuário não tiver cartão
@@ -512,16 +526,10 @@ public class HomeScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pnlCartoesMouseClicked
 
-    private void pnlCartoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCartoesMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCartoesMouseEntered
-
-    private void pnlCartoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCartoesMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCartoesMouseExited
-
     private void pnlDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDespesasMouseClicked
-        txtTitulo.setText("DESPESAS");
+        txtTitulo.setText("Despesas");
+        mouseResetButton();
+        mouseClickedButton(pnlDespesas, txtDespesas);
 
         try {
             d.openExpense(desktop);
@@ -530,37 +538,39 @@ public class HomeScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pnlDespesasMouseClicked
 
-    private void pnlDespesasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDespesasMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlDespesasMouseEntered
-
-    private void pnlDespesasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDespesasMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlDespesasMouseExited
-
     private void pnlReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseClicked
-        txtTitulo.setText("RECEITAS");
+        txtTitulo.setText("Receitas");
+        mouseResetButton();
+        mouseClickedButton(pnlReceitas, txtReceitas);
+        //d.openInternalFrame(desktop, new RevenueScreen);
     }//GEN-LAST:event_pnlReceitasMouseClicked
 
-    private void pnlReceitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlReceitasMouseEntered
-
-    private void pnlReceitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlReceitasMouseExited
-
     private void pnlDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseClicked
-        // TODO add your handling code here:
+        txtTitulo.setText("Dashboard");
+        mouseResetButton();
+        mouseClickedButton(pnlDashboard, txtDashboard);
     }//GEN-LAST:event_pnlDashboardMouseClicked
 
-    private void pnlDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlDashboardMouseEntered
+    private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
+        int close = JOptionPane.showConfirmDialog(this, "Você será deslogado, quer continuar?", "Logout" ,JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+        if(close == JOptionPane.YES_OPTION){
+            d.openFrame(new LoginScreen());
+            this.dispose();
+        } 
+    }//GEN-LAST:event_pnlLogoutMouseClicked
 
-    private void pnlDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlDashboardMouseExited
+    private void pnlConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlConfigMouseClicked
+        // Config do Usuário
+    }//GEN-LAST:event_pnlConfigMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        int close = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair?", "Sair" ,JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if(close == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -605,26 +615,31 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel Background;
     private javax.swing.JLabel IconCartoes;
     private javax.swing.JLabel IconCategoria;
+    private javax.swing.JLabel IconCategoria1;
+    private javax.swing.JLabel IconCategoria2;
     private javax.swing.JLabel IconDashboard;
     private javax.swing.JLabel IconDespesas;
     private javax.swing.JLabel IconReceitas;
     private javax.swing.JPanel PainelLateral;
     private javax.swing.JPanel PainelTopo;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     public static javax.swing.JLabel labelAvatar;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JPanel pnlCartoes;
     private javax.swing.JPanel pnlCategorias;
+    private javax.swing.JPanel pnlConfig;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlDespesas;
+    private javax.swing.JPanel pnlLogo;
+    private javax.swing.JPanel pnlLogout;
     private javax.swing.JPanel pnlReceitas;
+    private javax.swing.JPanel pnlUsuario;
     private javax.swing.JLabel txtCartoes;
     private javax.swing.JLabel txtCategorias;
     private javax.swing.JLabel txtDashboard;
     private javax.swing.JLabel txtDespesas;
+    public static javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtReceitas;
     private javax.swing.JLabel txtTitulo;
     public static javax.swing.JLabel txtUser;

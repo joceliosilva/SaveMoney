@@ -20,26 +20,23 @@ public class Account {
     private Object avatar;
     private Date ceationDate;
 
-    
+    public Account() {
+    }
 
-    public Account(){}
-    
-    public Account(String fullName, String email, String password) {
+    public Account(String fullName, String email, String password, Object avatar) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-    
+        this.avatar = avatar;
     }
-  
-    
-    public Account(Integer Id, String fullName, String email, String password, Object Avatar, Date creationDate) {
-        this.id = id;
+
+    public Account(String fullName, String email, String password, Object avatar, Date creationDate) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-         this.avatar = Avatar;
+        this.avatar = avatar;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -47,7 +44,7 @@ public class Account {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getFullName() {
         return fullName;
     }
@@ -79,7 +76,7 @@ public class Account {
     public void setAvatar(Object avatar) {
         this.avatar = avatar;
     }
-    
+
     public Date getCeationDate() {
         return ceationDate;
     }

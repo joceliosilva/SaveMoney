@@ -7,7 +7,6 @@ package View.Utilitys;
 
 import Controller.DisplayManager;
 import Connection.ConnectionDB;
-import View.LoadScreen;
 import View.LoginScreen;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
