@@ -11,6 +11,7 @@ import Model.Home.Card;
 import Model.Home.Category;
 import static View.Internal.ExpenseScreen.*;
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -66,5 +67,21 @@ public class ExpenseController {
 
     public void getFormPayList(JComboBox com) {
         com.setModel(new DefaultComboBoxModel<>(FormOfPayment.values()));
+    }
+
+    public Double getExpenseValueListByAccountId(Integer accId) throws SQLException {
+        if (accId != null) {
+            List<Double> values = ExpenseDAO.getExpenseValueListByAccountId(accId);
+            Double totalValue = 0.00;
+            
+            if (values.size() > 0 && values != null) {
+                for(Double val : values){
+                    totalValue += val;
+                }
+                return totalValue;
+            } 
+            return totalValue;
+        }
+        return 0.00;
     }
 }

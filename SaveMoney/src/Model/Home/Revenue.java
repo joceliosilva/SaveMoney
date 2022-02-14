@@ -14,12 +14,21 @@ import java.util.Date;
  * @author Renan
  */
 public class Revenue {
+    private Integer id;
     private Integer accountId;
     private Double value;
     private Month referenceMonth;
     private Date date;
     private String description;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public Integer getAccountId() {
         return accountId;
     }
