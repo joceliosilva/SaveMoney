@@ -29,8 +29,8 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
     URL l= this.getClass().getResource("Images/user.png");
-    String imgPath = null;
-    byte[] imagem= null;
+    public static String imgPath = null;
+    public static byte[] imagem= null;
        
     
 
@@ -53,7 +53,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         this.setIconImage(imagemTitulo);
     }
 
-    private void selectFile1() {
+    public static void selectFile1() {
          JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fc.setDialogTitle("Selecionar avatar");
@@ -385,7 +385,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JButton buttonRegister;
     private javax.swing.JLabel labelAvatar;
     private javax.swing.JTextField labelEmail;
-    public javax.swing.JLabel labelLocalFile;
+    public static javax.swing.JLabel labelLocalFile;
     private javax.swing.JPasswordField labelPassword;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txtLogin1;
@@ -393,7 +393,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JLabel txtRegister;
     // End of variables declaration//GEN-END:variables
 
-   public ImageIcon ResizeImage(String ImagePath, byte [] pic) {
+   public static ImageIcon ResizeImage(String ImagePath, byte [] pic) {
        ImageIcon Img = null;
        
        if(ImagePath != null){
@@ -406,7 +406,4 @@ public class RegisterScreen extends javax.swing.JFrame {
        ImageIcon image = new ImageIcon(newImg);
        return image;
     }
-
-
-
 }
