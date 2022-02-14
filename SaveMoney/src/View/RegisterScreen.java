@@ -29,8 +29,8 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
     URL l= this.getClass().getResource("Images/user.png");
-    String imgPath = null;
-    byte[] imagem= null;
+    public static String imgPath = null;
+    public static byte[] imagem= null;
        
     
 
@@ -53,7 +53,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         this.setIconImage(imagemTitulo);
     }
 
-    private void selectFile1() {
+    public static void selectFile1() {
          JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fc.setDialogTitle("Selecionar avatar");
@@ -142,7 +142,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         buttonRegister.setForeground(new java.awt.Color(213, 220, 224));
         buttonRegister.setText("Cadastrar");
         buttonRegister.setBorder(null);
-        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonRegisterMouseClicked(evt);
@@ -161,7 +161,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         txtLogin1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtLogin1.setForeground(new java.awt.Color(255, 255, 255));
         txtLogin1.setText("Faça Login");
-        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtLogin1MouseClicked(evt);
@@ -187,7 +187,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         buttonF.setForeground(new java.awt.Color(213, 220, 224));
         buttonF.setText("Selecionar");
         buttonF.setBorder(null);
-        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonFMouseClicked(evt);
@@ -385,7 +385,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JButton buttonRegister;
     private javax.swing.JLabel labelAvatar;
     private javax.swing.JTextField labelEmail;
-    public javax.swing.JLabel labelLocalFile;
+    public static javax.swing.JLabel labelLocalFile;
     private javax.swing.JPasswordField labelPassword;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txtLogin1;
@@ -393,7 +393,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JLabel txtRegister;
     // End of variables declaration//GEN-END:variables
 
-   public ImageIcon ResizeImage(String ImagePath, byte [] pic) {
+   public static ImageIcon ResizeImage(String ImagePath, byte [] pic) {
        ImageIcon Img = null;
        
        if(ImagePath != null){

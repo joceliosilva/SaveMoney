@@ -49,7 +49,7 @@ public final class HomeScreen extends javax.swing.JFrame {
         this.setIconImage(imagemTitulo);
     }
 
-    public void blobToImage(Blob blobBD, JLabel label) throws Exception {
+    public static void blobToImage(Blob blobBD, JLabel label) throws Exception {
         //Converte blob em Image
         byte[] image = blobBD.getBytes(1, (int) blobBD.length());
         Image img = Toolkit.getDefaultToolkit().createImage(image);
@@ -552,7 +552,11 @@ public final class HomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     private void pnlConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlConfigMouseClicked
-        // Config do Usuário
+        try {
+            d.openInternalFrame(desktop, new UserScreen());
+        } catch (Exception ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pnlConfigMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
