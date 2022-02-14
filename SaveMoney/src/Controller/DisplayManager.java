@@ -1,8 +1,10 @@
 package Controller;
 
+import View.Internal.CardsScreen;
 import View.Internal.CategoryScreen;
 import View.Internal.ExpenseScreen;
-import java.sql.SQLException;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -16,7 +18,7 @@ public class DisplayManager {
     public void openFrame(JFrame open) {
         open.setVisible(true);
     }
-    
+
     public void closeFrame(JFrame open) {
         open.setVisible(false);
     }
@@ -26,18 +28,10 @@ public class DisplayManager {
         pane.setPosition(open, 0);
         open.setVisible(true);
     }
-    
-    public void openCategory(JDesktopPane pane) {
-        CategoryScreen open = new CategoryScreen();
-        pane.add(open);
-        pane.setPosition(open, 0);
-        open.setVisible(true);
-    }
-    
-    public void openExpense(JDesktopPane pane) throws SQLException {
-        ExpenseScreen open = new ExpenseScreen();
-        pane.add(open);
-        pane.setPosition(open, 0);
-        open.setVisible(true);
+
+    public void pegarResolucao(JFrame frame) {         //Calcula a resoluçao para se adaptara diferentes telas
+        Toolkit t = Toolkit.getDefaultToolkit();
+        Dimension dimensao = t.getScreenSize();
+        frame.setSize((dimensao.width + 5), (dimensao.height - 38));
     }
 }

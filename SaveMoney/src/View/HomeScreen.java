@@ -7,7 +7,6 @@ package View;
 
 import Controller.*;
 import Model.Entity.*;
-import Model.Enums;
 import Model.Home.*;
 import View.Internal.*;
 import static View.LoginScreen.*;
@@ -15,8 +14,6 @@ import java.awt.*;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.*;
 import javax.swing.*;
 
@@ -33,22 +30,17 @@ public final class HomeScreen extends javax.swing.JFrame {
     public HomeScreen() throws Exception {
         initComponents();
         setIcon();
-        pegarResolucao();
         setLocationRelativeTo(null);
+        d.pegarResolucao(this);
+        d.openInternalFrame(desktop, new DashboardScreen());
         // Hover
         mouseResetButton();
-        mouseClickedButton(pnlDashboard, txtDashboard);        
+        mouseClickedButton(pnlDashboard, txtDashboard);
         // Usuário
         String[] firstName = name1.split(" ");
-        txtUser.setText(firstName[0]);   
+        txtUser.setText(firstName[0]);
         txtEmail.setText(email1);
         blobToImage(avatar, labelAvatar);
-    }
-
-    private void pegarResolucao() {         //Calcula a resoluçao para se adaptara diferentes telas
-        Toolkit t = Toolkit.getDefaultToolkit();
-        Dimension dimensao = t.getScreenSize();
-        this.setSize((dimensao.width + 5), (dimensao.height - 38));
     }
 
     private void setIcon() {
@@ -89,8 +81,8 @@ public final class HomeScreen extends javax.swing.JFrame {
         txtCartoes.setForeground(new Color(200, 200, 200));
         txtCategorias.setForeground(new Color(200, 200, 200));
     }
-    //FIM DO EFEITO//     
-    
+    //FIM DO EFEITO//        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -497,7 +489,7 @@ public final class HomeScreen extends javax.swing.JFrame {
         txtTitulo.setText("Categorias");
         mouseResetButton();
         mouseClickedButton(pnlCategorias, txtCategorias);
-        d.openCategory(desktop);
+        d.openInternalFrame(desktop, new CategoryScreen());
     }//GEN-LAST:event_pnlCategoriasMouseClicked
 
     private void pnlCartoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCartoesMouseClicked
@@ -515,11 +507,9 @@ public final class HomeScreen extends javax.swing.JFrame {
             Card card = c.getCardByAccountId(account.getId());
 
             if (card != null) {
-                CardViewScreenn screen = new CardViewScreenn();
-                d.openInternalFrame(desktop, screen);
+                d.openInternalFrame(desktop, new CardViewScreen());
             } else { // Se o usuário não tiver cartão
-                CardsScreen screen = new CardsScreen();
-                d.openInternalFrame(desktop, screen);
+                d.openInternalFrame(desktop, new CardsScreen());
             }
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -532,7 +522,7 @@ public final class HomeScreen extends javax.swing.JFrame {
         mouseClickedButton(pnlDespesas, txtDespesas);
 
         try {
-            d.openExpense(desktop);
+            d.openInternalFrame(desktop, new ExpenseScreen());
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -542,22 +532,23 @@ public final class HomeScreen extends javax.swing.JFrame {
         txtTitulo.setText("Receitas");
         mouseResetButton();
         mouseClickedButton(pnlReceitas, txtReceitas);
-        //d.openInternalFrame(desktop, new RevenueScreen);
+        d.openInternalFrame(desktop, new RevenueScreen());
     }//GEN-LAST:event_pnlReceitasMouseClicked
 
     private void pnlDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseClicked
         txtTitulo.setText("Dashboard");
         mouseResetButton();
         mouseClickedButton(pnlDashboard, txtDashboard);
+        d.openInternalFrame(desktop, new DashboardScreen());
     }//GEN-LAST:event_pnlDashboardMouseClicked
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
-        int close = JOptionPane.showConfirmDialog(this, "Você será deslogado, quer continuar?", "Logout" ,JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        if(close == JOptionPane.YES_OPTION){
+        int close = JOptionPane.showConfirmDialog(this, "Você será deslogado, quer continuar?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (close == JOptionPane.YES_OPTION) {
             d.openFrame(new LoginScreen());
             this.dispose();
-        } 
+        }
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     private void pnlConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlConfigMouseClicked
@@ -565,9 +556,9 @@ public final class HomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlConfigMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        int close = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair?", "Sair" ,JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int close = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if(close == JOptionPane.YES_OPTION){
+        if (close == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_jLabel1MouseClicked

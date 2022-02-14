@@ -68,7 +68,6 @@ public class LoginScreen extends javax.swing.JFrame {
         setIconImages(getIconImages());
         setLocationByPlatform(true);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
         setSize(new java.awt.Dimension(1440, 1024));
 
         Background.setBackground(new java.awt.Color(64, 43, 100));

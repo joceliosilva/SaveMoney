@@ -7,6 +7,7 @@ package View.Internal;
 
 import Controller.AccountController;
 import Controller.CardController;
+import Controller.DisplayManager;
 import Model.Entity.*;
 import Model.Enums.*;
 import View.HomeScreen;
@@ -25,6 +26,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
 
     CardController cc = new CardController();
     AccountController ac = new AccountController();
+    DisplayManager d = new DisplayManager();
 
     public CardsScreen() {
         initComponents();
@@ -56,10 +58,11 @@ public class CardsScreen extends javax.swing.JInternalFrame {
         txtDespesas4 = new javax.swing.JLabel();
         txtDespesas5 = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        setClosable(true);
+        setBorder(null);
 
-        pnlFundo.setBackground(new java.awt.Color(34, 36, 81));
+        pnlFundo.setBackground(new java.awt.Color(30, 30, 60));
 
         btnSaveCard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSaveCard.setText("Salvar");
@@ -117,12 +120,24 @@ public class CardsScreen extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Close_32px.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlFundoLayout = new javax.swing.GroupLayout(pnlFundo);
         pnlFundo.setLayout(pnlFundoLayout);
         pnlFundoLayout.setHorizontalGroup(
             pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFundoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
             .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(244, 244, 244)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFundoLayout.createSequentialGroup()
                         .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,7 +150,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
                                     .addComponent(txtAnnualValue)
                                     .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNumber)
-                                    .addComponent(cmbType, 0, 220, Short.MAX_VALUE)
+                                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDespesas5, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(79, 79, 79))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFundoLayout.createSequentialGroup()
@@ -147,14 +162,16 @@ public class CardsScreen extends javax.swing.JInternalFrame {
                             .addComponent(chosserClosingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtLimit, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbFlag, javax.swing.GroupLayout.Alignment.LEADING, 0, 227, Short.MAX_VALUE))
+                                .addComponent(cmbFlag, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         pnlFundoLayout.setVerticalGroup(
             pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(74, 74, 74)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,13 +193,13 @@ public class CardsScreen extends javax.swing.JInternalFrame {
                     .addComponent(txtDespesas3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAnnualValue, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(chosserClosingDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtAnnualValue)
+                    .addComponent(chosserClosingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSaveCard, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,6 +252,10 @@ public class CardsScreen extends javax.swing.JInternalFrame {
         txtAnnualValue.setText(null);    
     }//GEN-LAST:event_btnLimparMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
@@ -242,6 +263,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser chosserClosingDate;
     private javax.swing.JComboBox<CardFlag> cmbFlag;
     private javax.swing.JComboBox<CardType> cmbType;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JTextField txtAnnualValue;
     private javax.swing.JLabel txtDespesas;
