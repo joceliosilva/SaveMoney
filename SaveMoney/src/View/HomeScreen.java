@@ -25,22 +25,53 @@ public final class HomeScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
     AccountController ac = new AccountController();
-    String email = ac.getAccountByEmail(email1).getEmail();
+    Account a = ac.getAccountByEmail(email1);
+
+    String email = a.getEmail();
+    Integer accId = a.getId();
 
     public HomeScreen() throws Exception {
         initComponents();
         setIcon();
         setLocationRelativeTo(null);
         d.pegarResolucao(this);
-        d.openInternalFrame(desktop, new DashboardScreen());
         // Hover
         mouseResetButton();
-        mouseClickedButton(pnlDashboard, txtDashboard);
+        mouseClickedButton(pnlReceitas, txtReceitas);
         // Usuário
         String[] firstName = name1.split(" ");
         txtUser.setText(firstName[0]);
         txtEmail.setText(email1);
         blobToImage(avatar, labelAvatar);
+        // Receita
+        pnlCartoes.setVisible(false);
+        pnlCategorias.setVisible(false);
+        pnlDespesas.setVisible(false);
+        primeiroAcesso();
+    }
+
+    public void primeiroAcesso() {
+        try {
+            RevenueController rc = new RevenueController();
+            Revenue rev = rc.getRevenueByAccountId(accId);
+
+            if (rev != null) {
+                txtTitulo.setText("Dashboard");
+
+                pnlCartoes.setVisible(true);
+                pnlCategorias.setVisible(true);
+                pnlDespesas.setVisible(true);
+
+                d.openInternalFrame(desktop, new DashboardScreen());
+            } else { // Se o usuário não tiver cadastrado uma receita
+                txtTitulo.setText("Receitas");
+                d.openInternalFrame(desktop, new RevenueScreen());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void setIcon() {
@@ -49,7 +80,7 @@ public final class HomeScreen extends javax.swing.JFrame {
         this.setIconImage(imagemTitulo);
     }
 
-    public void blobToImage(Blob blobBD, JLabel label) throws Exception {
+    public static void blobToImage(Blob blobBD, JLabel label) throws Exception {
         //Converte blob em Image
         byte[] image = blobBD.getBytes(1, (int) blobBD.length());
         Image img = Toolkit.getDefaultToolkit().createImage(image);
@@ -69,13 +100,11 @@ public final class HomeScreen extends javax.swing.JFrame {
     }
 
     public void mouseResetButton() {
-        pnlDashboard.setBackground(new Color(64, 43, 100));
         pnlDespesas.setBackground(new Color(64, 43, 100));
         pnlReceitas.setBackground(new Color(64, 43, 100));
         pnlCartoes.setBackground(new Color(64, 43, 100));
         pnlCategorias.setBackground(new Color(64, 43, 100));
 
-        txtDashboard.setForeground(new Color(200, 200, 200));
         txtDespesas.setForeground(new Color(200, 200, 200));
         txtReceitas.setForeground(new Color(200, 200, 200));
         txtCartoes.setForeground(new Color(200, 200, 200));
@@ -113,9 +142,6 @@ public final class HomeScreen extends javax.swing.JFrame {
         IconCategoria2 = new javax.swing.JLabel();
         pnlLogo = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
-        pnlDashboard = new javax.swing.JPanel();
-        txtDashboard = new javax.swing.JLabel();
-        IconDashboard = new javax.swing.JLabel();
         pnlCartoes = new javax.swing.JPanel();
         txtCartoes = new javax.swing.JLabel();
         IconCartoes = new javax.swing.JLabel();
@@ -155,7 +181,7 @@ public final class HomeScreen extends javax.swing.JFrame {
         txtCategorias.setText("Categorias");
         pnlCategorias.add(txtCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 200, 70));
 
-        PainelLateral.add(pnlCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 310, 70));
+        PainelLateral.add(pnlCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 310, 70));
 
         pnlDespesas.setBackground(new java.awt.Color(64, 43, 100));
         pnlDespesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -192,9 +218,9 @@ public final class HomeScreen extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        PainelLateral.add(pnlDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 310, 70));
+        PainelLateral.add(pnlDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 310, 70));
 
-        pnlReceitas.setBackground(new java.awt.Color(64, 43, 100));
+        pnlReceitas.setBackground(new java.awt.Color(85, 65, 118));
         pnlReceitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlReceitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -229,7 +255,7 @@ public final class HomeScreen extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        PainelLateral.add(pnlReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 310, 70));
+        PainelLateral.add(pnlReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 310, 70));
 
         pnlUsuario.setBackground(new java.awt.Color(30, 20, 60));
 
@@ -336,43 +362,6 @@ public final class HomeScreen extends javax.swing.JFrame {
 
         PainelLateral.add(pnlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 80));
 
-        pnlDashboard.setBackground(new java.awt.Color(85, 65, 118));
-        pnlDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlDashboardMouseClicked(evt);
-            }
-        });
-
-        txtDashboard.setBackground(new java.awt.Color(213, 220, 224));
-        txtDashboard.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtDashboard.setForeground(new java.awt.Color(255, 255, 255));
-        txtDashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtDashboard.setText("Dashboard");
-
-        IconDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_pulse_48px_1.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnlDashboardLayout = new javax.swing.GroupLayout(pnlDashboard);
-        pnlDashboard.setLayout(pnlDashboardLayout);
-        pnlDashboardLayout.setHorizontalGroup(
-            pnlDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDashboardLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(IconDashboard)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(txtDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pnlDashboardLayout.setVerticalGroup(
-            pnlDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtDashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDashboardLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IconDashboard)
-                .addContainerGap())
-        );
-
-        PainelLateral.add(pnlDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 310, 70));
-
         pnlCartoes.setBackground(new java.awt.Color(64, 43, 100));
         pnlCartoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlCartoes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -408,7 +397,7 @@ public final class HomeScreen extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        PainelLateral.add(pnlCartoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 310, 70));
+        PainelLateral.add(pnlCartoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 310, 70));
 
         Background.add(PainelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 730));
 
@@ -497,14 +486,10 @@ public final class HomeScreen extends javax.swing.JFrame {
         mouseResetButton();
         mouseClickedButton(pnlCartoes, txtCartoes);
 
-        AccountController ac = new AccountController();
         CardController c = new CardController();
 
-        String email = this.email;
-
         try {
-            Account account = ac.getAccountByEmail(email);
-            Card card = c.getCardByAccountId(account.getId());
+            Card card = c.getCardByAccountId(accId);
 
             if (card != null) {
                 d.openInternalFrame(desktop, new CardViewScreen());
@@ -529,18 +514,11 @@ public final class HomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlDespesasMouseClicked
 
     private void pnlReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseClicked
-        txtTitulo.setText("Receitas");
         mouseResetButton();
         mouseClickedButton(pnlReceitas, txtReceitas);
-        d.openInternalFrame(desktop, new RevenueScreen());
-    }//GEN-LAST:event_pnlReceitasMouseClicked
 
-    private void pnlDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDashboardMouseClicked
-        txtTitulo.setText("Dashboard");
-        mouseResetButton();
-        mouseClickedButton(pnlDashboard, txtDashboard);
-        d.openInternalFrame(desktop, new DashboardScreen());
-    }//GEN-LAST:event_pnlDashboardMouseClicked
+        primeiroAcesso();
+    }//GEN-LAST:event_pnlReceitasMouseClicked
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
         int close = JOptionPane.showConfirmDialog(this, "Você será deslogado, quer continuar?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -552,7 +530,11 @@ public final class HomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     private void pnlConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlConfigMouseClicked
-        // Config do Usuário
+        try {
+            d.openInternalFrame(desktop, new UserScreen());
+        } catch (Exception ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pnlConfigMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -608,7 +590,6 @@ public final class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel IconCategoria;
     private javax.swing.JLabel IconCategoria1;
     private javax.swing.JLabel IconCategoria2;
-    private javax.swing.JLabel IconDashboard;
     private javax.swing.JLabel IconDespesas;
     private javax.swing.JLabel IconReceitas;
     private javax.swing.JPanel PainelLateral;
@@ -620,7 +601,6 @@ public final class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel pnlCartoes;
     private javax.swing.JPanel pnlCategorias;
     private javax.swing.JPanel pnlConfig;
-    private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlDespesas;
     private javax.swing.JPanel pnlLogo;
     private javax.swing.JPanel pnlLogout;
@@ -628,7 +608,6 @@ public final class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUsuario;
     private javax.swing.JLabel txtCartoes;
     private javax.swing.JLabel txtCategorias;
-    private javax.swing.JLabel txtDashboard;
     private javax.swing.JLabel txtDespesas;
     public static javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtReceitas;
