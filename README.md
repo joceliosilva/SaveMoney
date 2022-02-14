@@ -5,3 +5,6 @@
 
 ## Protótipo Figma
 [Acesse aqui](https://www.figma.com/file/ycG9zcC5BwQye2AFHAPmSZ/Save-Money?node-id=0%3A1)
+
+## Diagrama de Caso de Uso
+[Acesse aqui] (https://lucid.app/lucidchart/299d7f2d-bcc4-44b3-935c-c8cdeed1a0d0/edit?invitationId=inv_6a230819-d7a8-4f85-810d-e559e83fbfa1)
