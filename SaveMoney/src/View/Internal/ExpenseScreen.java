@@ -8,7 +8,9 @@ package View.Internal;
 import Model.Enums.*;
 import Controller.*;
 import Model.Entity.Account;
+import Model.Enums.FormOfPayment.ExpenseStatus;
 import Model.Home.*;
+import static View.HomeScreen.desktop;
 import static View.LoginScreen.email1;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -36,7 +38,7 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
         initComponents();
         exp.getFormPayList(cmbFormaPay);
         cat.getcategoryList(cmbCategoria, account.getId());
-        
+
         cmbCartao.setVisible(false);
         txtCart.setVisible(false);
     }
@@ -62,12 +64,12 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
         txt4 = new javax.swing.JLabel();
         chooserData = new com.toedter.calendar.JDateChooser();
         txt5 = new javax.swing.JLabel();
-        btnLimpar = new javax.swing.JButton();
         cmbFormaPay = new javax.swing.JComboBox<>();
         txt6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        btnLimpar1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(30, 30, 60));
         setBorder(null);
@@ -121,15 +123,6 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
         txt5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txt5.setText("Descrição");
 
-        btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnLimpar.setText("Limpar");
-        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLimpar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLimparMouseClicked(evt);
-            }
-        });
-
         cmbFormaPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbFormaPayActionPerformed(evt);
@@ -154,38 +147,52 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLimpar1.setText("Limpar");
+        btnLimpar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpar1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbFormaPay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtValor)
-                    .addComponent(chooserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbCategoria, 0, 220, Short.MAX_VALUE)
-                    .addComponent(txtCart, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbCartao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNumParc)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(305, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(39, 39, 39))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(268, 268, 268)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbFormaPay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtValor)
+                                    .addComponent(chooserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbCategoria, 0, 220, Short.MAX_VALUE)
+                                    .addComponent(txtCart, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbCartao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNumParc)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(399, 399, 399)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(btnLimpar1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,13 +229,13 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
                         .addComponent(txtCart, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cmbCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -239,15 +246,15 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
         try {
             String name = cmbCategoria.getSelectedItem().toString(); // NULL
             Category category = null;
-            if(name != null && !name.isEmpty()){
+            if (name != null && !name.isEmpty()) {
                 category = cat.getCategoryByName(name);
             }
-            
+
             Double value = Double.parseDouble(txtValor.getText());
             String description = txtDescricao.getText(); // NULL           
             FormOfPayment formOfPayment = (FormOfPayment) cmbFormaPay.getSelectedItem();
             Integer numberOfInstallments = Integer.parseInt(txtNumParc.getText());
-            ExpenseStatus status = ExpenseStatus.NOT_PAID; // Status = 1 > NOT_PAID
+            ExpenseStatus status = ExpenseStatus.NÃO_PAGO; // Status = 1 > NOT_PAID
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date data = chooserData.getDate();
@@ -257,6 +264,8 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
 
             if (sucesso) {
                 JOptionPane.showMessageDialog(null, "Despesa salva com sucesso!");
+                d.openInternalFrame(desktop, new ExpenseViewScreen());
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
@@ -265,13 +274,6 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
             Logger.getLogger(CardsScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveMouseClicked
-
-    private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
-        txtValor.setText(null);
-        txtNumParc.setText(null);
-        txtDescricao.setText(null);
-        chooserData.setDate(new Date());
-    }//GEN-LAST:event_btnLimparMouseClicked
 
     private void cmbFormaPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFormaPayActionPerformed
         if (!cmbFormaPay.getSelectedItem().equals(FormOfPayment.DINHEIRO)) {
@@ -297,9 +299,13 @@ public class ExpenseScreen extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void btnLimpar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpar1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpar1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLimpar1;
     private javax.swing.JButton btnSave;
     private com.toedter.calendar.JDateChooser chooserData;
     public static javax.swing.JComboBox<Integer> cmbCartao;

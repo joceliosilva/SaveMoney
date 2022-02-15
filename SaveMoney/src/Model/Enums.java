@@ -114,7 +114,7 @@ public class Enums {
         DEZEMBRO(11);
 
         Integer num;
-        
+
         private Month(Integer num) {
             this.num = num;
         }
@@ -126,7 +126,7 @@ public class Enums {
         public void setNum(Integer num) {
             this.num = num;
         }
-        
+
         public Month findMonth(Integer num) {
             Month month;
 
@@ -192,25 +192,63 @@ public class Enums {
         public void setNum(Integer num) {
             this.num = num;
         }
-    }
 
-    public enum ExpenseStatus {
-        PAY(0),
-        NOT_PAID(1),
-        CANCELED(2);
+        public FormOfPayment findFormOfPayment(Integer num) {
+            FormOfPayment pay;
 
-        Integer num;
-
-        private ExpenseStatus(Integer num) {
-            this.num = num;
+            switch (num) {
+                case 0:
+                    pay = FormOfPayment.DINHEIRO;
+                    return pay;
+                case 1:
+                    pay = FormOfPayment.CREDITO;
+                    return pay;
+                case 2:
+                    pay = FormOfPayment.CREDITO;
+                    return pay;
+                default:
+                    pay = FormOfPayment.DINHEIRO;
+                    return pay;
+            }
         }
 
-        public Integer getNum() {
-            return num;
-        }
+        public enum ExpenseStatus {
+            PAGO(0),
+            NÃO_PAGO(1),
+            CANCELEDO(2);
 
-        public void setNum(Integer num) {
-            this.num = num;
+            Integer num;
+
+            private ExpenseStatus(Integer num) {
+                this.num = num;
+            }
+
+            public Integer getNum() {
+                return num;
+            }
+
+            public void setNum(Integer num) {
+                this.num = num;
+            }
+
+            public ExpenseStatus findStatus(Integer num) {
+                ExpenseStatus status;
+
+                switch (num) {
+                    case 0:
+                        status = ExpenseStatus.PAGO;
+                        return status;
+                    case 1:
+                        status = ExpenseStatus.NÃO_PAGO;
+                        return status;
+                    case 2:
+                        status = ExpenseStatus.CANCELEDO;
+                        return status;
+                    default:
+                        status = ExpenseStatus.NÃO_PAGO;
+                        return status;
+                }
+            }
         }
     }
 }

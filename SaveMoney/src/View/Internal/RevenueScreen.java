@@ -77,7 +77,7 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
         txt5.setForeground(new java.awt.Color(255, 255, 255));
         txt5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txt5.setText("Descrição");
-        jPanel1.add(txt5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 183, 30));
+        jPanel1.add(txt5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 183, 30));
 
         txt4.setBackground(new java.awt.Color(255, 255, 255));
         txt4.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
@@ -87,13 +87,13 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
         jPanel1.add(txt4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 210, 30));
 
         chooserData.setDateFormatString("dd-MM-yyyy");
-        jPanel1.add(chooserData, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 210, 40));
+        jPanel1.add(chooserData, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 210, 30));
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
         jScrollPane1.setViewportView(txtDescricao);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 190, 40));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 260, 230));
 
         btnSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSave.setText("Salvar");
@@ -103,7 +103,7 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
                 btnSaveMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 89, 33));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 100, 40));
 
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLimpar.setText("Limpar");
@@ -113,7 +113,7 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
                 btnLimparMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 90, 30));
+        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 100, 40));
 
         jPanel1.add(cmbreferenceMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 210, 30));
 
@@ -122,8 +122,8 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
         txt6.setForeground(new java.awt.Color(255, 255, 255));
         txt6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txt6.setText("Valor");
-        jPanel1.add(txt6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 183, 30));
-        jPanel1.add(txtValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 190, 30));
+        jPanel1.add(txt6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 183, 30));
+        jPanel1.add(txtValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 220, 30));
 
         txt7.setBackground(new java.awt.Color(255, 255, 255));
         txt7.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N

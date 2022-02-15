@@ -6,6 +6,9 @@
 package DAO;
 
 import Connection.ConnectionDB;
+import Model.Enums.FormOfPayment;
+import Model.Enums.FormOfPayment.ExpenseStatus;
+import Model.Home.Expense;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,4 +83,48 @@ public class ExpenseDAO {
             conexao.close();
         }
     }
+    
+    public static List<Expense> getExpenseListByAccountId(Integer accId) throws SQLException {
+        String sql = "select * from Expense where AccountId = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, accId);
+
+            rs = ps.executeQuery();
+
+            List<Expense> values = new ArrayList();
+
+            while (rs.next()) {
+                Expense e = new Expense();
+                
+                FormOfPayment pay = FormOfPayment.CREDITO;
+                pay = pay.findFormOfPayment(rs.getInt("FormOfPayment"));
+                
+                ExpenseStatus status = ExpenseStatus.PAGO;
+                status = status.findStatus(rs.getInt("Status"));
+                
+                e.setId(rs.getInt("Id")); 
+                e.setAccountId(rs.getInt("AccountId"));
+                e.setCategoryId(rs.getInt("CategoryId"));
+                e.setCardId(rs.getInt("CardId"));
+                e.setValue(rs.getDouble("Value"));
+                e.setDate(rs.getDate("Date"));
+                e.setDescription(rs.getString("Description"));
+                e.setNumberOfInstallments(rs.getInt("NumberOfInstallments"));
+                e.setFormOfPayment(pay);
+                e.setStatus(status);
+                
+                values.add(e);
+            }
+            return values;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao pegar lista de despesas: " + e);
+            return null;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }    
 }
