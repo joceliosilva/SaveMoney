@@ -25,7 +25,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Renan
  */
-public final class ExpenseViewScreen extends javax.swing.JInternalFrame {
+public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
 
     ExpenseController exp = new ExpenseController();
     AccountController ac = new AccountController();
@@ -36,7 +36,7 @@ public final class ExpenseViewScreen extends javax.swing.JInternalFrame {
     String email = email1;
     Account account = ac.getAccountByEmail(email);
 
-    public ExpenseViewScreen() throws SQLException {
+    public ExpenseFullScreen() throws SQLException {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) jTExpense.getModel();
         jTExpense.setRowSorter(new TableRowSorter(modelo));
@@ -191,7 +191,7 @@ public final class ExpenseViewScreen extends javax.swing.JInternalFrame {
         try {
             d.openInternalFrame(desktop, new ExpenseScreen());
         } catch (SQLException ex) {
-            Logger.getLogger(ExpenseViewScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ExpenseFullScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_IconCategoria2MouseClicked
 

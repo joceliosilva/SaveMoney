@@ -511,7 +511,7 @@ public final class HomeScreen extends javax.swing.JFrame {
             List<Expense> expense = ec.getExpenseListByAccountId(accId);
 
             if (expense != null) {
-                d.openInternalFrame(desktop, new ExpenseViewScreen());
+                d.openInternalFrame(desktop, new ExpenseFullScreen());
             } else { // Se o usuário não tiver despesa
                 d.openInternalFrame(desktop, new ExpenseScreen());
             }

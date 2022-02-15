@@ -102,7 +102,7 @@ public class ExpenseDAO {
                 FormOfPayment pay = FormOfPayment.CREDITO;
                 pay = pay.findFormOfPayment(rs.getInt("FormOfPayment"));
                 
-                ExpenseStatus status = ExpenseStatus.PAY;
+                ExpenseStatus status = ExpenseStatus.PAGO;
                 status = status.findStatus(rs.getInt("Status"));
                 
                 e.setId(rs.getInt("Id")); 
