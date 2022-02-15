@@ -8,18 +8,27 @@ package View.Internal;
 import Controller.AccountController;
 import Controller.CardController;
 import Controller.DisplayManager;
+import DAO.AccountDAO;
 import Model.Entity.*;
 import Model.Enums.*;
 import View.HomeScreen;
 import static View.HomeScreen.labelAvatar;
+import View.LoginScreen;
 import static View.LoginScreen.avatar;
+import static View.LoginScreen.email1;
 import View.RegisterScreen;
 import static View.RegisterScreen.ResizeImage;
 import static View.RegisterScreen.imgPath;
 import static View.RegisterScreen.labelLocalFile;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -40,6 +49,10 @@ public class UserScreen extends javax.swing.JInternalFrame {
 
     AccountController ac = new AccountController();
     DisplayManager d = new DisplayManager();
+    String Email = email1;
+    URL l= this.getClass().getResource("Images/user.png");
+    public static String imgPath = null;
+    public static byte[] imagem= null;
 
     public UserScreen() throws Exception {
         initComponents();
@@ -170,6 +183,11 @@ public class UserScreen extends javax.swing.JInternalFrame {
                 btnSaveMouseClicked(evt);
             }
         });
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnSelect.setBackground(new java.awt.Color(85, 65, 118));
         btnSelect.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -279,6 +297,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
             btnLimpar.setVisible(false);
             btnSave.setVisible(true);
             btnSelect.setVisible(true);
+            labelAvatar1.setIcon(null);
             
            
             
@@ -305,6 +324,65 @@ public class UserScreen extends javax.swing.JInternalFrame {
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
 
     }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+          if(imgPath != null){
+        File img = new File(imgPath);
+        byte[] imagem = new byte[(int)img.length()];
+        DataInputStream is = null;
+        try {
+           is = new DataInputStream(          
+                   new FileInputStream(imgPath));
+       } catch (FileNotFoundException ex) {
+            Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            is.readFully(imagem);
+       } catch (IOException ex) {
+            Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      try {
+           is.close();
+       } catch (IOException ex) {
+           Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        
+        AccountDAO ac1 = new AccountDAO();
+        String fullName = txtName.getText();
+        String email = txtEmail.getText();
+        Integer id = null;
+        Object byteImg = imagem;
+        
+       try {
+            id = ac.getAccountByEmail(Email).getId();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//     
+          boolean sucesso;
+
+        try {
+            AccountController ac = new AccountController();
+            sucesso = ac.editAccount(fullName, email,byteImg, id);
+
+            if (sucesso) {
+                JOptionPane.showMessageDialog(null, "O PROGRAMA SERA REINICIADO PARA QUE AS ALTERAÇOES SEJAM EFETIVADAS.");
+                d.openFrame(new HomeScreen());
+                this.dispose();
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
+            }
+        } catch (HeadlessException | SQLException e) {
+        }     catch (Exception ex) {
+                  Logger.getLogger(UserScreen.class.getName()).log(Level.SEVERE, null, ex);
+              }
+        
+
+          }else
+                JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

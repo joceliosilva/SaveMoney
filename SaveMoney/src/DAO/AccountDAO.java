@@ -26,6 +26,8 @@ public class AccountDAO {
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
 
+  
+
     public AccountDAO() {
         conexao = new ConnectionDB().getConnection();  //INICIA A CONEÇÃO COM O BD
     }
@@ -51,6 +53,26 @@ public class AccountDAO {
         } finally {
             ConnectionDB.closeConnection(conexao, ps);
         }
+    }
+    
+       public void editAccount(String email, String fullName, Object Avatar,Integer Id) throws SQLException {
+        String sql = "update account set FullName= ?, Email =? , Avatar= ?  where  Id=?";
+        conexao = new ConnectionDB().getConnection();
+
+        
+            ps = conexao.prepareStatement(sql);
+           
+            ps.setString(1, fullName);
+            ps.setString(2, email);
+            ps.setObject(3, Avatar);
+            ps.setInt(4, Id);
+                
+                ps.executeUpdate();
+            
+            ps.close();
+            conexao.close();
+       
+        
     }
 
     public static boolean consultarLogin(String email, String password) throws SQLException {
