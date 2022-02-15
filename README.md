@@ -13,4 +13,4 @@
 [Acess aqui](https://lucid.app/lucidchart/ac463ead-e16f-4d1c-895e-ba7816948613/edit?viewport_loc=-3127%2C-858%2C7546%2C3235%2C0_0&invitationId=inv_f4baa10e-a19b-47cd-b837-c50e949babd0)
 
 ## Diagrama de Sequência
-[diagrama-sequencia](https://user-images.githubusercontent.com/68862702/154163727-8b42e11c-050a-4aac-a2ee-62473b7bf361.png)
+![diagrama-sequencia](https://user-images.githubusercontent.com/68862702/154163727-8b42e11c-050a-4aac-a2ee-62473b7bf361.png)
