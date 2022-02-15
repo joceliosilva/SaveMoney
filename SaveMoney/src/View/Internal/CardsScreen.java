@@ -11,6 +11,7 @@ import Controller.DisplayManager;
 import Model.Entity.*;
 import Model.Enums.*;
 import View.HomeScreen;
+import static View.LoginScreen.email1;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -219,8 +220,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
     private void btnSaveCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveCardMouseClicked
 
         try {
-            String email = HomeScreen.txtUser.getText();
-            Account accountId = ac.getAccountByEmail(email);
+            Account accountId = ac.getAccountByEmail(email1);
             
             Integer number = Integer.parseInt(txtNumber.getText());
             CardType type = (CardType) cmbType.getSelectedItem();

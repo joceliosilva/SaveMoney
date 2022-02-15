@@ -27,38 +27,47 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txt" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="txt5" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="txt4" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="txt6" max="32767" attributes="0"/>
-                  <Component id="cmbFormaPay" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtValor" alignment="0" max="32767" attributes="0"/>
-                  <Component id="chooserData" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="239" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txt1" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="txt3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="cmbCategoria" alignment="0" pref="220" max="32767" attributes="0"/>
-                  <Component id="txtCart" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="cmbCartao" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtNumParc" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnSave" min="-2" pref="89" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnLimpar" min="-2" pref="89" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="305" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="504" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txt" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <Component id="txt5" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <Component id="txt4" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <Component id="txt6" max="32767" attributes="0"/>
+                                  <Component id="cmbFormaPay" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtValor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="chooserData" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txt1" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <Component id="txt3" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <Component id="cmbCategoria" alignment="0" pref="220" max="32767" attributes="0"/>
+                                  <Component id="txtCart" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <Component id="cmbCartao" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtNumParc" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="399" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="btnLimpar1" min="-2" pref="89" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="305" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,15 +114,14 @@
                       <Component id="cmbCartao" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="btnSave" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="btnLimpar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="74" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSave" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="btnLimpar1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="218" max="32767" attributes="0"/>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -258,20 +266,6 @@
         <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnLimpar">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Limpar"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLimparMouseClicked"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JComboBox" name="cmbFormaPay">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -327,6 +321,20 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLimpar1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Limpar"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLimpar1MouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

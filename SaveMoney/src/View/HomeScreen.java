@@ -15,6 +15,7 @@ import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.logging.*;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -25,6 +26,8 @@ public final class HomeScreen extends javax.swing.JFrame {
 
     DisplayManager d = new DisplayManager();
     AccountController ac = new AccountController();
+    ExpenseController ec = new ExpenseController();
+    CardController c = new CardController();
     Account a = ac.getAccountByEmail(email1);
 
     String email = a.getEmail();
@@ -47,10 +50,10 @@ public final class HomeScreen extends javax.swing.JFrame {
         pnlCartoes.setVisible(false);
         pnlCategorias.setVisible(false);
         pnlDespesas.setVisible(false);
-        primeiroAcesso();
+        firstAccess();
     }
 
-    public void primeiroAcesso() {
+    public void firstAccess() {
         try {
             RevenueController rc = new RevenueController();
             Revenue rev = rc.getRevenueByAccountId(accId);
@@ -486,8 +489,6 @@ public final class HomeScreen extends javax.swing.JFrame {
         mouseResetButton();
         mouseClickedButton(pnlCartoes, txtCartoes);
 
-        CardController c = new CardController();
-
         try {
             Card card = c.getCardByAccountId(accId);
 
@@ -507,7 +508,13 @@ public final class HomeScreen extends javax.swing.JFrame {
         mouseClickedButton(pnlDespesas, txtDespesas);
 
         try {
-            d.openInternalFrame(desktop, new ExpenseScreen());
+            List<Expense> expense = ec.getExpenseListByAccountId(accId);
+
+            if (expense != null) {
+                d.openInternalFrame(desktop, new ExpenseViewScreen());
+            } else { // Se o usuário não tiver despesa
+                d.openInternalFrame(desktop, new ExpenseScreen());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -517,7 +524,7 @@ public final class HomeScreen extends javax.swing.JFrame {
         mouseResetButton();
         mouseClickedButton(pnlReceitas, txtReceitas);
 
-        primeiroAcesso();
+        firstAccess();
     }//GEN-LAST:event_pnlReceitasMouseClicked
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
@@ -594,7 +601,7 @@ public final class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel IconReceitas;
     private javax.swing.JPanel PainelLateral;
     private javax.swing.JPanel PainelTopo;
-    private javax.swing.JDesktopPane desktop;
+    public static javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel labelAvatar;
     private javax.swing.JLabel lblLogo;

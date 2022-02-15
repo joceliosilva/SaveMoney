@@ -5,8 +5,8 @@
  */
 package Model.Home;
 
-import Model.Entity.*;
 import Model.Enums.*;
+import Model.Enums.FormOfPayment.ExpenseStatus;
 import java.util.Date;
 
 /**
@@ -14,9 +14,10 @@ import java.util.Date;
  * @author Renan
  */
 public class Expense {
+    private Integer id;    
     private Integer accountId;
-    private Category categoryId;
-    private Card cardId;
+    private Integer categoryId;
+    private Integer cardId;
     private Double value;
     private Date date;
     private String description;
@@ -24,6 +25,14 @@ public class Expense {
     private Integer numberOfInstallments;
     private ExpenseStatus status;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public Integer getAccountId() {
         return accountId;
     }
@@ -32,19 +41,19 @@ public class Expense {
         this.accountId = accountId;
     }
 
-    public Category getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Category categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
-    public Card getCardId() {
+    public Integer getCardId() {
         return cardId;
     }
 
-    public void setCardId(Card cardId) {
+    public void setCardId(Integer cardId) {
         this.cardId = cardId;
     }
 

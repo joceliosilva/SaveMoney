@@ -7,8 +7,10 @@ package Controller;
 
 import DAO.*;
 import Model.Enums.*;
+import Model.Enums.FormOfPayment.ExpenseStatus;
 import Model.Home.Card;
 import Model.Home.Category;
+import Model.Home.Expense;
 import static View.Internal.ExpenseScreen.*;
 import java.sql.SQLException;
 import java.util.List;
@@ -83,5 +85,17 @@ public class ExpenseController {
             return totalValue;
         }
         return 0.00;
+    }
+    
+    public List<Expense> getExpenseListByAccountId(Integer accId) throws SQLException {
+        if (accId != null) {
+            List<Expense> exp = ExpenseDAO.getExpenseListByAccountId(accId);
+            
+            if (exp.size() > 0 && exp != null) {
+                return exp;
+            } 
+            return null;
+        }
+        return null;
     }
 }
