@@ -16,4 +16,4 @@
 ![diagrama-sequencia](https://user-images.githubusercontent.com/68862702/154163727-8b42e11c-050a-4aac-a2ee-62473b7bf361.png)
 
 ## Diagrama de Pacote
-![diagrama-sequencia](https://user-images.githubusercontent.com/68862702/154176936-d70fbb55-ca47-4b20-99fc-da6fb370c58a.png)
+<img width="432" alt="diagrama-pacote" src="https://user-images.githubusercontent.com/68862702/154177041-3c6c0d99-7360-4ba2-a8e7-61b4cbecd929.png">
