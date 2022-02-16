@@ -17,3 +17,6 @@
 
 ## Diagrama de Pacote
 <img width="1200" height="400" alt="diagrama-pacote" src="https://user-images.githubusercontent.com/68862702/154177041-3c6c0d99-7360-4ba2-a8e7-61b4cbecd929.png">
+
+## Diagrama Máquina Estado ou Transição de Estado
+<img width="1200" height="400" alt="diagrama-maquina-estado" src="https://user-images.githubusercontent.com/68862702/154374863-71128584-126b-4ed2-9026-ee8beb4ab33b.png">
