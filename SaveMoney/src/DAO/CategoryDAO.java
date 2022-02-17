@@ -125,4 +125,23 @@ public class CategoryDAO {
             conexao.close();
         }
     }
+    
+    public static boolean deleteCategory(Integer id) throws SQLException {
+        String sql = "delete from Category where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao apagar categoria: " + e);
+            return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }
