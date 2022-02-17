@@ -112,4 +112,23 @@ public class AccountDAO {
         }
         return null;
     }
+    
+    public static boolean deleteAccount(Integer id) throws SQLException {
+        String sql = "delete from Account where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao apagar conta: " + e);
+            return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }
