@@ -57,4 +57,11 @@ public class CategoryController {
         }
         return null;
     }
+    
+    public boolean deleteCategory(Integer id) throws SQLException {
+        if (id != null) {
+            return CategoryDAO.deleteCategory(id);
+        }
+        return false;
+    }
 }
