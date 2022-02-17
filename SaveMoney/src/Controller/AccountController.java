@@ -43,4 +43,11 @@ public class AccountController {
         
         return null;
     }
+     
+    public boolean deleteAccount(Integer id) throws SQLException {
+        if (id != null) {
+            return AccountDAO.AccountExpense(id);
+        }
+        return false;
+    }
 }
