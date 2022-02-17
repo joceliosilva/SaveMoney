@@ -36,4 +36,11 @@ public class RevenueController {
     public void getMonthList(JComboBox com) {
         com.setModel(new DefaultComboBoxModel<>(Enums.Month.values()));
     }
+    
+    public boolean deleteRevenue(Integer id) throws SQLException {
+        if (id != null) {
+            return RevenueDAO.deleteRevenue(id);
+        }
+        return false;
+    }
 }
