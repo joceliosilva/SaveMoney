@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
  * @author Renan
  */
 public class ExpenseDAO {
+
     private static Connection conexao = null;
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
@@ -31,7 +32,7 @@ public class ExpenseDAO {
     }
 
     public static boolean createExpense(Integer accountId, Integer categoryId, Integer cardId, Double value, String date, String description, Integer formOfPayment, Integer numberOfInstallments, Integer status) throws SQLException {
-    
+
         String sql = "insert into Expense "
                 + "(AccountId,CategoryId,CardId,Value,Date,Description,FormOfPayment,NumberOfInstallments, Status)"
                 + " values (?,?," + cardId + ",?,'" + date + "',?,?,?,?)";
@@ -58,7 +59,7 @@ public class ExpenseDAO {
             conexao.close();
         }
     }
-    
+
     public static List<Double> getExpenseValueListByAccountId(Integer accId) throws SQLException {
         String sql = "select * from Expense where AccountId = ? And Status = 1;";
         conexao = new ConnectionDB().getConnection();
@@ -83,7 +84,7 @@ public class ExpenseDAO {
             conexao.close();
         }
     }
-    
+
     public static List<Expense> getExpenseListByAccountId(Integer accId) throws SQLException {
         String sql = "select * from Expense where AccountId = ?";
         conexao = new ConnectionDB().getConnection();
@@ -98,14 +99,14 @@ public class ExpenseDAO {
 
             while (rs.next()) {
                 Expense e = new Expense();
-                
+
                 FormOfPayment pay = FormOfPayment.CREDITO;
                 pay = pay.findFormOfPayment(rs.getInt("FormOfPayment"));
-                
+
                 ExpenseStatus status = ExpenseStatus.PAGO;
                 status = status.findStatus(rs.getInt("Status"));
-                
-                e.setId(rs.getInt("Id")); 
+
+                e.setId(rs.getInt("Id"));
                 e.setAccountId(rs.getInt("AccountId"));
                 e.setCategoryId(rs.getInt("CategoryId"));
                 e.setCardId(rs.getInt("CardId"));
@@ -115,7 +116,7 @@ public class ExpenseDAO {
                 e.setNumberOfInstallments(rs.getInt("NumberOfInstallments"));
                 e.setFormOfPayment(pay);
                 e.setStatus(status);
-                
+
                 values.add(e);
             }
             return values;
@@ -126,5 +127,24 @@ public class ExpenseDAO {
             ps.close();
             conexao.close();
         }
-    }    
+    }
+
+    public static boolean deleteExpense(Integer id) throws SQLException {
+        String sql = "delete from Expense where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao apagar despesa: " + e);
+            return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }

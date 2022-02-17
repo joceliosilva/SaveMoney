@@ -98,4 +98,31 @@ public class CategoryDAO {
             conexao.close();
         }
     }
+
+    public static Category getCategoryById(Integer catId) throws SQLException {
+        String sql = "select * from Category where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        Category cat = null;
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, catId);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cat = new Category(rs.getInt("Id"), rs.getString("Name"));
+            }
+
+            return cat;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao procurar categoria: " + e);
+            return null;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }

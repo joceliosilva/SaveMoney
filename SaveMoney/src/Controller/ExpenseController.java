@@ -57,9 +57,7 @@ public class ExpenseController {
             if (accountId != null && card != null && value != null && date != null && (numberOfInstallments != null && numberOfInstallments > 0)) {
                 return ExpenseDAO.createExpense(accountId, categoryId, card.getId(), value, date, description, formOfPayment.getNum(), numberOfInstallments, status.getNum());
             }
-        }
-
-        if (formOfPayment == formOfPayment.DINHEIRO) {
+        } else {
             if (accountId != null && value != null && date != null && (numberOfInstallments != null && numberOfInstallments > 0)) {
                 return ExpenseDAO.createExpense(accountId, categoryId, null, value, date, description, formOfPayment.getNum(), numberOfInstallments, status.getNum());
             }
@@ -75,27 +73,34 @@ public class ExpenseController {
         if (accId != null) {
             List<Double> values = ExpenseDAO.getExpenseValueListByAccountId(accId);
             Double totalValue = 0.00;
-            
+
             if (values.size() > 0 && values != null) {
-                for(Double val : values){
+                for (Double val : values) {
                     totalValue += val;
                 }
                 return totalValue;
-            } 
+            }
             return totalValue;
         }
         return 0.00;
     }
-    
+
     public List<Expense> getExpenseListByAccountId(Integer accId) throws SQLException {
         if (accId != null) {
             List<Expense> exp = ExpenseDAO.getExpenseListByAccountId(accId);
-            
+
             if (exp.size() > 0 && exp != null) {
                 return exp;
-            } 
+            }
             return null;
         }
         return null;
+    }
+
+    public boolean deleteExpense(Integer id) throws SQLException {
+        if (id != null) {
+            return ExpenseDAO.deleteExpense(id);
+        }
+        return false;
     }
 }

@@ -28,26 +28,33 @@ public class CategoryController {
 
     public Category getCategoryByName(String name) throws SQLException {
         if (!name.isEmpty()) {
-            
+
             Category cat = CategoryDAO.getCategoryByName(name);
-            
+
             return cat;
         }
         return null;
     }
-    
+
     public boolean getcategoryList(JComboBox com, Integer accountId) throws SQLException { // ADD na ComboBox
         if (accountId != null) { // accId usar futuramente
             List<String> catList = CategoryDAO.getcategoryList();
 
             if (catList.size() > 0 && catList != null) {
-                for(String cat : catList){
+                for (String cat : catList) {
                     com.addItem(cat);
                 }
                 return true;
-            } 
+            }
             return false;
-        }        
+        }
         return false;
+    }
+
+    public Category getCategoryById(Integer catId) throws SQLException {
+        if (catId != null) {
+            return CategoryDAO.getCategoryById(catId);
+        }
+        return null;
     }
 }

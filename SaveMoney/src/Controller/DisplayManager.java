@@ -1,8 +1,5 @@
 package Controller;
 
-import View.Internal.CardsScreen;
-import View.Internal.CategoryScreen;
-import View.Internal.ExpenseScreen;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JDesktopPane;

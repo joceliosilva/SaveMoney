@@ -29,22 +29,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="btnClose" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="IconCategoria2" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnCreate" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="IconCategoria1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnEdit" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="IconCategoria3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
-                      <Component id="IconCategoria4" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnSearch" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextField1" max="32767" attributes="0"/>
+                      <Component id="txtBusca" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="848" max="-2" attributes="0"/>
               </Group>
@@ -58,19 +58,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="IconCategoria4" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="IconCategoria2" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnSearch" alignment="1" pref="40" max="32767" attributes="0"/>
+                          <Component id="btnCreate" alignment="1" pref="40" max="32767" attributes="0"/>
+                          <Component id="txtBusca" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnClose" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="IconCategoria3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="IconCategoria1" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnDelete" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnEdit" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -82,7 +82,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="btnClose">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Images/icons8_Close_32px.png"/>
@@ -92,7 +92,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCloseMouseClicked"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -111,13 +111,13 @@
               <Table columnCount="10" rowCount="0">
                 <Column editable="false" title="Id" type="java.lang.Object"/>
                 <Column editable="false" title="Conta" type="java.lang.Object"/>
-                <Column editable="false" title="Cartao" type="java.lang.Object"/>
+                <Column editable="false" title="Cart&#xe3;o" type="java.lang.Object"/>
                 <Column editable="false" title="Categoria" type="java.lang.Object"/>
                 <Column editable="false" title="Valor" type="java.lang.Object"/>
                 <Column editable="false" title="Data" type="java.lang.Object"/>
                 <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
-                <Column editable="false" title="Num.Parcelas " type="java.lang.Object"/>
-                <Column editable="true" title="forma de Pag." type="java.lang.Object"/>
+                <Column editable="false" title="Num. Parcelas " type="java.lang.Object"/>
+                <Column editable="true" title="Forma de Pag." type="java.lang.Object"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -185,9 +185,9 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtBusca">
     </Component>
-    <Component class="javax.swing.JLabel" name="IconCategoria4">
+    <Component class="javax.swing.JLabel" name="btnSearch">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -198,7 +198,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="IconCategoria1">
+    <Component class="javax.swing.JLabel" name="btnEdit">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -208,8 +208,11 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEditMouseClicked"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="IconCategoria2">
+    <Component class="javax.swing.JLabel" name="btnCreate">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -220,10 +223,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="IconCategoria2MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCreateMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="IconCategoria3">
+    <Component class="javax.swing.JLabel" name="btnDelete">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -233,6 +236,9 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDeleteMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

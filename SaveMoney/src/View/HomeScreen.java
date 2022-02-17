@@ -513,7 +513,7 @@ public final class HomeScreen extends javax.swing.JFrame {
             if (expense != null) {
                 d.openInternalFrame(desktop, new ExpenseFullScreen());
             } else { // Se o usuário não tiver despesa
-                d.openInternalFrame(desktop, new ExpenseScreen());
+                d.openInternalFrame(desktop, new ExpenseScreen(false)); // isUpdate
             }
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
