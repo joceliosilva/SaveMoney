@@ -79,5 +79,24 @@ public class RevenueDAO {
             ps.close();
             conexao.close();
         }
-    }    
+    }   
+    
+    public static boolean deleteRevenue(Integer id) throws SQLException {
+        String sql = "delete from Revenue where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao apagar receita: " + e);
+            return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }
