@@ -5,7 +5,9 @@
 package Controller;
 
 import DAO.CategoryDAO;
+import Model.Entity.Account;
 import Model.Home.Category;
+import static View.LoginScreen.email1;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -36,19 +38,18 @@ public class CategoryController {
         return null;
     }
 
-    public boolean getcategoryList(JComboBox com, Integer accountId) throws SQLException { // ADD na ComboBox
+    public List<Category> getcategoryList(Integer accountId) throws SQLException { // ADD na ComboBox
         if (accountId != null) { // accId usar futuramente
-            List<String> catList = CategoryDAO.getcategoryList();
+            List<Category> catList = CategoryDAO.getcategoryList();
 
-            if (catList.size() > 0 && catList != null) {
-                for (String cat : catList) {
-                    com.addItem(cat);
+            if (catList != null) {
+                if (catList.size() > 0) {
+                    return catList;
                 }
-                return true;
             }
-            return false;
+            return null;
         }
-        return false;
+        return null;
     }
 
     public Category getCategoryById(Integer catId) throws SQLException {
@@ -57,11 +58,25 @@ public class CategoryController {
         }
         return null;
     }
-    
+
     public boolean deleteCategory(Integer id) throws SQLException {
         if (id != null) {
             return CategoryDAO.deleteCategory(id);
         }
         return false;
+    }
+
+    public void getcategoryNameList(JComboBox cbb) throws SQLException {
+        if (cbb != null) {
+            AccountController ac = new AccountController();
+            String email = email1;
+            Account account = ac.getAccountByEmail(email);
+
+            List<Category> catList = getcategoryList(account.getId());
+
+            for (Category cat : catList) { // Adiciona na combobox
+                cbb.addItem(cat.getName());
+            }
+        }
     }
 }

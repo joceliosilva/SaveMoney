@@ -74,7 +74,7 @@ public class CategoryDAO {
         }
     }
 
-    public static List<String> getcategoryList() throws SQLException {
+    public static List<Category> getcategoryList() throws SQLException {
         String sql = "select * from Category"; // Filtrar categorias pela conta do usuario
         conexao = new ConnectionDB().getConnection();
 
@@ -83,10 +83,14 @@ public class CategoryDAO {
 
             rs = ps.executeQuery();
 
-            List<String> catList = new ArrayList();
+            List<Category> catList = new ArrayList<>();
 
             while (rs.next()) {
-                catList.add(rs.getString("Name"));
+                Category c = new Category();
+                c.setId(rs.getInt("Id"));
+                c.setName(rs.getString("Name"));
+
+                catList.add(c);
             }
             return catList;
 
@@ -125,7 +129,7 @@ public class CategoryDAO {
             conexao.close();
         }
     }
-    
+
     public static boolean deleteCategory(Integer id) throws SQLException {
         String sql = "delete from Category where Id = ?";
         conexao = new ConnectionDB().getConnection();
