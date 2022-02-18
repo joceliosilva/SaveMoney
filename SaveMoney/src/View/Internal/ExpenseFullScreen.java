@@ -93,7 +93,7 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
         jTExpense = new javax.swing.JTable();
         txtBusca = new javax.swing.JTextField();
         btnSearch = new javax.swing.JLabel();
-        btnEdit = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JLabel();
         btnCreate = new javax.swing.JLabel();
         btnDelete = new javax.swing.JLabel();
 
@@ -131,12 +131,12 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CRUD/icons8_search_32px_1.png"))); // NOI18N
         btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CRUD/icons8_edit_32px.png"))); // NOI18N
-        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CRUD/icons8_edit_32px.png"))); // NOI18N
+        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEditMouseClicked(evt);
+                btnUpdateMouseClicked(evt);
             }
         });
 
@@ -172,7 +172,7 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(295, 295, 295)
@@ -198,7 +198,7 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(94, Short.MAX_VALUE))
@@ -219,7 +219,7 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnCreateMouseClicked
 
-    private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
         try {
             if (jTExpense.getSelectedRow() != -1) {
                 d.openInternalFrame(desktop, new ExpenseScreen(true)); // true = Update / false = Create
@@ -229,7 +229,7 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(ExpenseFullScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnEditMouseClicked
+    }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         if (jTExpense.getSelectedRow() != -1) {
@@ -262,8 +262,8 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
     private javax.swing.JLabel btnClose;
     private javax.swing.JLabel btnCreate;
     private javax.swing.JLabel btnDelete;
-    private javax.swing.JLabel btnEdit;
     private javax.swing.JLabel btnSearch;
+    private javax.swing.JLabel btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTExpense;
     private javax.swing.JTextField txtBusca;

@@ -25,21 +25,28 @@ public class RevenueController {
         }
         return false;
     }
-    
+
     public Revenue getRevenueByAccountId(Integer accId) throws SQLException {
         if (accId != null) {
             return RevenueDAO.getRevenueByAccountId(accId);
         }
         return null;
     }
-    
+
     public void getMonthList(JComboBox com) {
         com.setModel(new DefaultComboBoxModel<>(Enums.Month.values()));
     }
-    
+
     public boolean deleteRevenue(Integer id) throws SQLException {
         if (id != null) {
             return RevenueDAO.deleteRevenue(id);
+        }
+        return false;
+    }
+
+    public boolean updateValueRevenue(Double value, Integer id) throws SQLException {
+        if (value != null) {
+            return RevenueDAO.updateValueRevenue(value, id);
         }
         return false;
     }

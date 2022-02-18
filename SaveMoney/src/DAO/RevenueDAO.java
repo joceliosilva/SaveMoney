@@ -99,4 +99,24 @@ public class RevenueDAO {
             conexao.close();
         }
     }
+
+    public static boolean updateValueRevenue(Double valor, Integer id) throws SQLException{
+        String sql = "update Revenue set Value = ? where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setDouble(1, valor);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar o saldo da receita: " + e);
+            return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }

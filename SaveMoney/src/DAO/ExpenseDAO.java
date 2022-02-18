@@ -8,6 +8,7 @@ package DAO;
 import Connection.ConnectionDB;
 import Model.Enums.FormOfPayment;
 import Model.Enums.FormOfPayment.ExpenseStatus;
+import Model.Home.Category;
 import Model.Home.Expense;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,10 +33,9 @@ public class ExpenseDAO {
     }
 
     public static boolean createExpense(Integer accountId, Integer categoryId, Integer cardId, Double value, String date, String description, Integer formOfPayment, Integer numberOfInstallments, Integer status) throws SQLException {
-
-        String sql = "insert into Expense "
-                + "(AccountId,CategoryId,CardId,Value,Date,Description,FormOfPayment,NumberOfInstallments, Status)"
+        String sql = "insert into Expense (AccountId,CategoryId,CardId,Value,Date,Description,FormOfPayment,NumberOfInstallments, Status)"
                 + " values (?,?," + cardId + ",?,'" + date + "',?,?,?,?)";
+
         conexao = new ConnectionDB().getConnection();
         try {
             ps = conexao.prepareStatement(sql);
@@ -55,8 +55,7 @@ public class ExpenseDAO {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar despesa: " + e);
             return false;
         } finally {
-            ps.close();
-            conexao.close();
+            ConnectionDB.closeConnection(conexao, ps);
         }
     }
 
@@ -145,6 +144,34 @@ public class ExpenseDAO {
         } finally {
             ps.close();
             conexao.close();
+        }
+    }
+
+    public static boolean updateExpense(Integer id, Integer accountId, Integer categoryId, Integer cardId, Double value, String date, String description, Integer formOfPayment, Integer numberOfInstallments, Integer status) throws SQLException {
+        String sql = "update Expense set AccountId = ?,CategoryId = ?,CardId = " + cardId + ",Value = ?,"
+                + "Date = '" + date + "',Description = ?,FormOfPayment = ?,NumberOfInstallments = ?, Status = ? where Id = ?";
+
+        conexao = new ConnectionDB().getConnection();
+        try {
+            ps = conexao.prepareStatement(sql);
+
+            ps.setInt(1, accountId);
+            ps.setInt(2, categoryId);
+            ps.setDouble(3, value);
+            ps.setString(4, description);
+            ps.setInt(5, formOfPayment);
+            ps.setInt(6, numberOfInstallments);
+            ps.setInt(7, status);
+            ps.setInt(8, id);
+
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar despesa: " + e);
+            return false;
+        } finally {
+            ConnectionDB.closeConnection(conexao, ps);
         }
     }
 }

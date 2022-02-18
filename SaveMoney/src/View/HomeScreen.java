@@ -506,18 +506,12 @@ public final class HomeScreen extends javax.swing.JFrame {
         txtTitulo.setText("Despesas");
         mouseResetButton();
         mouseClickedButton(pnlDespesas, txtDespesas);
-
         try {
-            List<Expense> expense = ec.getExpenseListByAccountId(accId);
-
-            if (expense != null) {
-                d.openInternalFrame(desktop, new ExpenseFullScreen());
-            } else { // Se o usuário não tiver despesa
-                d.openInternalFrame(desktop, new ExpenseScreen(false)); // isUpdate
-            }
+            d.openInternalFrame(desktop, new ExpenseFullScreen());
         } catch (SQLException ex) {
             Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_pnlDespesasMouseClicked
 
     private void pnlReceitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlReceitasMouseClicked
@@ -605,10 +599,10 @@ public final class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel labelAvatar;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JPanel pnlCartoes;
-    private javax.swing.JPanel pnlCategorias;
+    public static javax.swing.JPanel pnlCartoes;
+    public static javax.swing.JPanel pnlCategorias;
     private javax.swing.JPanel pnlConfig;
-    private javax.swing.JPanel pnlDespesas;
+    public static javax.swing.JPanel pnlDespesas;
     private javax.swing.JPanel pnlLogo;
     private javax.swing.JPanel pnlLogout;
     private javax.swing.JPanel pnlReceitas;

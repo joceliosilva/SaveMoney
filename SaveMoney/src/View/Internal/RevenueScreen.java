@@ -10,6 +10,7 @@ import Controller.DisplayManager;
 import Controller.RevenueController;
 import Model.Entity.Account;
 import Model.Enums.*;
+import static View.HomeScreen.*;
 import static View.LoginScreen.email1;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -176,10 +177,17 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
 
             if (sucesso) {
                 JOptionPane.showMessageDialog(null, "Receita salva com sucesso!");
+                pnlCartoes.setVisible(true);
+                pnlCategorias.setVisible(true);
+                pnlDespesas.setVisible(true);
+                this.dispose();
+                d.openInternalFrame(desktop, new DashboardScreen());
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
         } catch (SQLException ex) {
+            Logger.getLogger(RevenueScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(RevenueScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
 

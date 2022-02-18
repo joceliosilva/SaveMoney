@@ -38,7 +38,7 @@
                   <Group type="102" attributes="0">
                       <Component id="btnCreate" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnEdit" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnUpdate" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnDelete" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
@@ -70,7 +70,7 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnDelete" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="btnEdit" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnUpdate" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -198,7 +198,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="btnEdit">
+    <Component class="javax.swing.JLabel" name="btnUpdate">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -209,7 +209,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEditMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnUpdateMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="btnCreate">
