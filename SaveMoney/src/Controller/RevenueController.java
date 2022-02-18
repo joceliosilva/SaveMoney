@@ -18,7 +18,7 @@ import javax.swing.JComboBox;
  */
 public class RevenueController {
 
-    public boolean createRevenue(Integer accountId, Double value, Integer referenceMonth, String date, String description) throws SQLException { //FUNÇÃO PARA ADD CARD
+    public boolean createRevenue(Integer accountId, Double value, Integer referenceMonth, String date, String description) throws SQLException {
         if (accountId != null && value != null && referenceMonth != null && date != null) {
             RevenueDAO.createRevenue(accountId, value, referenceMonth, date, description);
             return true;
@@ -47,6 +47,14 @@ public class RevenueController {
     public boolean updateValueRevenue(Double value, Integer id) throws SQLException {
         if (value != null) {
             return RevenueDAO.updateValueRevenue(value, id);
+        }
+        return false;
+    }
+
+    public boolean updateRevenue(Integer id, Integer accountId, Double value, Integer referenceMonth, String date, String description) throws SQLException {
+        if (id != null && accountId != null && value != null && referenceMonth != null && date != null) {
+            RevenueDAO.updateRevenue(id, accountId, value, referenceMonth, date, description);
+            return true;
         }
         return false;
     }

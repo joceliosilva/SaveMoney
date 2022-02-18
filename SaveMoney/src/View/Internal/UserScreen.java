@@ -333,9 +333,10 @@ public class UserScreen extends javax.swing.JInternalFrame {
                 } else {
                     boolean sucesso = ac.deleteAccount(account.getId());
                     if (sucesso) {
-                        JOptionPane.showMessageDialog(null, "Conta excluida com sucesso!");
+                        JOptionPane.showMessageDialog(null, "Conta excluida com sucesso!"
+                                + "\nO programa será fechado!");
                         this.dispose();
-                        d.openFrame(new LoginScreen());
+                        System.exit(0);
                     } else {
                         JOptionPane.showMessageDialog(null, "Não foi possível excluir a conta!");
                     }

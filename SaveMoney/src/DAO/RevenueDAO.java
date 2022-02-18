@@ -119,4 +119,28 @@ public class RevenueDAO {
             conexao.close();
         }
     }
+    
+    public static boolean updateRevenue(Integer id, Integer accountId, Double value, Integer referenceMonth, String date, String description) throws SQLException {
+        String sql = "update Revenue set AccountId = ?,Value = ?,ReferenceMonth = ?,Date = '" + date + "',Description = ? where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+        try {
+            ps = conexao.prepareStatement(sql);
+
+            ps.setInt(1, accountId);
+            ps.setDouble(2, value);
+            ps.setInt(3, referenceMonth);
+            ps.setString(4, description);
+            ps.setInt(5, id);
+
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar a receita: " + e);
+            return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }
