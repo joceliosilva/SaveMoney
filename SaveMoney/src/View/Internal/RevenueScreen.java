@@ -66,6 +66,7 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
         txt7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnSave1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -104,7 +105,7 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
                 btnSaveMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 100, 40));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, 100, 40));
 
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLimpar.setText("Limpar");
@@ -114,7 +115,7 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
                 btnLimparMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 100, 40));
+        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 100, 40));
 
         jPanel1.add(cmbreferenceMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 210, 30));
 
@@ -148,11 +149,21 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
         jLabel3.setText("Cadastre uma receita para o mês atual!");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
+        btnSave1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSave1.setText("Atualizar");
+        btnSave1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSave1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, 100, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1063, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,10 +214,15 @@ public class RevenueScreen extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void btnSave1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSave1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSave1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSave1;
     private com.toedter.calendar.JDateChooser chooserData;
     private javax.swing.JComboBox<Month> cmbreferenceMonth;
     private javax.swing.JLabel jLabel1;

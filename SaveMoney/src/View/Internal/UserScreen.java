@@ -7,16 +7,20 @@ package View.Internal;
 
 import Controller.AccountController;
 import Controller.CardController;
+import Controller.CategoryController;
 import Controller.DisplayManager;
+import Controller.ExpenseController;
+import Controller.RevenueController;
 import Model.Entity.*;
 import Model.Enums.*;
+import Model.Home.Card;
+import Model.Home.Expense;
+import Model.Home.Revenue;
 import View.HomeScreen;
-import static View.HomeScreen.labelAvatar;
+import View.LoginScreen;
 import static View.LoginScreen.avatar;
-import View.RegisterScreen;
-import static View.RegisterScreen.ResizeImage;
+import static View.LoginScreen.email1;
 import static View.RegisterScreen.imgPath;
-import static View.RegisterScreen.labelLocalFile;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
@@ -24,6 +28,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -38,18 +43,24 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class UserScreen extends javax.swing.JInternalFrame {
 
+    ExpenseController exp = new ExpenseController();
     AccountController ac = new AccountController();
+    CardController c = new CardController();
+    CategoryController cat = new CategoryController();
+    CardController cc = new CardController();
+    RevenueController rc = new RevenueController();
     DisplayManager d = new DisplayManager();
 
     public UserScreen() throws Exception {
         initComponents();
-        blobToImage(avatar,labelAvatar1);
+        blobToImage(avatar, labelAvatar1);
         setInfo();
         btnSelect.setVisible(false);
         txtName.setEditable(false);
         txtEmail.setEditable(false);
         btnSave.setVisible(false);
     }
+
     public static void blobToImage(Blob blobBD, JLabel label) throws Exception {
         //Converte blob em Image
         byte[] image = blobBD.getBytes(1, (int) blobBD.length());
@@ -63,17 +74,16 @@ public class UserScreen extends javax.swing.JInternalFrame {
         label.setIcon(imageIcon);
     }
 
-    public final void setInfo() throws SQLException{
-          String email = HomeScreen.txtEmail.getText();
-            Account accountId = ac.getAccountByEmail(email);
+    public final void setInfo() throws SQLException {
+        String email = HomeScreen.txtEmail.getText();
+        Account accountId = ac.getAccountByEmail(email);
 
-
-            txtName.setText(ac.getAccountByEmail(email).getFullName());
-            txtEmail.setText(ac.getAccountByEmail(email).getEmail());
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            Date data = ac.getAccountByEmail(email).getCeationDate();
-            String dataFormatada = sdf.format(data);
-            txtDate.setText(dataFormatada);
+        txtName.setText(ac.getAccountByEmail(email).getFullName());
+        txtEmail.setText(ac.getAccountByEmail(email).getEmail());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date data = ac.getAccountByEmail(email).getCeationDate();
+        String dataFormatada = sdf.format(data);
+        txtDate.setText(dataFormatada);
     }
 
     /**
@@ -93,7 +103,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
         txtDespesas1 = new javax.swing.JLabel();
         txtDespesas2 = new javax.swing.JLabel();
         txtDespesas4 = new javax.swing.JLabel();
-        btnLimpar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labelAvatar1 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
@@ -105,7 +115,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
 
         btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEdit.setText("EDITAR");
-        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditMouseClicked(evt);
@@ -137,17 +147,17 @@ public class UserScreen extends javax.swing.JInternalFrame {
         txtDespesas4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas4.setText("Data de Criação:");
 
-        btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnLimpar.setText("EXCLUIR CONTA");
-        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLimpar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExcluir.setText("EXCLUIR CONTA");
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLimparMouseClicked(evt);
+                btnExcluirMouseClicked(evt);
             }
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Close_32px.png"))); // NOI18N
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -161,7 +171,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
 
         btnSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSave.setText("SALVAR");
-        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
@@ -173,7 +183,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
         btnSelect.setForeground(new java.awt.Color(213, 220, 224));
         btnSelect.setText("Selecionar");
         btnSelect.setBorder(null);
-        btnSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSelect.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSelectMouseClicked(evt);
@@ -189,10 +199,6 @@ public class UserScreen extends javax.swing.JInternalFrame {
         pnlFundo.setLayout(pnlFundoLayout);
         pnlFundoLayout.setHorizontalGroup(
             pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFundoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
             .addGroup(pnlFundoLayout.createSequentialGroup()
                 .addGap(244, 244, 244)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,22 +212,23 @@ public class UserScreen extends javax.swing.JInternalFrame {
                             .addGroup(pnlFundoLayout.createSequentialGroup()
                                 .addComponent(labelAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(339, 339, Short.MAX_VALUE))
+                        .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(60, 60, 60))
+            .addGroup(pnlFundoLayout.createSequentialGroup()
+                .addGap(281, 281, 281)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlFundoLayout.setVerticalGroup(
             pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,12 +254,12 @@ public class UserScreen extends javax.swing.JInternalFrame {
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtDate)
                     .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
+                .addGap(98, 98, 98)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,17 +277,74 @@ public class UserScreen extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
-
-            txtName.setEditable(true);
-            txtEmail.setEditable(true);
-            btnLimpar.setVisible(false);
-            btnSave.setVisible(true);
-            btnSelect.setVisible(true);
+        txtName.setEditable(true);
+        txtEmail.setEditable(true);
+        btnExcluir.setVisible(false);
+        btnSave.setVisible(true);
+        btnSelect.setVisible(true);
     }//GEN-LAST:event_btnEditMouseClicked
 
-    private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
+    private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
+        try {
+            Account account = ac.getAccountByEmail(email1);
 
-    }//GEN-LAST:event_btnLimparMouseClicked
+            int count = 0;
+            int countDesp = 0;
+            int delete = JOptionPane.showConfirmDialog(this, "Você irá apagar a conta, quer continuar?", "Excluir", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (delete == JOptionPane.YES_OPTION) {
+                Card card = cc.getCardByAccountId(account.getId());
+                Revenue revenue = rc.getRevenueByAccountId(account.getId());
+                List<Expense> expense = exp.getExpenseListByAccountId(account.getId());
+
+                if (card != null) {
+                    if (card.getAccountId() == account.getId()) {
+                        JOptionPane.showMessageDialog(null, "Você não pode excluir a conta!"
+                                + "\n Existe um cartão cadastrado!");
+                        count++;
+                    }
+                }
+
+                if (count == 0) {
+                    if (revenue != null) {
+                        if (revenue.getAccountId() == account.getId()) {
+                            JOptionPane.showMessageDialog(null, "Você não pode excluir a conta!"
+                                    + "\n Existe uma receita cadastrada!");
+                            count++;
+                        }
+                    }
+                }
+
+                if (count == 0) {
+                    if (expense != null) {
+                        if (expense.size() > 0) {
+                            for (Expense e : expense) {
+                                countDesp++;
+                            }
+                        }
+                    }
+                }
+
+                if (countDesp > 0) {
+                    JOptionPane.showMessageDialog(null, "Você não pode excluir a conta!"
+                            + "\nEla está cadastrada em " + countDesp + " Despesa(s)!");
+                } else if (count > 0) {
+                    
+                } else {
+                    boolean sucesso = ac.deleteAccount(account.getId());
+                    if (sucesso) {
+                        JOptionPane.showMessageDialog(null, "Conta excluida com sucesso!");
+                        this.dispose();
+                        d.openFrame(new LoginScreen());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Não foi possível excluir a conta!");
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CardsScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnExcluirMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         this.dispose();
@@ -301,7 +365,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSelect;
     private javax.swing.JLabel jLabel1;
@@ -315,8 +379,8 @@ public class UserScreen extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
-     public static void selectFile1() {
-         JFileChooser fc = new JFileChooser();
+    public static void selectFile1() {
+        JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fc.setDialogTitle("Selecionar avatar");
         fc.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*png, jpg, jpeg)", "png", "jpg", "jpeg")); //SELECIONA O FILTRO DE ARQUIVOS
@@ -338,23 +402,23 @@ public class UserScreen extends javax.swing.JInternalFrame {
             ImageIcon imageIcon = new ImageIcon(newimg);
 
             //Seta a imagem ao componente JLabel
-              labelAvatar1.setIcon(ResizeImage(imgPath,null));
-        }else{
+            labelAvatar1.setIcon(ResizeImage(imgPath, null));
+        } else {
             imgPath = null;
         }
-     }
+    }
 
-     public static ImageIcon ResizeImage(String ImagePath, byte [] pic) {
-       ImageIcon Img = null;
+    public static ImageIcon ResizeImage(String ImagePath, byte[] pic) {
+        ImageIcon Img = null;
 
-       if(ImagePath != null){
-           Img = new ImageIcon(ImagePath);
-       } else{
-           Img = new ImageIcon("/Images/user.png");
-       }
-       Image img = Img.getImage();
-       Image newImg = img.getScaledInstance(labelAvatar1.getWidth(), labelAvatar1.getHeight(), Image.SCALE_SMOOTH);
-       ImageIcon image = new ImageIcon(newImg);
-       return image;
+        if (ImagePath != null) {
+            Img = new ImageIcon(ImagePath);
+        } else {
+            Img = new ImageIcon("/Images/user.png");
+        }
+        Image img = Img.getImage();
+        Image newImg = img.getScaledInstance(labelAvatar1.getWidth(), labelAvatar1.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
     }
 }

@@ -140,6 +140,8 @@ public class CardViewScreen extends javax.swing.JInternalFrame {
         txtDespesas5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas5.setText("Valor Atual (Fatura)");
         jPanel1.add(txtDespesas5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
+
+        txtAnnualValue.setEditable(false);
         jPanel1.add(txtAnnualValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 230, 30));
 
         chosserClosingDate.setDateFormatString("dd-MM-yyyy ");
