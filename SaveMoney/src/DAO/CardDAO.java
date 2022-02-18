@@ -138,9 +138,9 @@ public class CardDAO {
             ps.setInt(1, accountId);
 
             rs = ps.executeQuery();
-            
+
             List<Integer> cardList = new ArrayList();
-            
+
             while (rs.next()) {
                 cardList.add(rs.getInt("Number"));
             }
@@ -154,7 +154,7 @@ public class CardDAO {
             conexao.close();
         }
     }
-    
+
     public static boolean deleteCard(Integer id) throws SQLException {
         String sql = "delete from Card where Id = ?";
         conexao = new ConnectionDB().getConnection();
@@ -168,6 +168,31 @@ public class CardDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao apagar cartão: " + e);
             return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+
+    public static void updateCard(Integer id, Integer accountId, Integer number, Integer type, Integer flag, Double limit, Double annualValue, String closingDate) throws SQLException {
+        String sql = "update Card set AccountId = ?,Number = ?,Type = ?,Flag = ?,"
+                + "CardLimit = ?,AnnualValue = ?,ClosingDate = '" + closingDate + "' where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+        try {
+            ps = conexao.prepareStatement(sql);
+
+            ps.setInt(1, accountId);
+            ps.setInt(2, number);
+            ps.setInt(3, type);
+            ps.setInt(4, flag);
+            ps.setDouble(5, limit);
+            ps.setDouble(6, annualValue);
+            ps.setInt(7, id);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar cartão: " + e);
         } finally {
             ps.close();
             conexao.close();

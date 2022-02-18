@@ -50,20 +50,19 @@ public class CardsScreen extends javax.swing.JInternalFrame {
         cmbType = new javax.swing.JComboBox<>();
         txtNumber = new javax.swing.JTextField();
         txtLimit = new javax.swing.JTextField();
-        txtAnnualValue = new javax.swing.JTextField();
         chosserClosingDate = new com.toedter.calendar.JDateChooser();
         txtDespesas = new javax.swing.JLabel();
         txtDespesas1 = new javax.swing.JLabel();
         txtDespesas2 = new javax.swing.JLabel();
         txtDespesas3 = new javax.swing.JLabel();
         txtDespesas4 = new javax.swing.JLabel();
-        txtDespesas5 = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setBorder(null);
 
         pnlFundo.setBackground(new java.awt.Color(30, 30, 60));
+        pnlFundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnSaveCard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSaveCard.setText("Salvar");
@@ -73,44 +72,51 @@ public class CardsScreen extends javax.swing.JInternalFrame {
                 btnSaveCardMouseClicked(evt);
             }
         });
+        pnlFundo.add(btnSaveCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 433, 89, 40));
+
+        pnlFundo.add(cmbFlag, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 227, 30));
+
+        pnlFundo.add(cmbType, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 252, 220, 30));
+        pnlFundo.add(txtNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 158, 220, 28));
+        pnlFundo.add(txtLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 350, 220, 28));
 
         chosserClosingDate.setDateFormatString("dd-MM-yyyy ");
+        pnlFundo.add(chosserClosingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 229, 30));
 
         txtDespesas.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
         txtDespesas.setForeground(new java.awt.Color(255, 255, 255));
         txtDespesas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas.setText("Bandeira");
+        pnlFundo.add(txtDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 183, 30));
 
         txtDespesas1.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas1.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
         txtDespesas1.setForeground(new java.awt.Color(255, 255, 255));
         txtDespesas1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas1.setText("Limite");
+        pnlFundo.add(txtDespesas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 300, 183, 30));
 
         txtDespesas2.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas2.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
         txtDespesas2.setForeground(new java.awt.Color(255, 255, 255));
         txtDespesas2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas2.setText("Número");
+        pnlFundo.add(txtDespesas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 117, 183, 30));
 
         txtDespesas3.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas3.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
         txtDespesas3.setForeground(new java.awt.Color(255, 255, 255));
         txtDespesas3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas3.setText("Data de Fechamento");
+        pnlFundo.add(txtDespesas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 240, 30));
 
         txtDespesas4.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas4.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
         txtDespesas4.setForeground(new java.awt.Color(255, 255, 255));
         txtDespesas4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas4.setText("Tipo");
-
-        txtDespesas5.setBackground(new java.awt.Color(255, 255, 255));
-        txtDespesas5.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
-        txtDespesas5.setForeground(new java.awt.Color(255, 255, 255));
-        txtDespesas5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtDespesas5.setText("Valor Anual");
+        pnlFundo.add(txtDespesas4, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 204, 183, 30));
 
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLimpar.setText("Limpar");
@@ -120,6 +126,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
                 btnLimparMouseClicked(evt);
             }
         });
+        pnlFundo.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 90, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Close_32px.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -128,80 +135,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlFundoLayout = new javax.swing.GroupLayout(pnlFundo);
-        pnlFundo.setLayout(pnlFundoLayout);
-        pnlFundoLayout.setHorizontalGroup(
-            pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFundoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
-            .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addGap(244, 244, 244)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116)
-                        .addComponent(txtDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtAnnualValue)
-                                    .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNumber)
-                                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDespesas5, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(79, 79, 79))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFundoLayout.createSequentialGroup()
-                                .addComponent(btnSaveCard, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)))
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDespesas3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chosserClosingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtLimit, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbFlag, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(277, Short.MAX_VALUE))
-        );
-        pnlFundoLayout.setVerticalGroup(
-            pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(74, 74, 74)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbFlag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDespesas5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDespesas3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAnnualValue)
-                    .addComponent(chosserClosingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSaveCard, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(211, Short.MAX_VALUE))
-        );
+        pnlFundo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1018, 11, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +145,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
         );
 
         pack();
@@ -226,7 +160,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
             CardType type = (CardType) cmbType.getSelectedItem();
             CardFlag flag = (CardFlag) cmbFlag.getSelectedItem();
             Double limit = Double.parseDouble(txtLimit.getText());
-            Double annualValue = Double.parseDouble(txtAnnualValue.getText());
+            Double annualValue = 0.00; //Double.parseDouble(txtAnnualValue.getText());
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date data = chosserClosingDate.getDate();    
@@ -249,7 +183,7 @@ public class CardsScreen extends javax.swing.JInternalFrame {
         txtNumber.setText(null);
         txtLimit.setText(null);
         chosserClosingDate.setDate(new Date());
-        txtAnnualValue.setText(null);    
+        //txtAnnualValue.setText(null);    
     }//GEN-LAST:event_btnLimparMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -265,13 +199,11 @@ public class CardsScreen extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<CardType> cmbType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel pnlFundo;
-    private javax.swing.JTextField txtAnnualValue;
     private javax.swing.JLabel txtDespesas;
     private javax.swing.JLabel txtDespesas1;
     private javax.swing.JLabel txtDespesas2;
     private javax.swing.JLabel txtDespesas3;
     private javax.swing.JLabel txtDespesas4;
-    private javax.swing.JLabel txtDespesas5;
     private javax.swing.JTextField txtLimit;
     private javax.swing.JTextField txtNumber;
     // End of variables declaration//GEN-END:variables

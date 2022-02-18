@@ -38,7 +38,7 @@ public class CardController {
 
     public Card getCardByNumber(Integer number) throws SQLException {
         if (number != null) {
-            Card card = CardDAO.getCardByNumber(number);            
+            Card card = CardDAO.getCardByNumber(number);
             return card;
         }
         return null;
@@ -56,22 +56,30 @@ public class CardController {
             List<Integer> cardList = CardDAO.getCardNumberList(accountId);
 
             if (cardList.size() > 0 && cardList != null) {
-                for(Integer card : cardList){
+                for (Integer card : cardList) {
                     com.addItem(card);
                 }
                 return true;
-            } 
-            
+            }
+
             JOptionPane.showMessageDialog(null, "Você não possui um cartão cadastrado!\n"
-                + "Mude a forma de pagamento ou cadastre um cartão!");
+                    + "Mude a forma de pagamento ou cadastre um cartão!");
             return false;
-        }        
+        }
         return false;
     }
-    
+
     public boolean deleteCard(Integer id) throws SQLException {
         if (id != null) {
             return CardDAO.deleteCard(id);
+        }
+        return false;
+    }
+
+    public boolean updateCard(Integer id, Integer accountId, Integer number, Integer type, Integer flag, Double limit, Double annualValue, String closingDate) throws SQLException {
+        if (accountId != null && number != null && type != null && flag != null && limit != null && annualValue != null && closingDate != null) {
+            CardDAO.updateCard(id, accountId, number, type, flag, limit, annualValue, closingDate);
+            return true;
         }
         return false;
     }
