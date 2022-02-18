@@ -93,7 +93,7 @@ public class ExpenseController {
             List<Double> values = ExpenseDAO.getExpenseValueListByAccountId(accId);
             Double totalValue = 0.00;
 
-            if (values.size() > 0 && values != null) {
+            if (values != null) {
                 for (Double val : values) {
                     totalValue += val;
                 }
@@ -108,7 +108,7 @@ public class ExpenseController {
         if (accId != null) {
             List<Expense> exp = ExpenseDAO.getExpenseListByAccountId(accId);
 
-            if (exp.size() > 0 && exp != null) {
+            if (exp != null) {
                 return exp;
             }
             return null;
@@ -179,5 +179,17 @@ public class ExpenseController {
             }
         }
         return false;
+    }
+
+    public List<Expense> getExpenseListByDescription(String busca, Integer acc) throws SQLException{
+        if (busca != null) {
+            List<Expense> exp = ExpenseDAO.getExpenseListByDescription(busca, acc);
+
+            if (exp != null) {
+                return exp;
+            }
+            return null;
+        }
+        return null;
     }
 }

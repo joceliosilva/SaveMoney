@@ -101,7 +101,7 @@ public class RevenueDAO {
     }
 
     public static boolean updateValueRevenue(Double valor, Integer id) throws SQLException{
-        String sql = "update Revenue set Value = ? where Id = ?";
+        String sql = "update revenue set Value = Value - ? where Id = ?;";
         conexao = new ConnectionDB().getConnection();
 
         try {

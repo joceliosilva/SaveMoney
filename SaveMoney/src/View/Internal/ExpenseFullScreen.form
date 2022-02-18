@@ -197,6 +197,9 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSearchMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="btnUpdate">
       <Properties>

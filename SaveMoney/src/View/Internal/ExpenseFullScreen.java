@@ -57,11 +57,11 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
             for (Expense e : expenses) {
 
                 Integer cardNum = null;
-                if (e.getCardId()!= null && !e.getFormOfPayment().equals(Enums.FormOfPayment.DINHEIRO)) {
+                if (e.getCardId() != null && !e.getFormOfPayment().equals(Enums.FormOfPayment.DINHEIRO)) {
                     Card card = c.getCardByAccountId(e.getAccountId());
                     cardNum = card.getNumber();
                 }
-                
+
                 String catName = null;
                 if (e.getCategoryId() != null) {
                     Category category = cat.getCategoryById(e.getCategoryId());
@@ -84,6 +84,42 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
         }
     }
 
+    public void readTableForDesc(String busca, Integer id) throws SQLException {
+        DefaultTableModel modelo = (DefaultTableModel) jTExpense.getModel();
+        List<Expense> expenses = exp.getExpenseListByDescription(busca, account.getId());
+        modelo.setNumRows(0);
+
+        if (expenses != null) {
+            for (Expense e : expenses) {
+
+                Integer cardNum = null;
+                if (e.getCardId() != null && !e.getFormOfPayment().equals(Enums.FormOfPayment.DINHEIRO)) {
+                    Card card = c.getCardByAccountId(e.getAccountId());
+                    cardNum = card.getNumber();
+                }
+
+                String catName = null;
+                if (e.getCategoryId() != null) {
+                    Category category = cat.getCategoryById(e.getCategoryId());
+                    catName = category.getName();
+                }
+
+                modelo.addRow(new Object[]{
+                    e.getId(),
+                    account.getFullName(),
+                    cardNum,
+                    catName,
+                    e.getValue(),
+                    e.getDate(),
+                    e.getDescription(),
+                    e.getNumberOfInstallments(),
+                    e.getFormOfPayment(),
+                    e.getStatus()
+                });
+            }
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -130,6 +166,11 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
         btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CRUD/icons8_search_32px_1.png"))); // NOI18N
         btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSearchMouseClicked(evt);
+            }
+        });
 
         btnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CRUD/icons8_edit_32px.png"))); // NOI18N
@@ -256,6 +297,17 @@ public final class ExpenseFullScreen extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma despesa!");
         }
     }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
+        String busca = txtBusca.getText();
+
+        try {
+            readTableForDesc(busca, account.getId());
+        } catch (SQLException ex) {
+            Logger.getLogger(ExpenseFullScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnSearchMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

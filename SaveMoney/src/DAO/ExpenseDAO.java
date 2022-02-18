@@ -174,4 +174,49 @@ public class ExpenseDAO {
             ConnectionDB.closeConnection(conexao, ps);
         }
     }
+
+    public static List<Expense> getExpenseListByDescription(String busca, Integer acc) throws SQLException{
+        String sql = "select * from Expense where Description Like ? and AccountId = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, "%" + busca + "%");
+            ps.setInt(2, acc);
+
+            rs = ps.executeQuery();
+
+            List<Expense> values = new ArrayList();
+
+            while (rs.next()) {
+                Expense e = new Expense();
+
+                FormOfPayment pay = FormOfPayment.CREDITO;
+                pay = pay.findFormOfPayment(rs.getInt("FormOfPayment"));
+
+                ExpenseStatus status = ExpenseStatus.PAGO;
+                status = status.findStatus(rs.getInt("Status"));
+
+                e.setId(rs.getInt("Id"));
+                e.setAccountId(rs.getInt("AccountId"));
+                e.setCategoryId(rs.getInt("CategoryId"));
+                e.setCardId(rs.getInt("CardId"));
+                e.setValue(rs.getDouble("Value"));
+                e.setDate(rs.getDate("Date"));
+                e.setDescription(rs.getString("Description"));
+                e.setNumberOfInstallments(rs.getInt("NumberOfInstallments"));
+                e.setFormOfPayment(pay);
+                e.setStatus(status);
+
+                values.add(e);
+            }
+            return values;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao pegar lista de despesas: " + e);
+            return null;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }
