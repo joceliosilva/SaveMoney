@@ -90,7 +90,7 @@ public class Enums {
                     return flag;
                 case 5:
                     flag = CardFlag.DINERS_CLUB;
-                    return flag;               
+                    return flag;
                 default:
                     flag = CardFlag.MASTERCARD;
             }
@@ -100,25 +100,84 @@ public class Enums {
     }
 
     public enum Month {
-        JANUARY,
-        FEBRUARY,
-        MARCH,
-        APRIL,
-        MAY,
-        JUNE,
-        JULY,
-        AUGUST,
-        SEPTEMBER,
-        OCTOBER,
-        NOVEMBER,
-        DECEMBER
+        JANEIRO(0),
+        FEVEREIRO(1),
+        MARÇO(2),
+        ABRIL(3),
+        MAIO(4),
+        JUNHO(5),
+        JULHO(6),
+        AGOSTO(7),
+        SETEMBRO(8),
+        OUTOBRO(9),
+        NOVEMBRO(10),
+        DEZEMBRO(11);
+
+        Integer num;
+
+        private Month(Integer num) {
+            this.num = num;
+        }
+
+        public Integer getNum() {
+            return num;
+        }
+
+        public void setNum(Integer num) {
+            this.num = num;
+        }
+
+        public Month findMonth(Integer num) {
+            Month month;
+
+            switch (num) {
+                case 0:
+                    month = Month.JANEIRO;
+                    return month;
+                case 1:
+                    month = Month.FEVEREIRO;
+                    return month;
+                case 2:
+                    month = Month.MARÇO;
+                    return month;
+                case 3:
+                    month = Month.ABRIL;
+                    return month;
+                case 4:
+                    month = Month.MAIO;
+                    return month;
+                case 5:
+                    month = Month.JUNHO;
+                    return month;
+                case 6:
+                    month = Month.JULHO;
+                    return month;
+                case 7:
+                    month = Month.AGOSTO;
+                    return month;
+                case 8:
+                    month = Month.SETEMBRO;
+                    return month;
+                case 9:
+                    month = Month.OUTOBRO;
+                    return month;
+                case 10:
+                    month = Month.NOVEMBRO;
+                    return month;
+                case 11:
+                    month = Month.DEZEMBRO;
+                    return month;
+                default:
+                    month = Month.JANEIRO;
+                    return month;
+            }
+        }
     }
 
     public enum FormOfPayment {
         DINHEIRO(0),
         CREDITO(1),
         DEBITO(2);
-        
 
         Integer num;
 
@@ -133,25 +192,63 @@ public class Enums {
         public void setNum(Integer num) {
             this.num = num;
         }
-    }
 
-    public enum ExpenseStatus {
-        PAY(0),
-        NOT_PAID(1),
-        CANCELED(2);
+        public FormOfPayment findFormOfPayment(Integer num) {
+            FormOfPayment pay;
 
-        Integer num;
-
-        private ExpenseStatus(Integer num) {
-            this.num = num;
+            switch (num) {
+                case 0:
+                    pay = FormOfPayment.DINHEIRO;
+                    return pay;
+                case 1:
+                    pay = FormOfPayment.CREDITO;
+                    return pay;
+                case 2:
+                    pay = FormOfPayment.CREDITO;
+                    return pay;
+                default:
+                    pay = FormOfPayment.DINHEIRO;
+                    return pay;
+            }
         }
 
-        public Integer getNum() {
-            return num;
-        }
+        public enum ExpenseStatus {
+            PAGO(0),
+            NÃO_PAGO(1),
+            CANCELEDO(2);
 
-        public void setNum(Integer num) {
-            this.num = num;
+            Integer num;
+
+            private ExpenseStatus(Integer num) {
+                this.num = num;
+            }
+
+            public Integer getNum() {
+                return num;
+            }
+
+            public void setNum(Integer num) {
+                this.num = num;
+            }
+
+            public ExpenseStatus findStatus(Integer num) {
+                ExpenseStatus status;
+
+                switch (num) {
+                    case 0:
+                        status = ExpenseStatus.PAGO;
+                        return status;
+                    case 1:
+                        status = ExpenseStatus.NÃO_PAGO;
+                        return status;
+                    case 2:
+                        status = ExpenseStatus.CANCELEDO;
+                        return status;
+                    default:
+                        status = ExpenseStatus.NÃO_PAGO;
+                        return status;
+                }
+            }
         }
     }
 }

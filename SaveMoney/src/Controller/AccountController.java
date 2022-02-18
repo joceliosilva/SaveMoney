@@ -24,19 +24,6 @@ public class AccountController {
 
         return false;
     }
-     
-     public boolean  editAccount(String fullName, String email, Object Avatar, Integer Id) throws SQLException {
-      if (!fullName.isEmpty() && !email.isEmpty()) {
-         AccountDAO ac = new AccountDAO();
-           ac.editAccount(fullName,email, Avatar,Id);
-           return true;
-        }
-        
-       return false;
-    
-    }
-     
-     
     
     public boolean consultarLogin(String email, String password) throws SQLException {
         if (!email.isEmpty() && !password.isEmpty()) {
@@ -57,4 +44,29 @@ public class AccountController {
         return null;
     }
     
+     public boolean  editAccount(String fullName, String email, Object Avatar, Integer Id) throws SQLException {
+      if (!fullName.isEmpty() && !email.isEmpty()) {
+         AccountDAO ac = new AccountDAO();
+           ac.editAccount(fullName,email, Avatar,Id);
+           return true;
+        }
+       return false;
+    }
+     
+     public boolean  editPass(String newPass, String oldPass, Integer Id) throws SQLException {
+      if (!newPass.isEmpty() && !oldPass.isEmpty()) {
+         AccountDAO ac = new AccountDAO();
+           ac.editPass(newPass,oldPass, Id);
+           return true;
+        }
+       return false;
+    }
+     
+     
+    public boolean deleteAccount(Integer id) throws SQLException {
+        if (id != null) {
+            return AccountDAO.deleteAccount(id);
+        }
+        return false;
+    }
 }

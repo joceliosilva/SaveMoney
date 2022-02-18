@@ -219,8 +219,6 @@ public class LoginScreen extends javax.swing.JFrame {
                 d.openFrame(new HomeScreen());
                 this.dispose();
 
-                JOptionPane.showMessageDialog(null, "BEM VINDO (A)!" + " " + name1.toUpperCase());
-
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Login não realizado!\nFavor conferir o Email e Senha digitados!");
             }

@@ -12,10 +12,10 @@ import DAO.AccountDAO;
 import Model.Entity.*;
 import Model.Enums.*;
 import View.HomeScreen;
+import static View.HomeScreen.desktop;
 import static View.HomeScreen.labelAvatar;
-import View.LoginScreen;
+import static View.HomeScreen.txtUser;
 import static View.LoginScreen.avatar;
-import static View.LoginScreen.email1;
 import View.RegisterScreen;
 import static View.RegisterScreen.ResizeImage;
 import static View.RegisterScreen.imgPath;
@@ -47,21 +47,23 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class UserScreen extends javax.swing.JInternalFrame {
 
-    AccountController ac = new AccountController();
-    DisplayManager d = new DisplayManager();
-    String Email = email1;
-    URL l= this.getClass().getResource("Images/user.png");
-    public static String imgPath = null;
-    public static byte[] imagem= null;
-
-    public UserScreen() throws Exception {
+         AccountController ac = new AccountController();
+         DisplayManager d = new DisplayManager();
+         String Email = HomeScreen.txtEmail.getText();
+         URL l= this.getClass().getResource("Images/user.png");
+         public static String imgPath = null;
+         public static byte[] imagem= null;
+         public Blob avatar1;
+   
+public UserScreen() throws Exception {
         initComponents();
-        blobToImage(avatar,labelAvatar1);
+        String Email = HomeScreen.txtEmail.getText();
+        avatar1 = (Blob) ac.getAccountByEmail(Email).getAvatar();
+        blobToImage(avatar1,labelAvatar1);
         setInfo();
-        btnSelect.setVisible(false);
-        txtName.setEditable(false);
-        txtEmail.setEditable(false);
-        btnSave.setVisible(false);
+        startButtons();
+
+        
         
     }
     public static void blobToImage(Blob blobBD, JLabel label) throws Exception {
@@ -76,20 +78,18 @@ public class UserScreen extends javax.swing.JInternalFrame {
         //Apresenta a imagem no componente JLabel
         label.setIcon(imageIcon);
     }
-    
+
     public final void setInfo() throws SQLException{
           String email = HomeScreen.txtEmail.getText();
             Account accountId = ac.getAccountByEmail(email);
-            
-          
+
+
             txtName.setText(ac.getAccountByEmail(email).getFullName());
             txtEmail.setText(ac.getAccountByEmail(email).getEmail());
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             Date data = ac.getAccountByEmail(email).getCeationDate();
             String dataFormatada = sdf.format(data);
             txtDate.setText(dataFormatada);
-           
-            
     }
 
     /**
@@ -109,11 +109,13 @@ public class UserScreen extends javax.swing.JInternalFrame {
         txtDespesas1 = new javax.swing.JLabel();
         txtDespesas2 = new javax.swing.JLabel();
         txtDespesas4 = new javax.swing.JLabel();
-        btnLimpar = new javax.swing.JButton();
+        btnDeleteAcc = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labelAvatar1 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnSelect = new javax.swing.JButton();
+        btnEditPass = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setBorder(null);
 
@@ -127,12 +129,19 @@ public class UserScreen extends javax.swing.JInternalFrame {
                 btnEditMouseClicked(evt);
             }
         });
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         txtName.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
 
         txtEmail.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
 
+        txtDate.setBackground(new java.awt.Color(204, 204, 204));
         txtDate.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtDate.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtDate.setEnabled(false);
 
         txtDespesas1.setBackground(new java.awt.Color(255, 255, 255));
@@ -153,12 +162,13 @@ public class UserScreen extends javax.swing.JInternalFrame {
         txtDespesas4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtDespesas4.setText("Data de Criação:");
 
-        btnLimpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnLimpar.setText("EXCLUIR CONTA");
-        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLimpar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDeleteAcc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeleteAcc.setForeground(new java.awt.Color(255, 51, 51));
+        btnDeleteAcc.setText("EXCLUIR CONTA");
+        btnDeleteAcc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDeleteAcc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLimparMouseClicked(evt);
+                btnDeleteAccMouseClicked(evt);
             }
         });
 
@@ -183,11 +193,6 @@ public class UserScreen extends javax.swing.JInternalFrame {
                 btnSaveMouseClicked(evt);
             }
         });
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
 
         btnSelect.setBackground(new java.awt.Color(85, 65, 118));
         btnSelect.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -206,6 +211,24 @@ public class UserScreen extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEditPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEditPass.setText("ALTERAR SENHA");
+        btnEditPass.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditPassMouseClicked(evt);
+            }
+        });
+
+        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancel.setText("CANCELAR");
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlFundoLayout = new javax.swing.GroupLayout(pnlFundo);
         pnlFundo.setLayout(pnlFundoLayout);
         pnlFundoLayout.setHorizontalGroup(
@@ -216,33 +239,37 @@ public class UserScreen extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(pnlFundoLayout.createSequentialGroup()
                 .addGap(244, 244, 244)
+                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlFundoLayout.createSequentialGroup()
+                        .addComponent(labelAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(245, 245, 245))
+            .addGroup(pnlFundoLayout.createSequentialGroup()
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(244, 244, 244)
+                        .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addComponent(labelAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(432, 432, 432)
                         .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(339, 339, Short.MAX_VALUE))
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDeleteAcc, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlFundoLayout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnEditPass, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlFundoLayout.setVerticalGroup(
             pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,10 +297,15 @@ public class UserScreen extends javax.swing.JInternalFrame {
                     .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(272, Short.MAX_VALUE))
+                    .addComponent(btnEditPass, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnDeleteAcc, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -291,51 +323,30 @@ public class UserScreen extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
-
-            txtName.setEditable(true);
-            txtEmail.setEditable(true);
-            btnLimpar.setVisible(false);
-            btnSave.setVisible(true);
-            btnSelect.setVisible(true);
-            labelAvatar1.setIcon(null);
-            
-           
-            
-            
-        
+            editClicked();
     }//GEN-LAST:event_btnEditMouseClicked
 
-    private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
-        
-    }//GEN-LAST:event_btnLimparMouseClicked
+    private void btnDeleteAccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteAccMouseClicked
+
+    }//GEN-LAST:event_btnDeleteAccMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSaveMouseClicked
-
-    private void btnSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelectMouseClicked
-        selectFile1();
-    }//GEN-LAST:event_btnSelectMouseClicked
-
-    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-
-    }//GEN-LAST:event_btnSelectActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-          if(imgPath != null){
+        
+      if(imgPath != null ){
         File img = new File(imgPath);
         byte[] imagem = new byte[(int)img.length()];
         DataInputStream is = null;
+      
         try {
            is = new DataInputStream(          
                    new FileInputStream(imgPath));
-       } catch (FileNotFoundException ex) {
+       }catch (FileNotFoundException ex) {
             Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       }
         try {
             is.readFully(imagem);
        } catch (IOException ex) {
@@ -346,8 +357,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
        } catch (IOException ex) {
            Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
-        
+          
         AccountDAO ac1 = new AccountDAO();
         String fullName = txtName.getText();
         String email = txtEmail.getText();
@@ -355,6 +365,8 @@ public class UserScreen extends javax.swing.JInternalFrame {
         Object byteImg = imagem;
         
        try {
+            String Email = HomeScreen.txtEmail.getText();
+            ac.getAccountByEmail(Email).getAvatar();
             id = ac.getAccountByEmail(Email).getId();
         } catch (SQLException ex) {
             Logger.getLogger(UserScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -367,10 +379,14 @@ public class UserScreen extends javax.swing.JInternalFrame {
             sucesso = ac.editAccount(fullName, email,byteImg, id);
 
             if (sucesso) {
-                JOptionPane.showMessageDialog(null, "O PROGRAMA SERA REINICIADO PARA QUE AS ALTERAÇOES SEJAM EFETIVADAS.");
-                d.openFrame(new HomeScreen());
+                JOptionPane.showMessageDialog(null, "O CADASTRO FOI ATUALIZADO!");
                 this.dispose();
-                
+                Blob avatar1 = (Blob) ac.getAccountByEmail(email).getAvatar();
+                imgPath = null;
+                HomeScreen.blobToImage(avatar1, labelAvatar);
+                txtUser.setText(fullName);
+                HomeScreen.txtEmail.setText(email);
+//              
             } else {
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
             }
@@ -378,16 +394,40 @@ public class UserScreen extends javax.swing.JInternalFrame {
         }     catch (Exception ex) {
                   Logger.getLogger(UserScreen.class.getName()).log(Level.SEVERE, null, ex);
               }
-        
-
-          }else
+         }else
                 JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
-    }//GEN-LAST:event_btnSaveActionPerformed
+    }//GEN-LAST:event_btnSaveMouseClicked
+
+    private void btnSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelectMouseClicked
+        selectFile1();
+    }//GEN-LAST:event_btnSelectMouseClicked
+
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+
+    }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnEditPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditPassMouseClicked
+         try {
+            d.openInternalFrame(desktop, new EditPassScreen());
+        } catch (Exception ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnEditPassMouseClicked
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+       startButtons();
+    }//GEN-LAST:event_btnCancelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDeleteAcc;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnEditPass;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSelect;
     private javax.swing.JLabel jLabel1;
@@ -408,10 +448,10 @@ public class UserScreen extends javax.swing.JInternalFrame {
         fc.addChoosableFileFilter(new FileNameExtensionFilter("Imagens (*png, jpg, jpeg)", "png", "jpg", "jpeg")); //SELECIONA O FILTRO DE ARQUIVOS
         fc.setAcceptAllFileFilterUsed(false);  //Limita os filtros de arquivos
         int res = fc.showOpenDialog(null);
-       
+
         if (res == JFileChooser.APPROVE_OPTION) {
             File arquivo = fc.getSelectedFile();
-            
+
             //Limpa a imagem atual do JLabel
             labelAvatar1.setIcon(null);
             imgPath = arquivo.getAbsolutePath();
@@ -428,12 +468,11 @@ public class UserScreen extends javax.swing.JInternalFrame {
         }else{
             imgPath = null;
         }
-         
      }
-     
+
      public static ImageIcon ResizeImage(String ImagePath, byte [] pic) {
        ImageIcon Img = null;
-       
+
        if(ImagePath != null){
            Img = new ImageIcon(ImagePath);
        } else{
@@ -445,5 +484,31 @@ public class UserScreen extends javax.swing.JInternalFrame {
        return image;
     }
      
-}
+     public void editClicked(){
+            btnEdit.setVisible(false);
+            btnEditPass.setVisible(false);
+            txtName.setEditable(true);
+            txtEmail.setEditable(true);
+            btnDeleteAcc.setVisible(false);
+            btnSave.setVisible(true);
+            btnSelect.setVisible(true);
+            btnCancel.setVisible(true);
+     }
+     
+     public void startButtons(){
+//            btnSelect.setVisible(false);
+//            txtName.setEditable(false);
+//            txtEmail.setEditable(false);
+//            btnSave.setVisible(false);
+//             btnCancel.setVisible(false);
+            btnEdit.setVisible(true);
+            btnEditPass.setVisible(true);
+            txtName.setEditable(false);
+            txtEmail.setEditable(false);
+            btnDeleteAcc.setVisible(true);
+            btnSave.setVisible(false);
+            btnSelect.setVisible(false);
+            btnCancel.setVisible(false);
 
+     }
+}

@@ -37,10 +37,6 @@ public class Account {
         this.avatar = avatar;
     }
 
-    public Account(String fullName, String email, Object Avatar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Integer getId() {
         return id;
     }

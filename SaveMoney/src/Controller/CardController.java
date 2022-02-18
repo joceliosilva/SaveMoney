@@ -68,4 +68,11 @@ public class CardController {
         }        
         return false;
     }
+    
+    public boolean deleteCard(Integer id) throws SQLException {
+        if (id != null) {
+            return CardDAO.deleteCard(id);
+        }
+        return false;
+    }
 }

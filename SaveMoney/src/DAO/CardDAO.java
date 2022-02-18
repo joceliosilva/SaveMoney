@@ -154,4 +154,23 @@ public class CardDAO {
             conexao.close();
         }
     }
+    
+    public static boolean deleteCard(Integer id) throws SQLException {
+        String sql = "delete from Card where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao apagar cartão: " + e);
+            return false;
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }

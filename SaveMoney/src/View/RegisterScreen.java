@@ -142,7 +142,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         buttonRegister.setForeground(new java.awt.Color(213, 220, 224));
         buttonRegister.setText("Cadastrar");
         buttonRegister.setBorder(null);
-        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonRegisterMouseClicked(evt);
@@ -161,7 +161,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         txtLogin1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtLogin1.setForeground(new java.awt.Color(255, 255, 255));
         txtLogin1.setText("Faça Login");
-        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtLogin1MouseClicked(evt);
@@ -187,7 +187,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         buttonF.setForeground(new java.awt.Color(213, 220, 224));
         buttonF.setText("Selecionar");
         buttonF.setBorder(null);
-        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonFMouseClicked(evt);
@@ -406,7 +406,4 @@ public class RegisterScreen extends javax.swing.JFrame {
        ImageIcon image = new ImageIcon(newImg);
        return image;
     }
-
-
-
 }
