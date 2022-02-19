@@ -131,4 +131,26 @@ public class AccountDAO {
             conexao.close();
         }
     }
+    
+    public void editAccount(String email, String fullName, String pass, Object Avatar,Integer Id) throws SQLException {
+        String sql = "update account set FullName= ?, Email =? where  Id=?";
+        conexao = new ConnectionDB().getConnection();
+
+         try {
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, fullName);
+            ps.setString(2, email);
+            //ps.setString(3, pass);
+            //ps.setObject(4, Avatar);
+            ps.setInt(3, Id);
+            ps.executeUpdate();
+            
+         } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao editar conta: " + e);
+            
+        } finally {
+            ps.close();
+            conexao.close();
+       } 
+    }
 }

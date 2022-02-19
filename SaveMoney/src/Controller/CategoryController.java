@@ -79,4 +79,10 @@ public class CategoryController {
             }
         }
     }
+    
+    public boolean updateCategory(Integer id, String update) throws SQLException{
+        CategoryDAO c = new CategoryDAO();
+        c.updateCategory(id,update);
+        return true;
+    }
 }

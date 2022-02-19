@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class AccountController {
 
-     public boolean createAccount(String fullName, String email, String password, Object Avatar) throws SQLException {
+    public boolean createAccount(String fullName, String email, String password, Object Avatar) throws SQLException {
         if (!fullName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             Account account = new Account(fullName, email, password, Avatar);
             AccountDAO.createAccount(account);
@@ -24,7 +24,7 @@ public class AccountController {
 
         return false;
     }
-    
+
     public boolean consultarLogin(String email, String password) throws SQLException {
         if (!email.isEmpty() && !password.isEmpty()) {
             boolean resposta = AccountDAO.consultarLogin(email, password);
@@ -33,20 +33,29 @@ public class AccountController {
 
         return false;
     }
-    
-    public Account getAccountByEmail(String email) throws SQLException{
+
+    public Account getAccountByEmail(String email) throws SQLException {
         if (!email.isEmpty()) {
             AccountDAO ac = new AccountDAO();
             Account account = ac.getAccountByEmail(email);
             return account;
         }
-        
+
         return null;
     }
-     
+
     public boolean deleteAccount(Integer id) throws SQLException {
         if (id != null) {
             return AccountDAO.deleteAccount(id);
+        }
+        return false;
+    }
+
+    public boolean editAccount(String fullName, String email, String pass, Object Avatar, Integer Id) throws SQLException {
+        if (!fullName.isEmpty() && !email.isEmpty()) {
+            AccountDAO ac = new AccountDAO();
+            ac.editAccount(fullName, email, pass, Avatar, Id);
+            return true;
         }
         return false;
     }

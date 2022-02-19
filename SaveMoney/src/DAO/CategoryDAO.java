@@ -148,4 +148,23 @@ public class CategoryDAO {
             conexao.close();
         }
     }
+
+    public void updateCategory(Integer id, String update) throws SQLException {
+        String sql = "update Category set Name = ? where Id = ?";
+        conexao = new ConnectionDB().getConnection();
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, update);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar categoria: " + e);
+            
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
 }

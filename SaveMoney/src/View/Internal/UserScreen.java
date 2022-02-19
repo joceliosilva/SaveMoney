@@ -11,24 +11,31 @@ import Controller.CategoryController;
 import Controller.DisplayManager;
 import Controller.ExpenseController;
 import Controller.RevenueController;
+import DAO.AccountDAO;
 import Model.Entity.*;
-import Model.Enums.*;
 import Model.Home.Card;
 import Model.Home.Expense;
 import Model.Home.Revenue;
 import View.HomeScreen;
-import View.LoginScreen;
-import static View.LoginScreen.avatar;
 import static View.LoginScreen.email1;
-import static View.RegisterScreen.imgPath;
+import java.util.List;
+import static View.HomeScreen.labelAvatar;
+import static View.HomeScreen.txtUser;
+import static View.LoginScreen.avatar;
+import View.RegisterScreen;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -50,6 +57,11 @@ public class UserScreen extends javax.swing.JInternalFrame {
     CardController cc = new CardController();
     RevenueController rc = new RevenueController();
     DisplayManager d = new DisplayManager();
+    String Email = HomeScreen.txtEmail.getText();
+    URL l = this.getClass().getResource("Images/user.png");
+    public static String imgPath = null;
+    public static byte[] imagem = null;
+    public Blob avatar1;
 
     public UserScreen() throws Exception {
         initComponents();
@@ -59,6 +71,12 @@ public class UserScreen extends javax.swing.JInternalFrame {
         txtName.setEditable(false);
         txtEmail.setEditable(false);
         btnSave.setVisible(false);
+        txtSenha.setVisible(false);
+        txtPass.setVisible(false);
+        avatar1 = (Blob) ac.getAccountByEmail(Email).getAvatar();
+        blobToImage(avatar1, labelAvatar1);
+        setInfo();
+        startButtons();
     }
 
     public static void blobToImage(Blob blobBD, JLabel label) throws Exception {
@@ -100,7 +118,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
         txtName = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtDate = new javax.swing.JTextField();
-        txtDespesas1 = new javax.swing.JLabel();
+        txtPass = new javax.swing.JLabel();
         txtDespesas2 = new javax.swing.JLabel();
         txtDespesas4 = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
@@ -108,6 +126,8 @@ public class UserScreen extends javax.swing.JInternalFrame {
         labelAvatar1 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnSelect = new javax.swing.JButton();
+        txtDespesas3 = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
 
         setBorder(null);
 
@@ -129,11 +149,11 @@ public class UserScreen extends javax.swing.JInternalFrame {
         txtDate.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         txtDate.setEnabled(false);
 
-        txtDespesas1.setBackground(new java.awt.Color(255, 255, 255));
-        txtDespesas1.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
-        txtDespesas1.setForeground(new java.awt.Color(255, 255, 255));
-        txtDespesas1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtDespesas1.setText("Email:");
+        txtPass.setBackground(new java.awt.Color(255, 255, 255));
+        txtPass.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
+        txtPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtPass.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtPass.setText("Senha:");
 
         txtDespesas2.setBackground(new java.awt.Color(255, 255, 255));
         txtDespesas2.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
@@ -195,6 +215,12 @@ public class UserScreen extends javax.swing.JInternalFrame {
             }
         });
 
+        txtDespesas3.setBackground(new java.awt.Color(255, 255, 255));
+        txtDespesas3.setFont(new java.awt.Font("Ruda", 0, 24)); // NOI18N
+        txtDespesas3.setForeground(new java.awt.Color(255, 255, 255));
+        txtDespesas3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtDespesas3.setText("Email:");
+
         javax.swing.GroupLayout pnlFundoLayout = new javax.swing.GroupLayout(pnlFundo);
         pnlFundo.setLayout(pnlFundoLayout);
         pnlFundoLayout.setHorizontalGroup(
@@ -203,32 +229,38 @@ public class UserScreen extends javax.swing.JInternalFrame {
                 .addGap(244, 244, 244)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addComponent(labelAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(60, 60, 60))
-            .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addGap(281, 281, 281)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlFundoLayout.createSequentialGroup()
+                                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDespesas3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlFundoLayout.createSequentialGroup()
+                                        .addComponent(labelAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
+                                    .addGroup(pnlFundoLayout.createSequentialGroup()
+                                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                            .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                            .addComponent(txtSenha))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(pnlFundoLayout.createSequentialGroup()
+                                .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(60, 60, 60))))
         );
         pnlFundoLayout.setVerticalGroup(
             pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,19 +279,25 @@ public class UserScreen extends javax.swing.JInternalFrame {
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDespesas2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDespesas3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlFundoLayout.createSequentialGroup()
+                        .addComponent(txtSenha)
+                        .addGap(1, 1, 1)))
+                .addGap(28, 28, 28)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtDate)
                     .addComponent(txtDespesas4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(98, 98, 98)
+                .addGap(64, 64, 64)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,6 +320,8 @@ public class UserScreen extends javax.swing.JInternalFrame {
         btnExcluir.setVisible(false);
         btnSave.setVisible(true);
         btnSelect.setVisible(true);
+        txtSenha.setVisible(true);
+        txtPass.setVisible(true);
     }//GEN-LAST:event_btnEditMouseClicked
 
     private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
@@ -329,7 +369,7 @@ public class UserScreen extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Você não pode excluir a conta!"
                             + "\nEla está cadastrada em " + countDesp + " Despesa(s)!");
                 } else if (count > 0) {
-                    
+
                 } else {
                     boolean sucesso = ac.deleteAccount(account.getId());
                     if (sucesso) {
@@ -352,7 +392,68 @@ public class UserScreen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
-        // TODO add your handling code here:
+        if (imgPath != null) {
+            File img = new File(imgPath);
+            byte[] imagem = new byte[(int) img.length()];
+            DataInputStream is = null;
+
+            try {
+                is = new DataInputStream(
+                        new FileInputStream(imgPath));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                is.readFully(imagem);
+            } catch (IOException ex) {
+                Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                is.close();
+            } catch (IOException ex) {
+                Logger.getLogger(RegisterScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            AccountDAO ac1 = new AccountDAO();
+            String fullName = txtName.getText();
+            String email = txtEmail.getText();
+            String pass = txtSenha.getText();
+            Integer id = null;
+            Object byteImg = imagem;
+
+            try {
+                String Email = HomeScreen.txtEmail.getText();
+                ac.getAccountByEmail(Email).getAvatar();
+                id = ac.getAccountByEmail(Email).getId();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+//     
+            boolean sucesso;
+
+            try {
+                AccountController ac = new AccountController();
+                sucesso = ac.editAccount(fullName, pass, email, byteImg, id);
+
+                if (sucesso) {
+                    JOptionPane.showMessageDialog(null, "O CADASTRO FOI ATUALIZADO!"
+                            + "\nVocê será deslogado!");
+                    System.exit(0);
+                    Blob avatar1 = (Blob) ac.getAccountByEmail(email).getAvatar();
+                    imgPath = null;
+                    HomeScreen.blobToImage(avatar1, labelAvatar);
+                    txtUser.setText(fullName);
+                    HomeScreen.txtEmail.setText(email);
+//              
+                } else {
+                    JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
+                }
+            } catch (HeadlessException | SQLException e) {
+            } catch (Exception ex) {
+                Logger.getLogger(UserScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Informe os campos corretamente!");
     }//GEN-LAST:event_btnSaveMouseClicked
 
     private void btnSelectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelectMouseClicked
@@ -373,11 +474,13 @@ public class UserScreen extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel labelAvatar1;
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JTextField txtDate;
-    private javax.swing.JLabel txtDespesas1;
     private javax.swing.JLabel txtDespesas2;
+    private javax.swing.JLabel txtDespesas3;
     private javax.swing.JLabel txtDespesas4;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
+    private javax.swing.JLabel txtPass;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 
     public static void selectFile1() {
@@ -421,5 +524,21 @@ public class UserScreen extends javax.swing.JInternalFrame {
         Image newImg = img.getScaledInstance(labelAvatar1.getWidth(), labelAvatar1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         return image;
+    }
+
+    public void editClicked() {
+        btnEdit.setVisible(false);
+        txtName.setEditable(true);
+        txtEmail.setEditable(true);
+        btnSave.setVisible(true);
+        btnSelect.setVisible(true);
+    }
+
+    public void startButtons() {
+        txtName.setEditable(false);
+        txtEmail.setEditable(false);
+        btnSave.setVisible(false);
+        btnSelect.setVisible(false);
+
     }
 }

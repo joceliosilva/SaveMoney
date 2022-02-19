@@ -560,6 +560,11 @@ public final class HomeScreen extends javax.swing.JFrame {
         txtTitulo.setText("Dashboard");
         mouseResetButton();
         mouseClickedButton(pnlDashboard, txtDashboard);
+        try {
+            d.openInternalFrame(desktop, new DashboardScreen());
+        } catch (Exception ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pnlDashboardMouseClicked
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
